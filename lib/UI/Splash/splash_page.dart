@@ -93,7 +93,7 @@ class _SplashPageState extends State<SplashPage> {
           ),
         ),
       ),
-      designSize: const Size(393.0, 852.0),
+      designSize: const Size(376.0, 812.0),
     );
   }
 }

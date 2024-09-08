@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ReUseAbleSvg extends StatefulWidget {
+class ReUseAbleSvg extends StatelessWidget {
   final String path;
-  const ReUseAbleSvg({super.key , required this.path});
+  final double? width;
+  final double? height;
+  const ReUseAbleSvg({super.key , required this.path , this.height , this.width});
 
-  @override
-  State<ReUseAbleSvg> createState() => _ReUseAbleSvgState();
-}
-
-class _ReUseAbleSvgState extends State<ReUseAbleSvg> {
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-        widget.path,
-        semanticsLabel: 'Acme Logo',
-      fit: BoxFit.cover,
+    return SizedBox(
+      // height: height?.h,
+      // width: width?.w,
+      child: SvgPicture.asset(
+        path,
+          semanticsLabel: 'Acme Logo',
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
