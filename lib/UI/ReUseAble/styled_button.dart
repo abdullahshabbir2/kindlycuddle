@@ -26,7 +26,7 @@ class _StyledButtonState extends State<StyledButton> {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          child: Center(child: headingText(widget.text,customHeadingFontSize: 16.sp,customHeadingHeight: 0.09))
+          child: Center(child: headingText(widget.text,fontSize: 16.sp,customHeadingHeight: 0.09))
       ),
     );
   }

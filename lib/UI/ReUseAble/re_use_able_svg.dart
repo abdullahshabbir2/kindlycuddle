@@ -11,8 +11,8 @@ class ReUseAbleSvg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: height?.h,
-      // width: width?.w,
+      height: height,
+      width: width,
       child: SvgPicture.asset(
         path,
           semanticsLabel: 'Acme Logo',

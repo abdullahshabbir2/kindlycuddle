@@ -1,10 +1,15 @@
+import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
+import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_cubit.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
+import 'package:cuddle_care/UI/SignIn/sign_in_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,68 +60,108 @@ class _SignInPageState extends State<SignInPage> {
                   ],
                 ),
                 SizedBox(height: 30.h,),
+
                 Stack(
                   children: [
                     ReUseAbleSvg(path: ImageConstants.backgroundShape),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 47.h,),
-                          headingText('Welcome Back!',customHeadingHeight: 1.5),
-                          bodyText('welcome back we missed you',bodyTextHeight: 1),
-                          SizedBox(height: 29.h,),
 
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              children: <Widget>[
-                                TextFormField(
-                                  controller: _emailController,
-                                  decoration: InputDecoration(labelText: 'Email'),
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your email';
-                                    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                                      return 'Please enter a valid email';
-                                    }
-                                    return null;
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 47.h,),
+                        headingText('Welcome Back!',customHeadingHeight: 1.5),
+                        bodyText('welcome back we missed you',bodyTextHeight: 1),
+                        SizedBox(height: 29.h,),
+
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: <Widget>[
+
+                              StyledTextField(
+                                label: 'Username',
+                                iconPath: ImageConstants.userIcon,
+                                validator:   (value){
+                                  return cubit.emailValidator(value) ;
                                   },
-                                ),
-                                TextFormField(
-                                  controller: _passwordController,
-                                  decoration: InputDecoration(labelText: 'Password'),
-                                  obscureText: true,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your password';
-                                    } else if (value.length < 6) {
-                                      return 'Password must be at least 6 characters long';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 20),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Validate returns true if the form is valid, or false otherwise.
-                                    if (_formKey.currentState!.validate()) {
-                                      // If the form is valid, display a snackbar. In a real app,
-                                      // you would often call a server or save the information in a database.
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text('Processing Data')),
-                                      );
-                                    }
-                                  },
-                                  child: Text('Submit'),
-                                ),
-                              ],
-                            ),
+                                  inputType: TextInputType.emailAddress
+                              ),
+                              SizedBox(height: 12.h,),
+                              BlocBuilder(
+                                bloc: cubit,
+                                builder: (context,state) {
+                                  state as SignInState;
+                                  return StyledTextField(
+                                      label: 'Password',
+                                      iconPath: ImageConstants.passwordIcon,
+                                      validator:     (value){
+                                        return cubit.passwordValidator(value) ;
+                                      },
+                                      inputType: TextInputType.text,
+                                      showVisibilityIcons: true,
+                                      obscureText: !(state.showPassword),
+                                      onTap: (){
+                                        cubit.reverseObsecurity();
+                                      }
+                                  );
+                                }
+                              ),
+
+                              SizedBox(height: 10.h),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
+                                  SizedBox(width: 32.w,),
+                                ],
+                              ),
+                              SizedBox(height: 18.h,),
+                              StyledButton(text: 'Sign In', onTap: (){
+                                if (_formKey.currentState!.validate()) {
+                                  // If the form is valid, display a snackbar. In a real app,
+                                  // you would often call a server or save the information in a database.
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Processing Data')),
+                                  );
+                                }
+                              }),
+                              SizedBox(height: 30.h,),
+
+
+
+                              // ElevatedButton(
+                              //   onPressed: () {
+                              //     // Validate returns true if the form is valid, or false otherwise.
+                              //     if (_formKey.currentState!.validate()) {
+                              //       // If the form is valid, display a snackbar. In a real app,
+                              //       // you would often call a server or save the information in a database.
+                              //       ScaffoldMessenger.of(context).showSnackBar(
+                              //         SnackBar(content: Text('Processing Data')),
+                              //       );
+                              //     }
+                              //   },
+                              //   child: Text('Submit'),
+                              // ),
+                            ],
                           ),
+                        ),
 
-                        ],
-                      ),
+                        bodyText('Or continue with',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
+                        SizedBox(height: 25.h,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            loginOption(ImageConstants.google, () { }),
+                            SizedBox(width: 23.w,),
+                            loginOption(ImageConstants.apple, () { }),
+                            SizedBox(width: 23.w,),
+                            loginOption(ImageConstants.facebook, () { })
+                          ],
+                        ),
+
+
+                      ],
                     ),
                   ],
                 ),
