@@ -10,5 +10,7 @@ class ImageConstants{
   static String get google => 'assets/google.svg';
   static String get apple => 'assets/apple.svg';
   static String get facebook => 'assets/facebook.svg';
+  static String get emailIcon => 'assets/email.svg';
+  static String get bluetooth => 'assets/bluetooth.svg';
 }
 

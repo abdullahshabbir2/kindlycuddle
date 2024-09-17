@@ -5,4 +5,5 @@ class ColorsConstants{
   static const Color bodyTextColor = Color(0xFF7B7B7B);
   static const Color styledButtonBackgroundColor = Color(0xFFABE6ED);
   static const Color textFieldTextColor = Color(0xFFA3A3A3);
+  static const Color strengthTextColor = Color(0xFF9EDAA1);
 }

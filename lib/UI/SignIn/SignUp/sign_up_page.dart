@@ -7,42 +7,39 @@ import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
-import 'package:cuddle_care/UI/SignIn/sign_in_cubit.dart';
-import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
-import 'package:cuddle_care/UI/SignIn/sign_in_state.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/password_field.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_cubit.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignInPage extends StatefulWidget {
-  final SignInCubit cubit;
+class SignUpPage extends StatefulWidget {
+  final SignUpCubit cubit;
   // final UserDeInitialParams initialParams;
-  const SignInPage({Key? key, required this.cubit}) : super(key: key);
+  const SignUpPage({Key? key, required this.cubit}) : super(key: key);
 
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
 
-  SignInCubit get cubit => widget.cubit;
+  SignUpCubit get cubit => widget.cubit;
 
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
 
 
   @override
   void initState() {
     super.initState();
     // TODO : Fix it Later
-    cubit.onInit(SignInInitialParams());
+    cubit.onInit(SignUpInitialParams());
    cubit.navigator.context =  context;
 
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +68,8 @@ class _SignInPageState extends State<SignInPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(height: 47.h,),
-                        headingText('Welcome Back!',customHeadingHeight: 1.5),
-                        bodyText('welcome back we missed you',bodyTextHeight: 1),
+                        headingText('Get Started Free!',customHeadingHeight: 1.5),
+                        bodyText('Free Forever. No Credit Cards Needed',bodyTextHeight: 1),
                         SizedBox(height: 29.h,),
 
                         Form(
@@ -81,41 +78,64 @@ class _SignInPageState extends State<SignInPage> {
                             children: <Widget>[
 
                               BlocBuilder(
-                                bloc:cubit,
-                                builder: (context , state) {
-                                  state as SignInState;
-                                  return StyledTextField(
-                                    label: 'Username',
-                                    iconPath: ImageConstants.userIcon,
-                                    validator:   (value){
-                                      return cubit.emailValidator(value) ;
+                                  bloc:cubit,
+                                  builder: (context , state) {
+                                    state as SignUpState;
+                                    return StyledTextField(
+                                      label: 'Username',
+                                      hint: 'youremail@broskeez.com',
+                                      iconPath: ImageConstants.emailIcon,
+                                      validator:   (value){
+                                        return cubit.emailValidator(value) ;
                                       },
                                       inputType: TextInputType.emailAddress,
                                       error: state.emailValidator,
-                                  );
-                                }
+                                    );
+                                  }
                               ),
                               SizedBox(height: 12.h,),
                               BlocBuilder(
-                                bloc: cubit,
-                                builder: (context,state) {
-                                  state as SignInState;
-                                  return StyledTextField(
-                                      label: 'Password',
-                                      iconPath: ImageConstants.passwordIcon,
-                                      validator:     (value){
-                                        return cubit.passwordValidator(value) ;
+                                  bloc:cubit,
+                                  builder: (context , state) {
+                                    state as SignUpState;
+                                    return StyledTextField(
+                                      label: 'Username',
+                                      iconPath: ImageConstants.userIcon,
+                                      validator:   (value){
+                                        // return cubit.emailValidator(value) ;
                                       },
-                                      inputType: TextInputType.text,
-                                      error: state.passwordValidator,
-                                      showVisibilityIcons: true,
-                                      obscureText: !(state.showPassword),
-                                      onTap: (){
-                                        cubit.reverseObsecurity();
-                                      }
-                                  );
-                                }
+                                      inputType: TextInputType.emailAddress,
+                                      error: state.emailValidator,
+                                    );
+                                  }
                               ),
+                              SizedBox(height: 12.h,),
+                              BlocBuilder(
+                                  bloc: cubit,
+                                  builder: (context,state) {
+                                    state as SignUpState;
+                                    return StyledTextField(
+                                        label: 'Password',
+                                        iconPath: ImageConstants.passwordIcon,
+                                        validator:     (value){
+                                          return cubit.passwordValidator(value) ;
+                                        },
+                                        inputType: TextInputType.text,
+                                        error: state.passwordValidator,
+                                        showVisibilityIcons: true,
+                                        obscureText: !(state.showPassword),
+                                        onTap: (){
+                                          cubit.reverseObsecurity();
+                                        },
+                                        onChanged: (password){
+                                          cubit.checkPasswordStrength(password);
+                                        },
+                                      showStrength: state.showStrength,
+                                      level: state.strengthLevel,
+                                    );
+                                  }
+                              ),
+
 
                               SizedBox(height: 10.h),
 
@@ -128,23 +148,27 @@ class _SignInPageState extends State<SignInPage> {
                               ),
                               SizedBox(height: 18.h,),
                               BlocBuilder(
-                                bloc: cubit,
-                                builder: (context , state) {
-                                  state as SignInState;
-                                  return StyledButton(text: 'Sign In', onTap: (){
+                                  bloc: cubit,
+                                  builder: (context , state) {
+                                    state as SignUpState;
+                                    return StyledButton(text: 'Sign In', onTap: (){
 
-                                    if (_formKey.currentState!.validate()) {
-                                      // If the form is valid, display a snackbar. In a real app,
-                                      // you would often call a server or save the information in a database.
+                                      if (_formKey.currentState!.validate()) {
+                                        // If the form is valid, display a snackbar. In a real app,
+                                        // you would often call a server or save the information in a database.
 
-                                      cubit.SignIn();
+                                        if(state.emailValidated && state.passwordValidated){
+                                          cubit.signUp();
+                                        }
 
-                                    }
+
+
+                                      }
 
 
 
-                                  });
-                                }
+                                    });
+                                  }
                               ),
                               SizedBox(height: 30.h,),
 
@@ -188,10 +212,27 @@ class _SignInPageState extends State<SignInPage> {
 
               ],
             ),
-          ),
+          ) ,
         ),
       ),
       designSize: const Size(376.0, 812.0),
+    );
+  }
+
+  // Function to build strength bar
+  Widget buildStrengthBar(int level) {
+    return Row(
+      children: List.generate(4, (index) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 2),
+          height: 2,
+          width: 11,
+          decoration: BoxDecoration(
+            color: index < level ? Colors.green : Colors.grey[300],
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
     );
   }
 }

@@ -65,6 +65,7 @@ import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text_style.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/error_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -77,7 +78,10 @@ class StyledTextField extends StatefulWidget {
   final bool? showVisibilityIcons;
   final Function validator;
   final VoidCallback? onTap;
-
+  final String? error;
+  final Function? onChanged;
+  final bool? showStrength;
+  final int? level;
   const StyledTextField({
     Key? key,
     required this.label,
@@ -88,6 +92,10 @@ class StyledTextField extends StatefulWidget {
     this.showVisibilityIcons,
     required this.validator,
     this.onTap,
+    this.error,
+    this.onChanged,
+    this.showStrength,
+    this.level
   }) : super(key: key);
 
   @override
@@ -97,6 +105,13 @@ class StyledTextField extends StatefulWidget {
 class _StyledTextFieldState extends State<StyledTextField> {
   late bool _obscureText; // State variable for toggling visibility
   late TextEditingController _controller;
+
+  List<String> strengths = [
+    'Weak',
+    'normal',
+    'Strong',
+    'excellent'
+  ];
 
   @override
   void initState() {
@@ -155,7 +170,11 @@ class _StyledTextFieldState extends State<StyledTextField> {
                 visible: widget.showVisibilityIcons ?? false,
                 child: InkWell(
                   onTap: widget.onTap,
-                  child: Icon(
+                  child: (widget.showStrength ?? false)
+                      ?
+                  buildStrengthBar(widget.level ?? 0)
+                  :
+                  Icon(
                     color: ColorsConstants.textFieldTextColor,
                     (widget.obscureText ?? false) ? Icons.visibility : Icons.visibility_off_sharp,
                   ),
@@ -164,10 +183,14 @@ class _StyledTextFieldState extends State<StyledTextField> {
             ),
             validator: (value) {
               debugPrint(widget.validator(value));
-              return widget.validator(value);
+              widget.validator(value);
+            },
+            onChanged: (value){
+              widget.onChanged!(value);
             },
           ),
         ),
+        errorText(widget.error ?? ''),
 
         // Builder(
         //   builder: (context) {
@@ -184,6 +207,39 @@ class _StyledTextFieldState extends State<StyledTextField> {
         //   },
         // )
       ],
+    );
+  }
+  // Function to build strength bar
+  Widget buildStrengthBar(int level) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children:[
+        ...List.generate(3, (index) {
+        return Container(
+          margin: EdgeInsets.symmetric(horizontal: 2),
+          height: 2,
+          width: 11,
+          decoration: BoxDecoration(
+            color: index < level ? Colors.green : Colors.grey[300],
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
+        strengthText(strengths[widget.level ?? 0])
+    ]
+    );
+  }
+
+  Widget strengthText(String text){
+    return Text(
+      text,
+      style: TextStyle(
+        color: ColorsConstants.strengthTextColor,
+        fontSize: 10.45,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500,
+        height: 0,
+      ),
     );
   }
 }

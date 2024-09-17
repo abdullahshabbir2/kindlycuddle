@@ -1,7 +1,13 @@
 import 'package:cuddle_care/Navigation/app_navigator.dart';
+import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_cubit.dart';
+import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_navigator.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_cubit.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
+import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_cubit.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_navigator.dart';
@@ -23,6 +29,8 @@ void main() {
   getIt.registerSingleton<SplashNavigator>(SplashNavigator( getIt() ));
   getIt.registerSingleton<OnBoardingNavigator>( OnBoardingNavigator( getIt() ) );
   getIt.registerSingleton<SignInNavigator>( SignInNavigator( getIt() ) );
+  getIt.registerSingleton<SignUpNavigator>( SignUpNavigator( getIt() ) );
+  getIt.registerSingleton<BluetoothPermissionNavigator>( BluetoothPermissionNavigator( getIt() ) );
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -40,6 +48,20 @@ void main() {
 
   getIt.registerFactoryParam<SignInCubit , SignInInitialParams , dynamic>(
           (params, _) => SignInCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam<SignUpCubit , SignUpInitialParams , dynamic>(
+          (params, _) => SignUpCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam<BluetoothPermissionCubit , BluetoothPermissionInitialParams , dynamic>(
+          (params, _) => BluetoothPermissionCubit(
               params,
               getIt()
           )
