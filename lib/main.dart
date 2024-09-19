@@ -2,6 +2,12 @@ import 'package:cuddle_care/Navigation/app_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_navigator.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_cubit.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_navigator.dart';
+import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_cubit.dart';
+import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_navigator.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
@@ -31,6 +37,8 @@ void main() {
   getIt.registerSingleton<SignInNavigator>( SignInNavigator( getIt() ) );
   getIt.registerSingleton<SignUpNavigator>( SignUpNavigator( getIt() ) );
   getIt.registerSingleton<BluetoothPermissionNavigator>( BluetoothPermissionNavigator( getIt() ) );
+  getIt.registerSingleton<SearchingDevicesNavigator>( SearchingDevicesNavigator( getIt() ) );
+  getIt.registerSingleton<DevicePairingNavigator>( DevicePairingNavigator( getIt() ) );
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -62,6 +70,20 @@ void main() {
 
   getIt.registerFactoryParam<BluetoothPermissionCubit , BluetoothPermissionInitialParams , dynamic>(
           (params, _) => BluetoothPermissionCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam< SearchingDevicesCubit, SearchingDevicesInitialParams , dynamic>(
+          (params, _) => SearchingDevicesCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam<DevicePairingCubit , DevicePairingInitialParams , dynamic>(
+          (params, _) => DevicePairingCubit(
               params,
               getIt()
           )

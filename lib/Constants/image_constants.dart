@@ -12,5 +12,8 @@ class ImageConstants{
   static String get facebook => 'assets/facebook.svg';
   static String get emailIcon => 'assets/email.svg';
   static String get bluetooth => 'assets/bluetooth.svg';
+  static String get pumpLightBlue => 'assets/pumpLightBlue.svg';
+  static String get pumpLightPurple => 'assets/pumpLightPurple.svg';
+  static String get pumpLightRed => 'assets/pumpLightRed.svg';
 }
 
