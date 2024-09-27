@@ -10,7 +10,7 @@ TextStyle BodyTextStyle(
     }){
   return TextStyle(
     color: bodyTextColor ?? ColorsConstants.bodyTextColor,
-    fontSize: (bodyFontSize ?? 15).sp,
+    fontSize: (bodyFontSize ?? 15),
     fontFamily: bodyTextFontFamily ?? FontFamilyConstants.fontFamilyConstant,
     fontWeight: bodyTextFontWeight ?? FontWeight.w400,
     height: bodyTextHeight ?? 1.2,

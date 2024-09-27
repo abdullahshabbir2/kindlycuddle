@@ -5,8 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StyledButton extends StatefulWidget {
   final String text;
+  final Color? backgroundColor;
   final VoidCallback onTap;
-  const StyledButton({super.key , required this.text , required this.onTap});
+  final Color? textColor;
+  final double? height;
+  final double? width;
+  const StyledButton({super.key , required this.text , required this.onTap , this.backgroundColor, this.textColor , this.height , this.width});
 
   @override
   State<StyledButton> createState() => _StyledButtonState();
@@ -18,15 +22,15 @@ class _StyledButtonState extends State<StyledButton> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-          width: 335.w,
-          height: 48.h,
+          width: widget.width ?? 335.w,
+          height: widget.height ?? 48.h,
           decoration: ShapeDecoration(
-            color: ColorsConstants.styledButtonBackgroundColor,
+            color: widget.backgroundColor ?? ColorsConstants.styledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          child: Center(child: headingText(widget.text,fontSize: 16.sp,customHeadingHeight: 0.09))
+          child: Center(child: headingText(widget.text,fontSize: 16.sp,customHeadingHeight: 0.09,color: widget.textColor))
       ),
     );
   }

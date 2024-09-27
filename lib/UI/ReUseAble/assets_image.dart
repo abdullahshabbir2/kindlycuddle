@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AssetsImages extends StatelessWidget {
   final String path;
-  final int? height;
-  final int? width;
+  final double? height;
+  final double? width;
   const AssetsImages({super.key, required this.path , this.width , this.height});
 
   @override

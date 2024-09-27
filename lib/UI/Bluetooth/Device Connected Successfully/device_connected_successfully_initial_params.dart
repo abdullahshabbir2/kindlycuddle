@@ -1,0 +1,4 @@
+class DeviceConnectedSuccessfullyInitialParams{
+  DeviceConnectedSuccessfullyInitialParams();
+
+}

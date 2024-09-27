@@ -96,7 +96,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
                           bodyText('Pump 203',bodyFontSize: 21),
                           SizedBox(height: 254.h,),
                           StyledButton(text: 'Start Pairing', onTap: (){
-                            
+                            cubit.moveToNextScreen();
                           })
                         ],
                       ),

@@ -2,12 +2,18 @@ import 'package:cuddle_care/Navigation/app_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_navigator.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Connected%20Successfully/device_connected_successfully_cubit.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Connected%20Successfully/device_connected_successfully_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Connected%20Successfully/device_connected_successfully_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_navigator.dart';
+import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
+import 'package:cuddle_care/UI/Home/home_cubit.dart';
+import 'package:cuddle_care/UI/Home/home_navigator.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
@@ -39,6 +45,8 @@ void main() {
   getIt.registerSingleton<BluetoothPermissionNavigator>( BluetoothPermissionNavigator( getIt() ) );
   getIt.registerSingleton<SearchingDevicesNavigator>( SearchingDevicesNavigator( getIt() ) );
   getIt.registerSingleton<DevicePairingNavigator>( DevicePairingNavigator( getIt() ) );
+  getIt.registerSingleton<DeviceConnectedSuccessfullyNavigator>( DeviceConnectedSuccessfullyNavigator( getIt() ) );
+  getIt.registerSingleton<HomeNavigator>(HomeNavigator( getIt() ));
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -89,6 +97,20 @@ void main() {
           )
   );
 
+  getIt.registerFactoryParam<DeviceConnectedSuccessfullyCubit , DeviceConnectedSuccessfullyInitialParams , dynamic>(
+          (params, _) => DeviceConnectedSuccessfullyCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam<HomeCubit , HomeInitialParams , dynamic>(
+          (params, _) => HomeCubit(
+              params,
+              getIt()
+          )
+  );
+
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
@@ -102,6 +124,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      builder: (context, child) {
+        final mediaQueryData = MediaQuery.of(context);
+        final scale = mediaQueryData.textScaler.clamp(minScaleFactor: 1.0,maxScaleFactor: 1.3);
+        return MediaQuery(
+          child: child!,
+          data: MediaQuery.of(context).copyWith(textScaler: scale),
+        );
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
