@@ -31,5 +31,6 @@ class ImageConstants{
   static String get pulseIcon => 'assets/pulseIcon.png';
   static String get weight => 'assets/weight.png';
   static String get dropBackgorund => 'assets/dropBackground.svg';
+  static String get dropWhite => 'assets/dropWhite.svg';
 }
 

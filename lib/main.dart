@@ -28,6 +28,11 @@ import 'package:cuddle_care/UI/Splash/splash_cubit.dart';
 import 'package:cuddle_care/UI/Splash/splash_navigator.dart';
 import 'package:cuddle_care/UI/Splash/splash_page.dart';
 import 'package:cuddle_care/UI/Splash/splash_screen.dart';
+import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
+import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
+import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
+import 'package:cuddle_care/barc_chart.dart';
+import 'package:cuddle_care/my_pie_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -47,6 +52,7 @@ void main() {
   getIt.registerSingleton<DevicePairingNavigator>( DevicePairingNavigator( getIt() ) );
   getIt.registerSingleton<DeviceConnectedSuccessfullyNavigator>( DeviceConnectedSuccessfullyNavigator( getIt() ) );
   getIt.registerSingleton<HomeNavigator>(HomeNavigator( getIt() ));
+  getIt.registerSingleton<StatsNavigator>(StatsNavigator(getIt()));
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -109,6 +115,10 @@ void main() {
               params,
               getIt()
           )
+  );
+
+  getIt.registerFactoryParam<StatsCubit , StatsInitialParams , dynamic>(
+          (params, _) => StatsCubit(params, getIt())
   );
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

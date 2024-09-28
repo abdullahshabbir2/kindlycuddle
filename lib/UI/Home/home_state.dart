@@ -1,14 +1,20 @@
 import 'Home_initial_params.dart';
 
 class HomeState {
-  HomeState();
+  final int index;
+  HomeState({
+    required this.index
+});
 
   factory HomeState.initial({required HomeInitialParams initialParams}) =>
       HomeState(
+        index: 0
   );
 
-  HomeState copyWith() =>
+  HomeState copyWith({
+    int? index
+  }) =>
       HomeState(
-
+        index: index ?? this.index
       );
 }

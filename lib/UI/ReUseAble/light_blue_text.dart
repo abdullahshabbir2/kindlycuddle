@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-Widget lightBlueText(double data,String unit,{double? fontSize,FontWeight? fontWeight,double? height}){
+Widget lightBlueText(String text,{double? fontSize,FontWeight? fontWeight,double? height}){
   return Text(
-    data.toString() + unit,
+    text,
     textAlign: TextAlign.right,
     style: TextStyle(
       color: Color(0xFFB2CBF2),

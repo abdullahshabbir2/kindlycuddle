@@ -7,4 +7,6 @@ class ColorsConstants{
   static const Color textFieldTextColor = Color(0xFFA3A3A3);
   static const Color strengthTextColor = Color(0xFF9EDAA1);
   static const Color backgroundColor = Colors.white;
+  static const Color pumpBackground = Color(0xFFB2CBF2);
+  static const Color appPrimary2 = Color(0xFFB2CBF2);
 }

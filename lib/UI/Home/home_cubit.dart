@@ -15,4 +15,8 @@ class HomeCubit extends Cubit<HomeState> {
 
 void onInit(HomeInitialParams initialParams) => emit(state.copyWith());
 
+  void setIndex(int index) {
+    emit(state.copyWith(index:index));
+  }
+
 }
