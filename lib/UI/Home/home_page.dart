@@ -14,6 +14,8 @@ import 'package:cuddle_care/UI/ReUseAble/network_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/pie_chart_data.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_page.dart';
 import 'package:cuddle_care/main.dart';
@@ -49,11 +51,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   getWidget(int index){
+    debugPrint(index.toString());
     if(index ==  1){
       return StatsColumn(cubit: getIt(param1: StatsInitialParams()),);
     }
     else if(index == 2){
-      return Container();
+      // cubit.moveToSessionOptions();
+      return ScreenOptionsColumn(cubit: getIt(param1: SessionOptionsInitialParams()));
     }
     else{
       return HomeColumn();
@@ -68,16 +72,36 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: getWidget(page),
+            child: BlocBuilder(
+              bloc: cubit,
+                builder: (context,state){
+                  state as HomeState;
+
+                  debugPrint('I am in Home Page BlocBuilder');
+
+                  return getWidget(state.index);
+                }
+            )
+
           ),
           floatingActionButton: BlocBuilder(
             bloc: cubit,
             builder: (context , state) {
               state as HomeState;
-              return MyBottomNavigator(index: state.index,onTap: (index){
-                setState(() {
-                  page = index;
-                });
+              bool visiblity = true;
+              debugPrint(state.index.toString());
+              if(page== 2){
+                visiblity = false;
+              }
+              return MyBottomNavigator(
+                index: state.index,
+                onTap: (index){
+                  cubit.setIndex(index);
+                  // page = state.index;
+                // setState(() {
+                //   page = index;
+                // });
+
               },);
             }
           ),

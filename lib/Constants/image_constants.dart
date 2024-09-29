@@ -32,5 +32,9 @@ class ImageConstants{
   static String get weight => 'assets/weight.png';
   static String get dropBackgorund => 'assets/dropBackground.svg';
   static String get dropWhite => 'assets/dropWhite.svg';
+  static String get pump => 'assets/pump.svg';
+  static String get startOptions => 'assets/startOptions.svg';
+  static String get playButton => 'assets/playButton.svg';
+  static String get pauseButton => 'assets/pauseButton.svg';
 }
 

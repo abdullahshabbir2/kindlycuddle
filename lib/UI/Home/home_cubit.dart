@@ -1,4 +1,5 @@
 
+import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Home_initial_params.dart';
@@ -17,6 +18,10 @@ void onInit(HomeInitialParams initialParams) => emit(state.copyWith());
 
   void setIndex(int index) {
     emit(state.copyWith(index:index));
+  }
+
+  void moveToSessionOptions() {
+    navigator.openSessionOptionsPage(SessionOptionsInitialParams());
   }
 
 }

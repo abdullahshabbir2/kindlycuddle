@@ -1,0 +1,4 @@
+class SessionStartInitialParams{
+  SessionStartInitialParams();
+
+}

@@ -17,6 +17,13 @@ import 'package:cuddle_care/UI/Home/home_navigator.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_cubit.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_navigator.dart';
+import 'package:cuddle_care/UI/Session%20Options/session_options_state.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_cubit.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_initial_params.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_cubit.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
@@ -31,6 +38,7 @@ import 'package:cuddle_care/UI/Splash/splash_screen.dart';
 import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
+import 'package:cuddle_care/UI/my_line_chart.dart';
 import 'package:cuddle_care/barc_chart.dart';
 import 'package:cuddle_care/my_pie_chart.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +61,8 @@ void main() {
   getIt.registerSingleton<DeviceConnectedSuccessfullyNavigator>( DeviceConnectedSuccessfullyNavigator( getIt() ) );
   getIt.registerSingleton<HomeNavigator>(HomeNavigator( getIt() ));
   getIt.registerSingleton<StatsNavigator>(StatsNavigator(getIt()));
+  getIt.registerSingleton<SessionOptionsNavigator>(SessionOptionsNavigator( getIt() ));
+  getIt.registerSingleton<SessionStartNavigator>(SessionStartNavigator( getIt() ));
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -121,6 +131,17 @@ void main() {
           (params, _) => StatsCubit(params, getIt())
   );
 
+  getIt.registerFactoryParam<SessionOptionsCubit , SessionOptionsInitialParams , dynamic >(
+          (params, _) => SessionOptionsCubit(
+              params,
+              getIt()
+          )
+  );
+
+  getIt.registerFactoryParam<SessionStartCubit , SessionStartInitialParams, dynamic>(
+          (params, _) => SessionStartCubit(params, getIt() )
+  );
+
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
@@ -161,7 +182,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashPage(cubit: getIt(param1: SplashInitialParams()))
+      home: MyLineChart()
     );
   }
 }
