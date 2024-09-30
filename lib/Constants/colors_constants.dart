@@ -10,4 +10,5 @@ class ColorsConstants{
   static const Color pumpBackground = Color(0xFFB2CBF2);
   static const Color appPrimary2 = Color(0xFFB2CBF2);
   static const Color blueTextColor = Color(0xFFB2CBF2);
+  static const Color stopSessionColor = Color(0xFFFF4E4E);
 }

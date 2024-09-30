@@ -1,9 +1,9 @@
+import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-/// Example of a simple line chart.
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter/material.dart';
+
 
 
 class MyLineChart extends StatelessWidget {
@@ -16,15 +16,17 @@ class MyLineChart extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
+    ReSizeAbleSize size = ReSizeAbleSize();
+
     List<FlSpot> _buildLineSpots() {
       return [
-        FlSpot(0, 10), // Monday
-        FlSpot(1, 40), // Tuesday
-        FlSpot(2, 30), // Wednesday
-        FlSpot(3, 60), // Thursday
-        FlSpot(4, 50), // Friday
-        FlSpot(5, 70), // Saturday
-        FlSpot(6, 100), // Sunday
+        FlSpot(0, 5), // Monday
+        FlSpot(1, 20), // Tuesday
+        FlSpot(2, 15), // Wednesday
+        FlSpot(3, 30), // Thursday
+        FlSpot(4, 0), // Friday
+        FlSpot(5, 0), // Saturday
+        FlSpot(6, 0), // Sunday
       ];
     }
 
@@ -33,11 +35,11 @@ class MyLineChart extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          height: 200,
-          width: 200,
+          width: size.getResizeAbleWidth(325, 375, context),
+          height: size.getResizeAbleHeight(115, 812, context),
           child: LineChart(
             LineChartData(
-              maxY: 100, // Maximum value for Y-axis
+              maxY: 50, // Maximum value for Y-axis
               minY: 0, // Minimum value for Y-axis
               gridData: FlGridData(
                 show: true,
@@ -58,7 +60,7 @@ class MyLineChart extends StatelessWidget {
                     showTitles: true,
                     interval: 10, // Show labels with an interval on Y-axis
                     getTitlesWidget: (value, meta) {
-                      return Text(value.toInt().toString(), style: TextStyle(color: Colors.black));
+                      return Text(value.toInt().toString() + 'oz', style: TextStyle(color: Colors.black,fontSize: 8));
                     },
                   ),
                 ),
@@ -72,8 +74,8 @@ class MyLineChart extends StatelessWidget {
                   sideTitles: SideTitles(
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
-                      const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-                      return Text(daysOfWeek[value.toInt()]);
+                      const daysOfWeek = ['0m', '5m', '10m', '15m', '20m', '25m', '30m'];
+                      return Text(daysOfWeek[value.toInt()], style: TextStyle(fontSize: 8),);
                     },
                   ),
                 ),
@@ -85,10 +87,10 @@ class MyLineChart extends StatelessWidget {
                 LineChartBarData(
                   spots: _buildLineSpots(), // Points for the line chart
                   isCurved: true, // Smooth curve
-                  color: Colors.blueAccent, // Color of the line
-                  barWidth: 4, // Line width
+                  color: ColorsConstants.appPrimary2, // Color of the line
+                  barWidth: 2, // Line width
                   dotData: FlDotData(
-                    // show: true, // Show dots at each data point
+                    show: false, // Show dots at each data point
                     getDotPainter: (spot, percent, barData, index) {
                       return FlDotCirclePainter(
                         radius: 6, // Dot size
@@ -109,8 +111,6 @@ class MyLineChart extends StatelessWidget {
               ],
               lineTouchData: LineTouchData(
                 touchTooltipData: LineTouchTooltipData(
-                  // tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
-
                   getTooltipItems: (touchedSpots) {
                     return touchedSpots.map((spot) {
                       String weekDay;
@@ -156,63 +156,3 @@ class MyLineChart extends StatelessWidget {
   }
 }
 
-
-class SimpleLineChart extends StatelessWidget {
-  final List<charts.Series> seriesList;
-  final bool animate;
-
-  SimpleLineChart({
-    required this.seriesList,
-    required this.animate});
-
-  /// Creates a [LineChart] with sample data and no transition.
-  // factory SimpleLineChart.withSampleData() {
-  //   return new SimpleLineChart(
-  //     _createSampleData(),
-  //     // Disable animations for image tests.
-  //     animate: false,
-  //   );
-  // }
-
-  var series = _createSampleData();
-
-
-  @override
-  Widget build(BuildContext context) {
-    return charts.LineChart(series, animate: animate,defaultRenderer: charts.LineRendererConfig(
-      includePoints: true,   // Optional: include points on the line
-      // radiusPx: 4.0,         // Size of points
-      // includeArea: false,    // Optional: fill the area under the line
-      strokeWidthPx: 3.0,    // Thickness of the curved line
-      // curved: true,          // This makes the line curved!
-    ),);
-  }
-
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, num>> _createSampleData() {
-    final data = [
-      new LinearSales(0, 5),
-      new LinearSales(1, 25),
-      new LinearSales(2, 100),
-      new LinearSales(3, 75),
-    ];
-
-    return [
-      new charts.Series<LinearSales, int>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: data,
-      )
-    ];
-  }
-}
-
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
-}
