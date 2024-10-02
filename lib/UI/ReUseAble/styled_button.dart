@@ -28,7 +28,9 @@ class _StyledButtonState extends State<StyledButton> {
             color: widget.backgroundColor ?? ColorsConstants.styledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
+              side: BorderSide(width: 1, color: Color(0xFFABE6ED)),
             ),
+
           ),
           child: Center(child: headingText(widget.text,fontSize: 16.sp,customHeadingHeight: 0.09,color: widget.textColor))
       ),

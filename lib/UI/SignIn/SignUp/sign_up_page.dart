@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 Stack(
                   children: [
-                    ReUseAbleSvg(path: ImageConstants.backgroundShape),
+                    ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
 
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     );
                                   }
                               ),
-                              SizedBox(height: 12.h,),
+                              // SizedBox(height: 12.h,),
                               BlocBuilder(
                                   bloc:cubit,
                                   builder: (context , state) {
@@ -109,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     );
                                   }
                               ),
-                              SizedBox(height: 12.h,),
+                              // SizedBox(height: 12.h,),
                               BlocBuilder(
                                   bloc: cubit,
                                   builder: (context,state) {
@@ -137,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
 
 
-                              SizedBox(height: 10.h),
+                              // SizedBox(height: 10.h),
 
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -146,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   SizedBox(width: 32.w,),
                                 ],
                               ),
-                              SizedBox(height: 18.h,),
+                              // SizedBox(height: 18.h,),
                               BlocBuilder(
                                   bloc: cubit,
                                   builder: (context , state) {

@@ -283,7 +283,7 @@ class _SessionStartPageState extends State<SessionStartPage> {
                 headingText('10:12:00',fontSize: 40),
                 SizedBox(height: size.getResizeAbleHeight(24, 812, context),),
                 bottomContainer(),
-                StyledButton(text: 'Stop Session', onTap: (){}, textColor: Colors.white,backgroundColor: ColorsConstants.stopSessionColor,height: size.getResizeAbleHeight(61, 812, context),)
+                StyledButton(text: 'Stop Session', onTap: (){cubit.moveToUserGuide1();}, textColor: Colors.white,backgroundColor: ColorsConstants.stopSessionColor,height: size.getResizeAbleHeight(61, 812, context),)
               ],
             ),
           ),

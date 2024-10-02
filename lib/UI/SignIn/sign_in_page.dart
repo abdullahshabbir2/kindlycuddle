@@ -65,7 +65,7 @@ class _SignInPageState extends State<SignInPage> {
 
                 Stack(
                   children: [
-                    ReUseAbleSvg(path: ImageConstants.backgroundShape),
+                    ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
 
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,

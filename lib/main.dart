@@ -38,11 +38,27 @@ import 'package:cuddle_care/UI/Splash/splash_screen.dart';
 import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_cubit.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_initial_params.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_navigator.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_cubit.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_initial_params.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_navigator.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%203/user_guide3_navigator.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%204/user_guide4_cubit.dart';
+import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_navigator.dart';
 import 'package:cuddle_care/UI/my_line_chart.dart';
 import 'package:cuddle_care/barc_chart.dart';
 import 'package:cuddle_care/my_pie_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import 'UI/User Guide/User Guide 3/user_guide3_cubit.dart';
+import 'UI/User Guide/User Guide 3/user_guide3_initial_params.dart';
+import 'UI/User Guide/User Guide 4/user_guide4_initial_params.dart';
+import 'UI/User Guide/User Guide 4/user_guide4_navigator.dart';
+import 'UI/User Guide/User Guide 5/user_guide5_cubit.dart';
+import 'UI/User Guide/User Guide 5/user_guide5_initial_params.dart';
 
 var getIt = GetIt.instance;
 
@@ -63,6 +79,12 @@ void main() {
   getIt.registerSingleton<StatsNavigator>(StatsNavigator(getIt()));
   getIt.registerSingleton<SessionOptionsNavigator>(SessionOptionsNavigator( getIt() ));
   getIt.registerSingleton<SessionStartNavigator>(SessionStartNavigator( getIt() ));
+  getIt.registerSingleton<UserGuide1Navigator>(UserGuide1Navigator( getIt() ));
+  getIt.registerSingleton<UserGuide2Navigator>(UserGuide2Navigator( getIt() ));
+  getIt.registerSingleton<UserGuide3Navigator>(UserGuide3Navigator( getIt() ));
+  getIt.registerSingleton<UserGuide4Navigator>(UserGuide4Navigator( getIt() ));
+  getIt.registerSingleton<UserGuide5Navigator>(UserGuide5Navigator( getIt() ));
+
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
@@ -141,6 +163,29 @@ void main() {
   getIt.registerFactoryParam<SessionStartCubit , SessionStartInitialParams, dynamic>(
           (params, _) => SessionStartCubit(params, getIt() )
   );
+
+  getIt.registerFactoryParam<UserGuide1Cubit , UserGuide1InitialParams ,dynamic>(
+          (params, _) => UserGuide1Cubit(params, getIt())
+  );
+
+  getIt.registerFactoryParam<UserGuide2Cubit , UserGuide2InitialParams , dynamic>
+    ((params, _) => UserGuide2Cubit(params, getIt())
+  );
+
+  getIt.registerFactoryParam<UserGuide3Cubit , UserGuide3InitialParams , dynamic>
+    ((params, _) => UserGuide3Cubit(params, getIt())
+  );
+
+  getIt.registerFactoryParam<UserGuide4Cubit , UserGuide4InitialParams , dynamic>
+    ((params, _) => UserGuide4Cubit(params, getIt())
+  );
+
+  getIt.registerFactoryParam<UserGuide5Cubit , UserGuide5InitialParams , dynamic>
+    ((params, _) => UserGuide5Cubit(params, getIt())
+  );
+
+
+
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
