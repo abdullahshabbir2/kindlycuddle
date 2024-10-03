@@ -42,7 +42,9 @@ class _UserGuide1PageState extends State<UserGuide1Page> {
         child: Scaffold(
           body: UserGuide(heading: 'Modes and Intensities',body: 'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',onTap: (){
             cubit.moveToUserGuide2();
-          },),
+          },
+
+          ),
         ),
       ),
       designSize: const Size(375.0, 812.0),

@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
@@ -9,7 +10,8 @@ class UserGuide extends StatefulWidget {
   final String heading;
   final String body;
   final VoidCallback onTap;
-  const UserGuide({super.key, required this.heading , required this.body, required this.onTap});
+  final String? next;
+  const UserGuide({super.key, required this.heading , required this.body, required this.onTap, this.next});
 
   @override
   State<UserGuide> createState() => _UserGuideState();
@@ -148,7 +150,7 @@ class _UserGuideState extends State<UserGuide> {
             children: [
               StyledButton(text: 'Skip', onTap: (){},height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,),
 
-              StyledButton(text: 'Next', onTap: widget.onTap,height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,backgroundColor: Colors.white,),
+              StyledButton(text: widget.next ??  'Next', onTap: widget.onTap,height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,backgroundColor: Colors.white,textColor: ColorsConstants.styledButtonBackgroundColor,),
 
 
             ],

@@ -33,7 +33,9 @@ class _UserGuide5PageState extends State<UserGuide5Page> {
     return ScreenUtilInit(
       builder:(BuildContext context, child) => SafeArea(
         child: Scaffold(
-          body: UserGuide(heading: 'How to Store Breast Milk', body: 'Safely store your expressed milk using our milk bags. Proper storage ensures that your milk stays fresh and ready for your baby.',onTap: (){},),
+          body: UserGuide(heading: 'How to Store Breast Milk', body: 'Safely store your expressed milk using our milk bags. Proper storage ensures that your milk stays fresh and ready for your baby.',onTap: (){
+            cubit.moveToNextScreen();
+          },next: 'Continue',),
         ),
       ),
       designSize: const Size(393.0, 852.0),

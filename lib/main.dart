@@ -17,6 +17,9 @@ import 'package:cuddle_care/UI/Home/home_navigator.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
+import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
+import 'package:cuddle_care/UI/Profile/profile_cubit.dart';
+import 'package:cuddle_care/UI/Profile/profile_navigator.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_cubit.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_navigator.dart';
@@ -84,6 +87,7 @@ void main() {
   getIt.registerSingleton<UserGuide3Navigator>(UserGuide3Navigator( getIt() ));
   getIt.registerSingleton<UserGuide4Navigator>(UserGuide4Navigator( getIt() ));
   getIt.registerSingleton<UserGuide5Navigator>(UserGuide5Navigator( getIt() ));
+  getIt.registerSingleton<ProfileNavigator>(ProfileNavigator( getIt() ));
 
 
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
@@ -182,6 +186,10 @@ void main() {
 
   getIt.registerFactoryParam<UserGuide5Cubit , UserGuide5InitialParams , dynamic>
     ((params, _) => UserGuide5Cubit(params, getIt())
+  );
+
+  getIt.registerFactoryParam< ProfileCubit , ProfileInitialParams , dynamic>(
+          (params, _) => ProfileCubit(params, getIt())
   );
 
 

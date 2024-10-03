@@ -1,10 +1,12 @@
 import 'package:cuddle_care/Navigation/app_navigator.dart';
+import 'package:cuddle_care/UI/Home/home_navigator.dart';
+import 'package:cuddle_care/UI/Profile/profile_navigator.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_page.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 
-class UserGuide5Navigator with UserGuide5Route{
+class UserGuide5Navigator with UserGuide5Route,ProfileRoute,HomeRoute{
   UserGuide5Navigator(this.navigator);
   @override
   // TODO: implement context

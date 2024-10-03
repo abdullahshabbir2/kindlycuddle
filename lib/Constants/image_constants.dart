@@ -36,5 +36,14 @@ class ImageConstants{
   static String get startOptions => 'assets/startOptions.svg';
   static String get playButton => 'assets/playButton.svg';
   static String get pauseButton => 'assets/pauseButton.svg';
+  static String get mask => 'assets/mask.svg';
+  static String get editIcon => 'assets/editIcon.svg';
+
+  static String get volume => 'assets/volume.svg';
+  static String get support => 'assets/support.svg';
+  static String get notification => 'assets/notification.svg';
+  static String get contact => 'assets/contact.svg';
+  static String get appMode => 'assets/appMode.svg';
+  static String get privacyPolicy => 'assets/privacy.svg';
 }
 
