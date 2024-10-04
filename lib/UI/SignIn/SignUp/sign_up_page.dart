@@ -3,8 +3,10 @@ import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
+import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/account_sign.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/password_field.dart';
@@ -46,172 +48,181 @@ class _SignUpPageState extends State<SignUpPage> {
     return ScreenUtilInit(
       builder:(BuildContext context, child) => SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 43.5.h,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AssetsImages(path: ImageConstants.kindlyCuddle,height: 50),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 43.5.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AssetsImages(path: ImageConstants.kindlyCuddle,height: 50),
 
-                  ],
-                ),
-                SizedBox(height: 30.h,),
+                ],
+              ),
+              SizedBox(height: 30.h,),
 
-                Stack(
-                  children: [
-                    ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
+              Stack(
+                children: [
+                  ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
 
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 47.h,),
-                        headingText('Get Started Free!',customHeadingHeight: 1.5),
-                        bodyText('Free Forever. No Credit Cards Needed',bodyTextHeight: 1),
-                        SizedBox(height: 29.h,),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 25.h,),
+                      headingText('Get Started Free!',customHeadingHeight: 1.5),
+                      bodyText('Free Forever. No Credit Cards Needed',bodyTextHeight: 1),
+                      SizedBox(height: 29.h,),
 
-                        Form(
-                          key: _formKey,
-                          child: Column(
-                            children: <Widget>[
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
 
-                              BlocBuilder(
-                                  bloc:cubit,
-                                  builder: (context , state) {
-                                    state as SignUpState;
-                                    return StyledTextField(
-                                      label: 'Username',
-                                      hint: 'youremail@broskeez.com',
-                                      iconPath: ImageConstants.emailIcon,
-                                      validator:   (value){
-                                        return cubit.emailValidator(value) ;
+                            BlocBuilder(
+                                bloc:cubit,
+                                builder: (context , state) {
+                                  state as SignUpState;
+                                  return StyledTextField(
+                                    label: 'Username',
+                                    hint: 'youremail@broskeez.com',
+                                    iconPath: ImageConstants.emailIcon,
+                                    validator:   (value){
+                                      return cubit.emailValidator(value) ;
+                                    },
+                                    inputType: TextInputType.emailAddress,
+                                    error: state.emailValidator,
+                                  );
+                                }
+                            ),
+                            // SizedBox(height: 12.h,),
+                            BlocBuilder(
+                                bloc:cubit,
+                                builder: (context , state) {
+                                  state as SignUpState;
+                                  return StyledTextField(
+                                    label: 'Username',
+                                    iconPath: ImageConstants.userIcon,
+                                    validator:   (value){
+                                      // return cubit.emailValidator(value) ;
+                                    },
+                                    inputType: TextInputType.emailAddress,
+                                    error: state.emailValidator,
+                                  );
+                                }
+                            ),
+                            // SizedBox(height: 12.h,),
+                            BlocBuilder(
+                                bloc: cubit,
+                                builder: (context,state) {
+                                  state as SignUpState;
+                                  return StyledTextField(
+                                      label: 'Password',
+                                      iconPath: ImageConstants.passwordIcon,
+                                      validator:     (value){
+                                        return cubit.passwordValidator(value) ;
                                       },
-                                      inputType: TextInputType.emailAddress,
-                                      error: state.emailValidator,
-                                    );
-                                  }
-                              ),
-                              // SizedBox(height: 12.h,),
-                              BlocBuilder(
-                                  bloc:cubit,
-                                  builder: (context , state) {
-                                    state as SignUpState;
-                                    return StyledTextField(
-                                      label: 'Username',
-                                      iconPath: ImageConstants.userIcon,
-                                      validator:   (value){
-                                        // return cubit.emailValidator(value) ;
+                                      inputType: TextInputType.text,
+                                      error: state.passwordValidator,
+                                      showVisibilityIcons: true,
+                                      obscureText: !(state.showPassword),
+                                      onTap: (){
+                                        cubit.reverseObsecurity();
                                       },
-                                      inputType: TextInputType.emailAddress,
-                                      error: state.emailValidator,
-                                    );
-                                  }
-                              ),
-                              // SizedBox(height: 12.h,),
-                              BlocBuilder(
-                                  bloc: cubit,
-                                  builder: (context,state) {
-                                    state as SignUpState;
-                                    return StyledTextField(
-                                        label: 'Password',
-                                        iconPath: ImageConstants.passwordIcon,
-                                        validator:     (value){
-                                          return cubit.passwordValidator(value) ;
-                                        },
-                                        inputType: TextInputType.text,
-                                        error: state.passwordValidator,
-                                        showVisibilityIcons: true,
-                                        obscureText: !(state.showPassword),
-                                        onTap: (){
-                                          cubit.reverseObsecurity();
-                                        },
-                                        onChanged: (password){
-                                          cubit.checkPasswordStrength(password);
-                                        },
-                                      showStrength: state.showStrength,
-                                      level: state.strengthLevel,
-                                    );
-                                  }
-                              ),
+                                      onChanged: (password){
+                                        cubit.checkPasswordStrength(password);
+                                      },
+                                    showStrength: state.showStrength,
+                                    level: state.strengthLevel,
+                                  );
+                                }
+                            ),
 
 
-                              // SizedBox(height: 10.h),
+                            // SizedBox(height: 10.h),
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
-                                  SizedBox(width: 32.w,),
-                                ],
-                              ),
-                              // SizedBox(height: 18.h,),
-                              BlocBuilder(
-                                  bloc: cubit,
-                                  builder: (context , state) {
-                                    state as SignUpState;
-                                    return StyledButton(text: 'Sign In', onTap: (){
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
+                                SizedBox(width: 32.w,),
+                              ],
+                            ),
+                            // SizedBox(height: 18.h,),
+                            BlocBuilder(
+                                bloc: cubit,
+                                builder: (context , state) {
+                                  state as SignUpState;
+                                  return StyledButton(text: 'Sign In', onTap: (){
 
-                                      if (_formKey.currentState!.validate()) {
-                                        // If the form is valid, display a snackbar. In a real app,
-                                        // you would often call a server or save the information in a database.
+                                    if (_formKey.currentState!.validate()) {
+                                      // If the form is valid, display a snackbar. In a real app,
+                                      // you would often call a server or save the information in a database.
 
-                                        if(state.emailValidated && state.passwordValidated){
-                                          cubit.signUp();
-                                        }
-
-
-
+                                      if(state.emailValidated && state.passwordValidated){
+                                        cubit.signUp();
                                       }
 
 
 
-                                    });
-                                  }
-                              ),
-                              SizedBox(height: 30.h,),
+                                    }
 
 
 
-                              // ElevatedButton(
-                              //   onPressed: () {
-                              //     // Validate returns true if the form is valid, or false otherwise.
-                              //     if (_formKey.currentState!.validate()) {
-                              //       // If the form is valid, display a snackbar. In a real app,
-                              //       // you would often call a server or save the information in a database.
-                              //       ScaffoldMessenger.of(context).showSnackBar(
-                              //         SnackBar(content: Text('Processing Data')),
-                              //       );
-                              //     }
-                              //   },
-                              //   child: Text('Submit'),
-                              // ),
-                            ],
-                          ),
-                        ),
+                                  });
+                                }
+                            ),
+                            SizedBox(height: 30.h,),
 
-                        bodyText('Or continue with',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
-                        SizedBox(height: 25.h,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            loginOption(ImageConstants.google, () { }),
-                            SizedBox(width: 23.w,),
-                            loginOption(ImageConstants.apple, () { }),
-                            SizedBox(width: 23.w,),
-                            loginOption(ImageConstants.facebook, () { })
+
+
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     // Validate returns true if the form is valid, or false otherwise.
+                            //     if (_formKey.currentState!.validate()) {
+                            //       // If the form is valid, display a snackbar. In a real app,
+                            //       // you would often call a server or save the information in a database.
+                            //       ScaffoldMessenger.of(context).showSnackBar(
+                            //         SnackBar(content: Text('Processing Data')),
+                            //       );
+                            //     }
+                            //   },
+                            //   child: Text('Submit'),
+                            // ),
                           ],
                         ),
+                      ),
+
+                      bodyText('Or continue with',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
+                      SizedBox(height: 25.h,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          loginOption(ImageConstants.google, () { }),
+                          SizedBox(width: 23.w,),
+                          loginOption(ImageConstants.apple, () { }),
+                          SizedBox(width: 23.w,),
+                          loginOption(ImageConstants.facebook, () { })
+                        ],
+                      ),
+                      SizedBox(height: 10.h,),
 
 
-                      ],
-                    ),
-                  ],
-                ),
+                      AccountSign(actionText: 'Sign In', bodyString: 'Already have an account?', onTap: (){
+                        cubit.moveToSignIn();
+                      }),
 
-              ],
-            ),
+
+
+                      SizedBox(height: 10.h,),
+
+
+
+                    ],
+                  ),
+                ],
+              ),
+
+            ],
           ) ,
         ),
       ),

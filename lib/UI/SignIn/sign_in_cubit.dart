@@ -66,4 +66,8 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
 
   }
 
+  void moveToSignUp() {
+    navigator.openSignUpPage(SignUpInitialParams());
+  }
+
 }

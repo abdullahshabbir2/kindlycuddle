@@ -15,6 +15,7 @@ import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/network_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/pie_chart_data.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
+import 'package:cuddle_care/UI/ReUseAble/rounded_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
@@ -138,7 +139,12 @@ class _HomeColumnState extends State<HomeColumn> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Image(image: reUseAbleOnlineImage('https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k')),
-              reUseAbleOnlineImage('https://fastly.picsum.photos/id/387/48/48.jpg?hmac=YWsF-uptepsYcyZbDy81__aoanj2NihNRvnNNJ-PSmM'),
+
+
+              roundedImage(
+                  'https://fastly.picsum.photos/id/387/48/48.jpg?hmac=YWsF-uptepsYcyZbDy81__aoanj2NihNRvnNNJ-PSmM'
+              ),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

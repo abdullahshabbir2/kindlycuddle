@@ -2,6 +2,7 @@ import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permi
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
+import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -78,6 +79,10 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
 
   void signUp() {
    navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+  }
+
+  void moveToSignIn() {
+   navigator.openSignInPage(SignInInitialParams());
   }
 
 }
