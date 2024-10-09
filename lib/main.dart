@@ -62,11 +62,21 @@ import 'UI/User Guide/User Guide 4/user_guide4_initial_params.dart';
 import 'UI/User Guide/User Guide 4/user_guide4_navigator.dart';
 import 'UI/User Guide/User Guide 5/user_guide5_cubit.dart';
 import 'UI/User Guide/User Guide 5/user_guide5_initial_params.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 var getIt = GetIt.instance;
 
 
-void main() {
+void main() async {
+
+// ...
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   getIt.registerSingleton<AppNavigator>(AppNavigator());
 

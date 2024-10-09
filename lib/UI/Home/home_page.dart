@@ -145,6 +145,7 @@ class _HomeColumnState extends State<HomeColumn> {
                   'https://fastly.picsum.photos/id/387/48/48.jpg?hmac=YWsF-uptepsYcyZbDy81__aoanj2NihNRvnNNJ-PSmM'
               ),
 
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

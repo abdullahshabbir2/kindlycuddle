@@ -1,7 +1,5 @@
 import 'package:cuddle_care/UI/Splash/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     super.initState();
 
     // whenever your initialization is completed, remove the splash screen:
-    FlutterNativeSplash.remove();
+    // FlutterNativeSplash.remove();
 
 
     Future.delayed(Duration(seconds: 5), (){

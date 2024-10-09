@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 Widget roundedImage(String url){
   return Container(
-    decoration: ShapeDecoration(shape: RoundedRectangleBorder()),
+    // decoration: ShapeDecoration(shape: RoundedRectangleBorder()),
     child: ClipOval(
       child: Image(
         image: NetworkImage(

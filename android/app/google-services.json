@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "566962921581",
+    "project_id": "cuddlecare-339ea",
+    "storage_bucket": "cuddlecare-339ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566962921581:android:12f811e41e346c39cc5f64",
+        "android_client_info": {
+          "package_name": "com.example.cuddle_care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDREokYcmxAqKeSULGrCW5mqd0noZmsez8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

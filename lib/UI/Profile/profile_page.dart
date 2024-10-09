@@ -145,21 +145,19 @@ class _ProfileColumnState extends State<ProfileColumn> {
 
   ProfileCubit get cubit => widget.cubit;
   ReSizeAbleSize size = ReSizeAbleSize();
-  Widget showProfile() => Positioned(
-    bottom: 0,
-    child: Column(
-      children: [
-        ShowStackedImages( width: 116,height: 116,imageUrl: '', sideImage: ImageConstants.editIcon, profileAvailable: false,alignment: Alignment.bottomRight,),
-        lightBlueText('Olivia Brown',height: 1),
-        headingText('youremail@domain.com | +01 234 567 89',fontSize: 14)
-      ],
-    ),
+  Widget showProfile() => Column(
+    children: [
+      ShowStackedImages( width: 116,height: 116,imageUrl: '', sideImage: ImageConstants.editIcon, profileAvailable: false,alignment: Alignment.bottomRight,),
+      lightBlueText('Olivia Brown',height: 1),
+      headingText('youremail@domain.com | +01 234 567 89',fontSize: 14)
+    ],
   );
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         Stack(
           children: [
             ReUseAbleSvg(path: ImageConstants.mask,width: size.getResizeAbleWidth(375, 375, context),height: size.getResizeAbleHeight(193, 812, context),),
@@ -195,6 +193,7 @@ class _ProfileColumnState extends State<ProfileColumn> {
                     state as ProfileState;
                     return ListView(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
 
 
