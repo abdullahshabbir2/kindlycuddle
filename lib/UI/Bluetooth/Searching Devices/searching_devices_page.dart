@@ -51,7 +51,7 @@ class _SearchingDevicesPageState extends State<SearchingDevicesPage> {
    cubit.navigator.context =  context;
 
    // cubit.searchForDevices();
-   bleController.scanDevices();
+   // bleController.scanDevices();
 
    // cubit.getDevices();
 
@@ -65,6 +65,7 @@ class _SearchingDevicesPageState extends State<SearchingDevicesPage> {
         child: Scaffold(
           body: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 43.5.h,),
                 Row(
@@ -365,7 +366,7 @@ class _SearchingDevicesPageState extends State<SearchingDevicesPage> {
                 //   ],
                 // ),
 
-                StyledButton(text: 'Turn Off', onTap: (){
+                StyledButton(text: 'Scan', onTap: (){
                 // cubit.moveToNextScreen();
                   bleController.scanDevices();
               })
