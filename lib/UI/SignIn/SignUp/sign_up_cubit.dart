@@ -1,24 +1,38 @@
+import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
+import 'package:cuddle_care/UI/ReUseAble/toast_message.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
  final SignUpInitialParams initialParams;
  final SignUpNavigator navigator;
+ final CreateUserUseCase createUserUseCase;
+ final GoogleSignUpUseCase googleSignUpUseCase;
+ final ResetPasswordUseCase resetPasswordUseCase;
  SignUpCubit(
      this.initialParams,
-     this.navigator
+     this.navigator,
+     this.createUserUseCase,
+     this.googleSignUpUseCase,
+     this.resetPasswordUseCase
      ) : super(SignUpState.initial(initialParams: initialParams));
 
 void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
 
  emailValidator(value) {
 
-   debugPrint(value);
+   debugPrint('email:'+value);
+
+   emit(state.copyWith(email: value as String));
 
    if (value == null || value.isEmpty) {
      // debugPrint('is Empty');
@@ -39,6 +53,7 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
  }
 
  passwordValidator(value) {
+   emit(state.copyWith(password: value as String));
    if (value == null || value.isEmpty) {
      emit(state.copyWith(passwordValidator: 'Please enter your password',passwordValidated:false ));
      return 'Please enter your password';
@@ -71,18 +86,70 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
      if (password.contains(RegExp(r'[0-9]'))) strength++;
      if (password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) strength++;
 
-     emit(state.copyWith(strengthLevel: strength,));
+     emit(state.copyWith(strengthLevel: strength,password: password));
 
    }
 
  }
 
   void signUp() {
-   navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+   //  emailValidator(state.email);
+   // passwordValidator(state.password);
+
+   createUserUseCase.execute(state.email, state.password, state.userName).then(
+           (value) => value.fold(
+                   (l) {
+                     debugPrint(l.error);
+                     ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+                   },
+                   (signedUp) {
+
+                     if(signedUp){
+                       ToastMessage().showMessage('Sign Up Successful Check Verification Email', ColorsConstants.successToastColor);
+                       navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+                     }else{
+                       ToastMessage().showMessage('Cannot Sign Up', ColorsConstants.failureToastColor);
+                     }
+
+                   }
+           )
+   );
+
   }
 
   void moveToSignIn() {
    navigator.openSignInPage(SignInInitialParams());
+  }
+
+  void setUserName(String value) {
+   emit(state.copyWith(userName: value));
+  }
+
+  void googleSignUp() {
+   googleSignUpUseCase.execute().then(
+           (value) => value.fold(
+                   (l) {
+                     ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+                   },
+                   (r) {
+                     ToastMessage().showMessage('Sign Up Suceesful', ColorsConstants.successToastColor);
+                     navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+                   }
+           )
+   );
+  }
+
+  void resetPassword() {
+   resetPasswordUseCase.execute(state.email).then(
+           (value) => value.fold(
+                   (l){
+                     ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+                   },
+                   (r) {
+                     ToastMessage().showMessage('Check Password Update Email', ColorsConstants.successToastColor);
+                   }
+           )
+   );
   }
 
 }

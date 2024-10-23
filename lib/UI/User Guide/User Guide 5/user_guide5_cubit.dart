@@ -17,7 +17,7 @@ class UserGuide5Cubit extends Cubit<UserGuide5State> {
 void onInit(UserGuide5InitialParams initialParams) => emit(state.copyWith());
 
   void moveToNextScreen() {
-    navigator.openHomePage(HomeInitialParams());
+    // navigator.openHomePage(HomeInitialParams());
   }
 
 }

@@ -9,6 +9,9 @@ class SignUpState {
   final bool showPassword;
   final int strengthLevel;
   final bool showStrength;
+  final String email;
+  final String password;
+  final String userName;
   SignUpState({
     required this.emailValidator,
     required this.emailValidated,
@@ -16,7 +19,10 @@ class SignUpState {
     required this.passwordValidated,
     required this.showPassword,
     required this.strengthLevel,
-    required this.showStrength
+    required this.showStrength,
+    required this.email,
+    required this.password,
+    required this.userName
 });
 
   factory SignUpState.initial({required SignUpInitialParams initialParams}) =>
@@ -27,7 +33,10 @@ class SignUpState {
         passwordValidated: false,
         showPassword: false,
         strengthLevel: 0,
-        showStrength: false
+        showStrength: false,
+        email: '',
+        password: '',
+        userName: ''
   );
 
   SignUpState copyWith({
@@ -37,7 +46,10 @@ class SignUpState {
     bool? passwordValidated,
     bool? showPassword,
     int? strengthLevel,
-    bool? showStrength
+    bool? showStrength,
+    String? email,
+    String? password,
+    String? userName
 }) =>
       SignUpState(
         emailValidator: emailValidator ?? this.emailValidator,
@@ -46,6 +58,9 @@ class SignUpState {
         passwordValidated: passwordValidated ?? this.passwordValidated,
         showPassword: showPassword ?? this.showPassword,
         strengthLevel: strengthLevel ?? this.strengthLevel,
-        showStrength: showStrength ?? this.showStrength
+        showStrength: showStrength ?? this.showStrength,
+        email: email ?? this.email,
+        password: password ?? this.password,
+        userName: userName ?? this.userName
       );
 }

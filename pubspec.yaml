@@ -43,6 +43,19 @@ dependencies:
   fl_chart: ^0.69.0
   charts_flutter: ^0.12.0
   firebase_core: ^2.27.0
+  firebase_auth: ^4.17.8
+  google_sign_in: ^6.2.1
+  firebase_messaging: ^14.7.19
+  app_settings: ^5.1.1
+  flutter_local_notifications: ^17.2.3
+  dartz: ^0.10.1
+  fluttertoast:
+  googleapis_auth: ^1.6.0
+  googleapis: ^13.1.0
+  flutter_blue_plus: ^1.33.4
+  flutter_blue: ^0.8.0
+  get: ^4.6.6
+  permission_handler: ^11.3.1
 
 
 dev_dependencies:

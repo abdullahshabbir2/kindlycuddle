@@ -1,4 +1,5 @@
 import 'package:cuddle_care/Constants/image_constants.dart';
+import 'package:cuddle_care/Service/Firebase/firebase_notification_service.dart';
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_icons.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
@@ -25,13 +26,15 @@ import 'package:cuddle_care/main.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home_cubit.dart';
 
 class HomePage extends StatefulWidget {
   final HomeCubit cubit;
   // final UserDeInitialParams initialParams;
-  const HomePage({Key? key, required this.cubit}) : super(key: key);
+  final BluetoothDevice device;
+  const HomePage({Key? key, required this.cubit, required this.device}) : super(key: key);
 
 
   @override
@@ -42,6 +45,9 @@ class _HomePageState extends State<HomePage> {
 
   HomeCubit get cubit => widget.cubit;
 
+  FirebaseNotificationService service = FirebaseNotificationService();
+
+
   int page = 0;
 
   @override
@@ -50,6 +56,8 @@ class _HomePageState extends State<HomePage> {
     // TODO : Fix it Later
     cubit.onInit(HomeInitialParams());
    cubit.navigator.context =  context;
+
+
 
   }
 

@@ -48,6 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return ScreenUtilInit(
       builder:(BuildContext context, child) => SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -87,10 +88,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                     hint: 'youremail@broskeez.com',
                                     iconPath: ImageConstants.emailIcon,
                                     validator:   (value){
-                                      return cubit.emailValidator(value) ;
+                                      // return cubit.emailValidator(value) ;
                                     },
                                     inputType: TextInputType.emailAddress,
                                     error: state.emailValidator,
+                                    onChanged: (value){
+                                      cubit.emailValidator(value);
+                                    },
                                   );
                                 }
                             ),
@@ -103,6 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     label: 'Username',
                                     iconPath: ImageConstants.userIcon,
                                     validator:   (value){
+                                      cubit.setUserName(value);
                                       // return cubit.emailValidator(value) ;
                                     },
                                     inputType: TextInputType.emailAddress,
@@ -118,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   return StyledTextField(
                                       label: 'Password',
                                       iconPath: ImageConstants.passwordIcon,
-                                      validator:     (value){
+                                      validator: (value){
                                         return cubit.passwordValidator(value) ;
                                       },
                                       inputType: TextInputType.text,
@@ -133,6 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       },
                                     showStrength: state.showStrength,
                                     level: state.strengthLevel,
+
                                   );
                                 }
                             ),
@@ -143,7 +149,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
+                                InkWell(
+                                    onTap: (){
+                                      cubit.resetPassword();
+                                    },
+                                    child: bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0)),
                                 SizedBox(width: 32.w,),
                               ],
                             ),
@@ -154,17 +164,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                   state as SignUpState;
                                   return StyledButton(text: 'Sign In', onTap: (){
 
-                                    if (_formKey.currentState!.validate()) {
+                                    // if (_formKey.currentState!.validate()) {
                                       // If the form is valid, display a snackbar. In a real app,
                                       // you would often call a server or save the information in a database.
 
-                                      if(state.emailValidated && state.passwordValidated){
+                                      // if(state.emailValidated && state.passwordValidated){
                                         cubit.signUp();
-                                      }
+                                      // }
 
 
 
-                                    }
+                                    // }
 
 
 
@@ -197,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          loginOption(ImageConstants.google, () { }),
+                          loginOption(ImageConstants.google, () { cubit.googleSignUp(); }),
                           SizedBox(width: 23.w,),
                           loginOption(ImageConstants.apple, () { }),
                           SizedBox(width: 23.w,),

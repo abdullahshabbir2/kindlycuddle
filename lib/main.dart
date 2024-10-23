@@ -1,4 +1,16 @@
+import 'package:cuddle_care/Data/Repository/firebase_user_repository.dart';
+import 'package:cuddle_care/Data/Repository/mock_blutooth_repository.dart';
+import 'package:cuddle_care/Domain/Repository/bluetooth_repository.dart';
+import 'package:cuddle_care/Domain/Repository/user_repository.dart';
+import 'package:cuddle_care/Domain/Store/bluetooth_device_store.dart';
+import 'package:cuddle_care/Domain/Store/device_info_store.dart';
+import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/search_for_devices_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/sign_in_usecase.dart';
 import 'package:cuddle_care/Navigation/app_navigator.dart';
+import 'package:cuddle_care/Service/Firebase/firebase_service.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_navigator.dart';
@@ -50,9 +62,16 @@ import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_navigat
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%203/user_guide3_navigator.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%204/user_guide4_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_navigator.dart';
+import 'package:cuddle_care/UI/home.dart';
 import 'package:cuddle_care/UI/my_line_chart.dart';
 import 'package:cuddle_care/barc_chart.dart';
+import 'package:cuddle_care/circles_screen.dart';
+import 'package:cuddle_care/circles_with_tappable_images.dart';
+import 'package:cuddle_care/cirlces_screen_new.dart';
+import 'package:cuddle_care/cirlces_with_images.dart';
+import 'package:cuddle_care/google_signIn_page.dart';
 import 'package:cuddle_care/my_pie_chart.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -78,7 +97,27 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   getIt.registerSingleton<AppNavigator>(AppNavigator());
+
+  // Service
+  getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
+
+  // Store
+  getIt.registerSingleton<DeviceStore>(DeviceStore());
+  getIt.registerSingleton<BluetoothDeviceStore>(BluetoothDeviceStore());
+
+  // Repository
+  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt()));
+  getIt.registerSingleton<BluetoothRepository>( MockBluetoothRepository() );
+
+  // User Repository
+  getIt.registerSingleton<CreateUserUseCase>(CreateUserUseCase( getIt() ));
+  getIt.registerSingleton<GoogleSignUpUseCase>(GoogleSignUpUseCase( getIt() ));
+  getIt.registerSingleton<SignInUseCase>(SignInUseCase( getIt() ));
+  getIt.registerSingleton<ResetPasswordUseCase>( ResetPasswordUseCase( getIt() ) );
+  getIt.registerSingleton<SearchForDevicesUseCase>( SearchForDevicesUseCase( getIt() ) );
 
   getIt.registerSingleton<SplashNavigator>(SplashNavigator( getIt() ));
   getIt.registerSingleton<OnBoardingNavigator>( OnBoardingNavigator( getIt() ) );
@@ -117,6 +156,8 @@ void main() async {
   getIt.registerFactoryParam<SignInCubit , SignInInitialParams , dynamic>(
           (params, _) => SignInCubit(
               params,
+              getIt(),
+              getIt(),
               getIt()
           )
   );
@@ -124,6 +165,9 @@ void main() async {
   getIt.registerFactoryParam<SignUpCubit , SignUpInitialParams , dynamic>(
           (params, _) => SignUpCubit(
               params,
+              getIt(),
+              getIt(),
+              getIt(),
               getIt()
           )
   );
@@ -138,6 +182,9 @@ void main() async {
   getIt.registerFactoryParam< SearchingDevicesCubit, SearchingDevicesInitialParams , dynamic>(
           (params, _) => SearchingDevicesCubit(
               params,
+              getIt(),
+              getIt(),
+              getIt(),
               getIt()
           )
   );
@@ -145,6 +192,7 @@ void main() async {
   getIt.registerFactoryParam<DevicePairingCubit , DevicePairingInitialParams , dynamic>(
           (params, _) => DevicePairingCubit(
               params,
+              getIt(),
               getIt()
           )
   );
@@ -152,6 +200,7 @@ void main() async {
   getIt.registerFactoryParam<DeviceConnectedSuccessfullyCubit , DeviceConnectedSuccessfullyInitialParams , dynamic>(
           (params, _) => DeviceConnectedSuccessfullyCubit(
               params,
+              getIt(),
               getIt()
           )
   );
@@ -205,10 +254,18 @@ void main() async {
 
 
 
+
+
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  debugPrint(message.notification!.title.toString());
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

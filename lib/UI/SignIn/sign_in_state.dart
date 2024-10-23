@@ -6,12 +6,16 @@ class SignInState {
   final String passwordValidator;
   final bool emailValidated;
   final bool passwordValidated;
+  final String email;
+  final String password;
   SignInState({
     required this.showPassword,
     required this.emailValidator,
     required this.passwordValidator,
     required this.emailValidated,
-    required this.passwordValidated
+    required this.passwordValidated,
+    required this.email,
+    required this.password
 });
 
   factory SignInState.initial({required SignInInitialParams initialParams}) =>
@@ -20,7 +24,9 @@ class SignInState {
         emailValidator: '',
         passwordValidator: '',
         emailValidated: false,
-        passwordValidated: false
+        passwordValidated: false,
+        email: '',
+        password: ''
   );
 
   SignInState copyWith({
@@ -28,13 +34,17 @@ class SignInState {
     String? emailValidator,
     String? passwordValidator,
     bool? emailValidated,
-    bool? passwordValidated
+    bool? passwordValidated,
+    String? email,
+    String? password
   }) =>
       SignInState(
         showPassword: showPassword ?? this.showPassword,
         emailValidator: emailValidator ?? this.emailValidator,
         passwordValidator: passwordValidator ?? this.passwordValidator,
         emailValidated: emailValidated ?? this.emailValidated,
-        passwordValidated: passwordValidated ?? this.passwordValidated
+        passwordValidated: passwordValidated ?? this.passwordValidated,
+        email: email ?? this.email,
+        password: password ?? this.password
       );
 }

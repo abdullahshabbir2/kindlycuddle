@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'Home_initial_params.dart';
 import 'home_page.dart';
 
-class HomeNavigator with HomeRoute,SessionOptionsRoute{
+class HomeNavigator with SessionOptionsRoute{
   HomeNavigator(this.navigator);
   @override
   // TODO: implement context
@@ -18,13 +18,13 @@ class HomeNavigator with HomeRoute,SessionOptionsRoute{
 
 }
 
-mixin HomeRoute{
-  openHomePage(HomeInitialParams initialParams)
-  {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: initialParams),))
-    );
-  }
-  BuildContext get context;
-  AppNavigator get navigator;
-}
+// mixin HomeRoute{
+//   openHomePage(HomeInitialParams initialParams)
+//   {
+//     Navigator.of(context).push(
+//       MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: initialParams),))
+//     );
+//   }
+//   BuildContext get context;
+//   AppNavigator get navigator;
+// }

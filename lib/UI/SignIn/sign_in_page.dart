@@ -50,6 +50,7 @@ class _SignInPageState extends State<SignInPage> {
     return ScreenUtilInit(
       builder:(BuildContext context, child) => SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -92,6 +93,9 @@ class _SignInPageState extends State<SignInPage> {
                                     },
                                     inputType: TextInputType.emailAddress,
                                     error: state.emailValidator,
+                                    onChanged: (value){
+                                    cubit.setEmail(value as String);
+                                    },
                                 );
                               }
                             ),
@@ -112,7 +116,10 @@ class _SignInPageState extends State<SignInPage> {
                                     obscureText: !(state.showPassword),
                                     onTap: (){
                                       cubit.reverseObsecurity();
-                                    }
+                                    },
+                                    onChanged: (password){
+                                      cubit.setPassword(password);
+                                    },
                                 );
                               }
                             ),
@@ -122,8 +129,11 @@ class _SignInPageState extends State<SignInPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
-                                SizedBox(width: 32.w,),
+                                InkWell(
+                                    onTap: (){
+                                      cubit.resetPassword();
+                                    },
+                                    child: bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0)), SizedBox(width: 32.w,),
                               ],
                             ),
                             SizedBox(height: 18.h,),
@@ -133,13 +143,13 @@ class _SignInPageState extends State<SignInPage> {
                                 state as SignInState;
                                 return StyledButton(text: 'Sign In', onTap: (){
 
-                                  if (_formKey.currentState!.validate()) {
+                                  // if (_formKey.currentState!.validate()) {
                                     // If the form is valid, display a snackbar. In a real app,
                                     // you would often call a server or save the information in a database.
 
                                     cubit.SignIn();
 
-                                  }
+                                  // }
 
 
 

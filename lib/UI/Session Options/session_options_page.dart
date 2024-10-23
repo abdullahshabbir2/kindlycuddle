@@ -1,5 +1,6 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Constants/image_constants.dart';
+import 'package:cuddle_care/Service/ble/ble_controller.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
@@ -13,6 +14,7 @@ import 'package:cuddle_care/UI/Session%20Options/session_options_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SessionOptionsPage extends StatefulWidget {
   final SessionOptionsCubit cubit;
@@ -64,6 +66,16 @@ class ScreenOptionsColumn extends StatefulWidget {
 }
 
 class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
+
+  final BleController bleController = Get.put(BleController());
+
+  Map<String, int>  minutesMAP= {
+    '5 min':5,
+    '10 min':10,
+    '15 min':15,
+    '20 min':20,
+    'custom':120
+  };
 
   @override
   void initState() {
@@ -164,7 +176,25 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
             }
           ),
           SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
-          StyledButton(text: 'Stop Session', onTap: widget.cubit.stopSession ,height: size.getResizeAbleHeight(61, 812, context),textColor: Colors.white,backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),),
+          BlocBuilder(
+            bloc: widget.cubit,
+            builder: (context , state) {
+              state as SessionOptionsState;
+              return StyledButton(text: 'Stop Session', onTap: () async {
+
+
+                int minutes =  minutesMAP[state.duration] ?? 0;
+
+                bleController.controlMaxWorkingHours(minutes);
+
+                widget.cubit.stopSession();
+                },
+                height: size.getResizeAbleHeight(61, 812, context),
+                textColor: Colors.white,
+                backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),
+              );
+            }
+          ),
         ],
       ),
     );

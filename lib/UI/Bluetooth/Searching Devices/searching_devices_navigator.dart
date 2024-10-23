@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'searching_devices_page.dart';
 
-class SearchingDevicesNavigator with SearchingDevicesRoute,DevicePairingRoute{
+class SearchingDevicesNavigator with SearchingDevicesRoute{
   SearchingDevicesNavigator(this.navigator);
   @override
   // TODO: implement context

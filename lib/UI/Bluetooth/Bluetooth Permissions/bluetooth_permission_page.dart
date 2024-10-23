@@ -8,7 +8,6 @@ import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'bluetooth_permission_cubit.dart';
 
 class BluetoothPermissionPage extends StatefulWidget {
