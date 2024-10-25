@@ -52,7 +52,7 @@ dependencies:
   fluttertoast:
   googleapis_auth: ^1.6.0
   googleapis: ^13.1.0
-  flutter_blue_plus: ^1.33.4
+  flutter_blue_plus: ^1.33.5
   flutter_blue: ^0.8.0
   get: ^4.6.6
   permission_handler: ^11.3.1

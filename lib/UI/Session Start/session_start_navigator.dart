@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'session_start_initial_params.dart';
 
-class SessionStartNavigator with SessionStartRoute, UserGuide1Route{
+class SessionStartNavigator with  UserGuide1Route{
   SessionStartNavigator(this.navigator);
   @override
   // TODO: implement context
@@ -18,13 +18,13 @@ class SessionStartNavigator with SessionStartRoute, UserGuide1Route{
 
 }
 
-mixin SessionStartRoute{
-  openSessionStartPage(SessionStartInitialParams initialParams)
-  {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => SessionStartPage(cubit: getIt(param1: initialParams),))
-    );
-  }
-  BuildContext get context;
-  AppNavigator get navigator;
-}
+// mixin SessionStartRoute{
+//   openSessionStartPage(SessionStartInitialParams initialParams)
+//   {
+//     Navigator.of(context).push(
+//       MaterialPageRoute(builder: (context) => SessionStartPage(cubit: getIt(param1: initialParams),))
+//     );
+//   }
+//   BuildContext get context;
+//   AppNavigator get navigator;
+// }

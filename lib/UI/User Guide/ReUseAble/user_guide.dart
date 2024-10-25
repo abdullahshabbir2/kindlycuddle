@@ -1,9 +1,13 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
+import 'package:cuddle_care/UI/Profile/profile_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
+import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 
 class UserGuide extends StatefulWidget {
@@ -11,7 +15,8 @@ class UserGuide extends StatefulWidget {
   final String body;
   final VoidCallback onTap;
   final String? next;
-  const UserGuide({super.key, required this.heading , required this.body, required this.onTap, this.next});
+  final String img;
+  const UserGuide({super.key, required this.heading , required this.body, required this.onTap, this.next, required this.img});
 
   @override
   State<UserGuide> createState() => _UserGuideState();
@@ -70,12 +75,13 @@ class _UserGuideState extends State<UserGuide> {
           Container(
             width: size.getResizeAbleWidth(331, 375, context),
             height: size.getResizeAbleHeight(358, 812, context),
-            decoration: ShapeDecoration(
-              color: Color(0xFFD9D9D9),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-            ),
+            // decoration: ShapeDecoration(
+            //   color: Color(0xFFD9D9D9),
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(25),
+            //   ),
+            // ),
+            child: Image.asset(widget.img),
           ),
 
           SizedBox(height: size.getResizeAbleHeight(25, 812, context),),
@@ -148,7 +154,9 @@ class _UserGuideState extends State<UserGuide> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              StyledButton(text: 'Skip', onTap: (){},height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,),
+              StyledButton(text: 'Skip', onTap: (){
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileColumn(cubit: getIt(param1: ProfileInitialParams())) ));
+              },height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,),
 
               StyledButton(text: widget.next ??  'Next', onTap: widget.onTap,height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,backgroundColor: Colors.white,textColor: ColorsConstants.styledButtonBackgroundColor,),
 

@@ -11,6 +11,9 @@ import 'package:cuddle_care/UI/Session%20Options/ReUseAble/duration_button.dart'
 import 'package:cuddle_care/UI/Session%20Options/session_options_cubit.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_state.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_initial_params.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_page.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -180,14 +183,31 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
             bloc: widget.cubit,
             builder: (context , state) {
               state as SessionOptionsState;
-              return StyledButton(text: 'Stop Session', onTap: () async {
+              return StyledButton(text: 'Start Session', onTap: () async {
 
 
                 int minutes =  minutesMAP[state.duration] ?? 0;
 
-                bleController.controlMaxWorkingHours(minutes);
+                // bleController.controlMaxWorkingHours(minutes);
 
-                widget.cubit.stopSession();
+                // widget.cubit.stopSession();
+
+                minutes = (state.durationIndex + 1)*5;
+                debugPrint('Minnutes: ${minutes}');
+
+                bleController.controlOnOff(1);
+                bleController.controlOnOff(1);
+
+                bleController.controlPause(0);
+                bleController.controlPause(0);
+
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(
+                    cubit: getIt(param1: SessionStartInitialParams() ),
+                    seconds: minutes*60
+                )
+                ));
+
                 },
                 height: size.getResizeAbleHeight(61, 812, context),
                 textColor: Colors.white,

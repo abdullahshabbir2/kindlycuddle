@@ -1,14 +1,19 @@
 
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/sign_in_usecase.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
+import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
+import 'package:cuddle_care/UI/Home/home_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/toast_message.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_state.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -16,11 +21,13 @@ class SignInCubit extends Cubit<SignInState> {
  final SignInNavigator navigator;
  final SignInUseCase signInUseCase;
  final ResetPasswordUseCase resetPasswordUseCase;
+ final GoogleSignUpUseCase googleSignUpUseCase;
  SignInCubit(
      this.initialParams,
      this.navigator,
      this.signInUseCase,
-     this.resetPasswordUseCase
+     this.resetPasswordUseCase,
+     this.googleSignUpUseCase,
      ) : super(SignInState.initial(initialParams: initialParams));
 
 void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
@@ -79,7 +86,7 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
    emit(state.copyWith(showPassword: !(state.showPassword)));
   }
 
-  void SignIn() {
+  void SignIn(BuildContext context) {
 
     if(emailValidator(state.email) && passwordValidator(state.password)){
 
@@ -91,7 +98,10 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
                       (r) {
                         ToastMessage().showMessage('Sign In Success', ColorsConstants.successToastColor);
                         // navigator.openSignUpPage(SignUpInitialParams());
-                        navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+                        // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: HomeInitialParams())) ));
+
                       }
               )
       );
@@ -125,6 +135,23 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
                (r) {
              ToastMessage().showMessage('Check Password Update Email', ColorsConstants.successToastColor);
            }
+       )
+   );
+ }
+
+ void googleSignUp(BuildContext context) {
+   googleSignUpUseCase.execute().then(
+           (value) => value.fold(
+               (l) {
+             ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+           },
+               (r) {
+             ToastMessage().showMessage('Sign Up Suceesful', ColorsConstants.successToastColor);
+             // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+
+             Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: HomeInitialParams())) ));
+
+               }
        )
    );
  }

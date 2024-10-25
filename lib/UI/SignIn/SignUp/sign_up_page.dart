@@ -162,7 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 bloc: cubit,
                                 builder: (context , state) {
                                   state as SignUpState;
-                                  return StyledButton(text: 'Sign In', onTap: (){
+                                  return StyledButton(text: 'Sign Up', onTap: (){
 
                                     // if (_formKey.currentState!.validate()) {
                                       // If the form is valid, display a snackbar. In a real app,
@@ -207,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          loginOption(ImageConstants.google, () { cubit.googleSignUp(); }),
+                          loginOption(ImageConstants.google, () { cubit.googleSignUp(context); }),
                           SizedBox(width: 23.w,),
                           loginOption(ImageConstants.apple, () { }),
                           SizedBox(width: 23.w,),

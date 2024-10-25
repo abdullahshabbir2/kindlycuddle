@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class SearchingDevicesCubit extends Cubit<SearchingDevicesState> {
  final SearchingDevicesInitialParams initialParams;
@@ -69,7 +69,7 @@ void onInit(SearchingDevicesInitialParams initialParams) => emit(state.copyWith(
     try{
       await bleController.scanDevices();
       Stream<List<ScanResult>> devices = bleController.scanResults;
-      emit(state.copyWith(isLoading: false,bluetoothDevices: devices));
+      // emit(state.copyWith(isLoading: false,bluetoothDevices: devices));
     }catch(e){
       ToastMessage().showMessage(e.toString(), ColorsConstants.failureToastColor);
     }
@@ -80,13 +80,13 @@ void onInit(SearchingDevicesInitialParams initialParams) => emit(state.copyWith(
     bleController.scanResults.listen((List<ScanResult> results) {
      // Update the list whenever the stream emits new results
      // scanResults = results;
-     emit(state.copyWith(scanResults: results));
+     // emit(state.copyWith(scanResults: results));
      // You can perform any actions here, like updating UI
    });
  }
 
-  void setBluetoothDevice(BluetoothDevice device) {
-    bluetoothDeviceStore.setDevice(device);
-  }
+  // void setBluetoothDevice(BluetoothDevice device) {
+  //   bluetoothDeviceStore.setDevice(device);
+  // }
 
 }

@@ -15,10 +15,9 @@ import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import '../Searching Devices/circles.dart';
 import 'device_pairing_cubit.dart';
 import 'dart:ui' as ui;
@@ -124,7 +123,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
                         children: [
                           SizedBox(height: 196.h,),
                           Center(child: ReUseAbleSvg(path: ImageConstants.pumpLightBlue, height: 90.h,width: 90.w,)),
-                          bodyText(widget.device.name??''),
+                          bodyText(widget.device.advName??''),
                           // BlocBuilder(
                           //   bloc: cubit,
                           //   builder: (context , state) {
@@ -133,6 +132,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
                           //   }
                           // ),
                           SizedBox(height: 254.h,),
+
                           StyledButton(text: 'Start Pairing', onTap: () async {
                             await bleController.connectToDevice(widget.device);
 
@@ -148,6 +148,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
 
                              // cubit.moveToNextScreen();
                           })
+
                         ],
                       ),
                     ),

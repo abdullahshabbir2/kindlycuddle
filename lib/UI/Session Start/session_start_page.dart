@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Constants/image_constants.dart';
+import 'package:cuddle_care/Service/ble/ble_controller.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
@@ -10,15 +13,19 @@ import 'package:cuddle_care/UI/Session%20Options/ReUseAble/play_pause_option.dar
 import 'package:cuddle_care/UI/Session%20Start/ReUseAble/volume_data.dart';
 import 'package:cuddle_care/UI/Session%20Start/session_start_cubit.dart';
 import 'package:cuddle_care/UI/Session%20Start/session_start_initial_params.dart';
+import 'package:cuddle_care/UI/Session%20Start/session_start_state.dart';
+import 'package:cuddle_care/UI/timer_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SessionStartPage extends StatefulWidget {
   final SessionStartCubit cubit;
   // final UserDeInitialParams initialParams;
-  const SessionStartPage({Key? key, required this.cubit}) : super(key: key);
+  final int seconds;
+  const SessionStartPage({Key? key, required this.cubit, required this.seconds}) : super(key: key);
 
 
   @override
@@ -28,6 +35,8 @@ class SessionStartPage extends StatefulWidget {
 class _SessionStartPageState extends State<SessionStartPage> {
 
   SessionStartCubit get cubit => widget.cubit;
+  final BleController bleController = Get.put(BleController());
+
   ReSizeAbleSize size = ReSizeAbleSize();
   List<FlSpot> _buildLineSpots() {
     return [
@@ -232,12 +241,83 @@ class _SessionStartPageState extends State<SessionStartPage> {
     ),
   );
 
+  Timer? _timer;
+  int _elapsedTicks = 0; // Track how many intervals have passed
+  // final int _maxTicks = ;
+
+  TimerController timerController = TimerController();
+
+  void stopTimer() {
+    _timer?.cancel();
+    _timer = null;
+    _elapsedTicks = 0; // Reset ticks for a fresh start if needed
+  }
+
+  void performFunctionality(int ticks) {
+    debugPrint(ticks.toString());
+    cubit.setTimePassed(ticks);
+    cubit.setTimeRemaining(widget.seconds - ticks);
+    print("Functionality performed at: ${DateTime.now()}");
+  }
+
+  void pauseTimer() {
+    _timer?.cancel();
+    _timer = null; // Set to null so it can be resumed later
+  }
+
+  void resumeTimer(int _maxTicks) {
+    if (_timer == null && _elapsedTicks < _maxTicks) {
+      startTimer(_maxTicks); // Restart the timer if it’s not running and time remains
+    }
+  }
+
+  void startTimer(int _maxTicks) {
+    _timer ??= Timer.periodic(Duration(seconds: 1), (timer) {
+      _elapsedTicks++;
+      performFunctionality(_elapsedTicks);
+
+      if (_elapsedTicks >= _maxTicks) {
+        stopTimer(); // Stop the timer after 1 minute
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     // TODO : Fix it Later
     cubit.onInit(SessionStartInitialParams());
    cubit.navigator.context =  context;
+
+
+
+    cubit.setTotalTime(widget.seconds);
+
+    startTimer(60);
+
+    // int timr = timerController.startTimer();
+    //
+    // debugPrint(timr.toString());
+    //
+    // int num = timerController.getElapsedTicks();
+    //
+    // debugPrint(num.toString());
+
+   //  Timer(Duration(minutes: 1), () {
+   //
+   //
+   //
+   // });
+
+   // Number of 5-second intervals to reach 1 minute
+
+
+
+
+
+
+
+
 
   }
 
@@ -268,19 +348,42 @@ class _SessionStartPageState extends State<SessionStartPage> {
                     ),
                   ),
                   child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        PLayPauseOption(time: '5:10', image: ImageConstants.playButton, align: 'Left'),
-                        PLayPauseOption(time: '5:02', image: ImageConstants.pauseButton, align: 'Right'),
-                      ],
+                    child: BlocBuilder(
+                      bloc: cubit,
+                      builder: (context , state) {
+                        state as SessionStartState;
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            PLayPauseOption(
+                              time: '${state.minutesPassed}:${state.secondsPassed}', image: ImageConstants.playButton, align: 'Pause',onTap: (){
+                              // timerController.pauseTimer();
+                              pauseTimer();
+                              bleController.controlPause(1);  },),
+                            PLayPauseOption(time: '${state.minutesLeft}:${state.secondsLeft}', image: ImageConstants.pauseButton, align: 'Play',onTap: (){
+                              // timerController.resumeTimer();
+                              resumeTimer(widget.seconds);
+                              bleController.controlPause(0);
+                              } ,),
+                          ],
+                        );
+                      }
                     ),
                   ),
                 ),
                 SizedBox(height: size.getResizeAbleHeight(16, 375, context),),
                 //
                 bodyText('Total Time'),
-                headingText('10:12:00',fontSize: 40),
+                BlocBuilder(
+                  bloc: cubit,
+                  builder: (context , state) {
+                     state as SessionStartState;
+                    return headingText(
+                        '${state.minutesTotal}:${state.secondsTotal}:00',
+                        fontSize: 40
+                    );
+                  }
+                ),
                 SizedBox(height: size.getResizeAbleHeight(24, 812, context),),
                 bottomContainer(),
                 StyledButton(text: 'Stop Session', onTap: (){cubit.moveToUserGuide1();}, textColor: Colors.white,backgroundColor: ColorsConstants.stopSessionColor,height: size.getResizeAbleHeight(61, 812, context),)

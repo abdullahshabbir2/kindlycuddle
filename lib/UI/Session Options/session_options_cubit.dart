@@ -22,6 +22,6 @@ void onInit(SessionOptionsInitialParams initialParams) => emit(state.copyWith())
 
 
   void stopSession() {
-    navigator.openSessionStartPage(SessionStartInitialParams());
+    // navigator.openSessionStartPage(SessionStartInitialParams());
   }
 }

@@ -11,7 +11,7 @@ class SessionOptionsState {
 
   factory SessionOptionsState.initial({required SessionOptionsInitialParams initialParams}) =>
       SessionOptionsState(
-        duration: '',
+        duration: '5 min',
         durationIndex: 0
   );
 

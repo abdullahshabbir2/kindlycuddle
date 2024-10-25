@@ -1,7 +1,10 @@
 // import 'package:test_breastpump/ble_controller.dart';
 // import 'package:flutter/material.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_page.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:get/get.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 //
 // void main() {
 //   runApp(const MyApp());
@@ -70,7 +73,11 @@ class _MyHomePageState extends State<Home> {
                             title: Text(data.device.name),
                             subtitle: Text(data.device.id.id),
                             trailing: Text(data.rssi.toString()),
-                            onTap: () => bleController.connectToDevice(data.device),
+                            onTap:(){
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => DevicePairingPage(cubit: getIt(param1: DevicePairingInitialParams()), device: data.device) ));
+                            }
+                                // () => bleController.connectToDevice(data.device),
                           ),
                         );
                       },

@@ -1,5 +1,7 @@
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/Service/Firebase/firebase_notification_service.dart';
+import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
+import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_page.dart';
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_icons.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
@@ -26,15 +28,14 @@ import 'package:cuddle_care/main.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home_cubit.dart';
-
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 class HomePage extends StatefulWidget {
   final HomeCubit cubit;
   // final UserDeInitialParams initialParams;
-  final BluetoothDevice device;
-  const HomePage({Key? key, required this.cubit, required this.device}) : super(key: key);
+  final BluetoothDevice? device;
+  const HomePage({Key? key, required this.cubit, this.device}) : super(key: key);
 
 
   @override
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       return ProfileColumn(cubit: getIt(param1: ProfileInitialParams()));
     }
     else{
-      return HomeColumn();
+      return HomeColumn(device: widget.device);
     }
 
   }
@@ -124,7 +125,8 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeColumn extends StatefulWidget {
-  const HomeColumn({super.key});
+  final BluetoothDevice? device;
+  const HomeColumn({super.key, this.device});
 
   @override
   State<HomeColumn> createState() => _HomeColumnState();
@@ -200,11 +202,20 @@ class _HomeColumnState extends State<HomeColumn> {
                     AssetsImages(path: ImageConstants.connectPump,
 
                     ),
-                    bodyText('Not Connect',bodyFontSize: 16,bodyTextFontWeight: FontWeight.w400,bodyTextHeight: 1),
+                    bodyText(
+                        widget.device == null ?
+                        'Not Connect' :'Connected',bodyFontSize: 16,bodyTextFontWeight: FontWeight.w400,bodyTextHeight: 1),
                     SizedBox(height: MediaQuery.of(context).size.height*(9/812),),
                     StyledButton(
-                      text: 'Connect Pump',
+                      text:  widget.device == null ? 'Connect Pump' : 'Disconnect',
                       onTap: (){
+
+
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SearchingDevicesPage(cubit: getIt(param1: SearchingDevicesInitialParams())))
+                        );
                       },
                       backgroundColor: Color(0xFFB2CBF2),
                       textColor: Colors.white,

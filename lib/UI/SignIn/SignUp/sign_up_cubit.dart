@@ -3,12 +3,16 @@ import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
+import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
+import 'package:cuddle_care/UI/Home/home_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/toast_message.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -125,7 +129,7 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
    emit(state.copyWith(userName: value));
   }
 
-  void googleSignUp() {
+  void googleSignUp(BuildContext context) {
    googleSignUpUseCase.execute().then(
            (value) => value.fold(
                    (l) {
@@ -133,7 +137,10 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
                    },
                    (r) {
                      ToastMessage().showMessage('Sign Up Suceesful', ColorsConstants.successToastColor);
-                     navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+                     // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: HomeInitialParams())) ));
+
                    }
            )
    );

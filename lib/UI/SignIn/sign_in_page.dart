@@ -147,7 +147,7 @@ class _SignInPageState extends State<SignInPage> {
                                     // If the form is valid, display a snackbar. In a real app,
                                     // you would often call a server or save the information in a database.
 
-                                    cubit.SignIn();
+                                    cubit.SignIn(context);
 
                                   // }
 
@@ -182,7 +182,9 @@ class _SignInPageState extends State<SignInPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          loginOption(ImageConstants.google, () { }),
+                          loginOption(ImageConstants.google, () {
+                            cubit.googleSignUp(context);
+                          }),
                           SizedBox(width: 23.w,),
                           loginOption(ImageConstants.apple, () { }),
                           SizedBox(width: 23.w,),

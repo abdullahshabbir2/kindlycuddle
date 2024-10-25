@@ -14,8 +14,7 @@ import 'package:cuddle_care/UI/Splash/home_screen.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -88,7 +87,7 @@ class _DeviceConnectedSuccessfullyPageState extends State<DeviceConnectedSuccess
                           SizedBox(height: 182.h,),
                           StyledButton(
                             backgroundColor: ColorsConstants.backgroundColor,
-                              text: 'Turn Off', onTap: () async {
+                              text: 'Continue', onTap: () async {
 
                             // cubit.moveToNextScreen();
 

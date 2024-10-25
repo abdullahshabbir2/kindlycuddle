@@ -1,3 +1,4 @@
+
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_initial_params.dart';
@@ -18,6 +19,7 @@ void onInit(UserGuide5InitialParams initialParams) => emit(state.copyWith());
 
   void moveToNextScreen() {
     // navigator.openHomePage(HomeInitialParams());
+
   }
 
 }

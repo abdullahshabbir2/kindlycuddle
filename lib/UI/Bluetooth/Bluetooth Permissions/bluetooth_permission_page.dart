@@ -5,6 +5,7 @@ import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/UI/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +69,12 @@ class _BluetoothPermissionPageState extends State<BluetoothPermissionPage> {
                           bodyText('Please turn on Bluetooth to\n connect your pump!'),
                           SizedBox(height: 182.h,),
                           StyledButton(text: 'Turn On', onTap: (){
-                            cubit.moveToNextScreen();
+                            // cubit.moveToNextScreen();
+
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) =>  Home() )
+                            );
+
                           })
                         ],
                       ),

@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%203/user_guide3_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%203/user_guide3_initial_params.dart';
@@ -35,7 +36,9 @@ class _UserGuide3PageState extends State<UserGuide3Page> {
         child: Scaffold(
           body: UserGuide(heading: 'Cleaning', body: 'Keep your pump clean with our specialized brushes, sold separately. Regular cleaning ensures hygiene and extends the lifespan of your device.',onTap: (){
             cubit.moveToUserGuide4();
-          },),
+          },
+              img: ImageConstants.UserGuide3
+          ),
         ),
       ),
       designSize: const Size(393.0, 852.0),

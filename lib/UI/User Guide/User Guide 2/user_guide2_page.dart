@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_initial_params.dart';
@@ -35,7 +36,9 @@ class _UserGuide2PageState extends State<UserGuide2Page> {
         child: Scaffold(
           body: UserGuide(heading: 'Control Panel', body: 'Manage each pump\'s function, battery level, and session duration easily. Adjust suction levels, set timers, and track milk volume for efficient pumping.',onTap: (){
             cubit.moveToUserGuide3();
-          },),
+          },
+              img: ImageConstants.UserGuide2
+          ),
         ),
       ),
       designSize: const Size(393.0, 852.0),

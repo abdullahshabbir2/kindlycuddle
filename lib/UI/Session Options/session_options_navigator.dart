@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'session_options_initial_params.dart';
 
-class SessionOptionsNavigator with SessionStartRoute{
+class SessionOptionsNavigator {
   SessionOptionsNavigator(this.navigator);
   @override
   // TODO: implement context

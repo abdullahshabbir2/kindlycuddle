@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%204/user_guide4_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%204/user_guide4_initial_params.dart';
@@ -35,7 +36,9 @@ class _UserGuide4PageState extends State<UserGuide4Page> {
         child: Scaffold(
           body: UserGuide(heading: 'Breast and Nipple Care', body: 'Protect your skin with our disposable or reusable nipple pads. Proper care reduces discomfort and helps maintain healthy breastfeeding.',onTap: (){
             cubit.moveToUserGuide5();
-          },),
+          },
+              img: ImageConstants.UserGuide4
+          ),
         ),
       ),
       designSize: const Size(393.0, 852.0),

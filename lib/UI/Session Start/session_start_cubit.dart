@@ -18,4 +18,31 @@ void moveToUserGuide1(){
  navigator.openUserGuide1Page(UserGuide1InitialParams());
 }
 
+  void setTimePassed(int ticks) {
+  int minutes = getMinutes(ticks);
+  int seconds = getSeconds(ticks);
+  emit(state.copyWith(minutesPassed:minutes , secondsPassed: seconds ));
+  }
+
+  void setTimeRemaining(int ticks) {
+    int minutes = getMinutes(ticks);
+    int seconds = getSeconds(ticks);
+    emit(state.copyWith(minutesLeft:minutes , secondsLeft: seconds ));
+  }
+
+  getMinutes(int ticks){
+  double num = ticks/60;
+  return num.toInt() ;
+  }
+
+  int getSeconds(int ticks) {
+  return ticks%60;
+  }
+
+  void setTotalTime(int ticks) {
+    int minutes = getMinutes(ticks);
+    int seconds = getSeconds(ticks);
+    emit(state.copyWith(minutesTotal:minutes , secondsTotal: seconds ));
+  }
+
 }
