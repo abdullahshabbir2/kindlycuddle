@@ -195,11 +195,11 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
                 minutes = (state.durationIndex + 1)*5;
                 debugPrint('Minnutes: ${minutes}');
 
-                bleController.controlOnOff(1);
-                bleController.controlOnOff(1);
+                //bleController.controlOnOff(1);
+                //bleController.controlOnOff(1);
 
-                bleController.controlPause(0);
-                bleController.controlPause(0);
+                 bleController.controlPause(0);
+                // bleController.controlPause(0);
 
 
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(

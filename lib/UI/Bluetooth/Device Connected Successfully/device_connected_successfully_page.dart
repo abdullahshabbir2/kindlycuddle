@@ -90,9 +90,6 @@ class _DeviceConnectedSuccessfullyPageState extends State<DeviceConnectedSuccess
                               text: 'Continue', onTap: () async {
 
                             // cubit.moveToNextScreen();
-
-                            await bleController.disconnectDevice();
-
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => HomePage(
                                     device:  widget.device ,
