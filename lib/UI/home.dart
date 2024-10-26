@@ -29,6 +29,8 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:cuddle_care/Service/ble/ble_controller.dart';
 import 'package:flutter/material.dart';
 
+import 'package:permission_handler/permission_handler.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -38,6 +40,37 @@ class Home extends StatefulWidget {
 
 class _MyHomePageState extends State<Home> {
   final BleController bleController = Get.put(BleController());
+
+
+  @override
+  void initState() {
+    super.initState();
+    _requestBluetoothPermission();
+  }
+
+
+  Future<void> _requestBluetoothPermission() async {
+    // Check if the Bluetooth permission is already granted
+    if (await Permission.bluetoothConnect.isGranted &&
+        await Permission.bluetoothScan.isGranted) {
+      print('Bluetooth permission already granted');
+    } else {
+      // Request the permission if not granted
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.bluetoothConnect,
+        Permission.bluetoothScan,
+        Permission.locationWhenInUse, // Needed for Bluetooth scanning in many cases
+      ].request();
+
+      if (statuses[Permission.bluetoothConnect]!.isGranted &&
+          statuses[Permission.bluetoothScan]!.isGranted) {
+        print('Bluetooth permission granted');
+      } else {
+        print('Bluetooth permission denied');
+        // Handle denied permissions here, for example, show a dialog
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

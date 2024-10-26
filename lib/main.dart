@@ -26,6 +26,7 @@ import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_n
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:cuddle_care/UI/Home/home_cubit.dart';
 import 'package:cuddle_care/UI/Home/home_navigator.dart';
+import 'package:cuddle_care/UI/Home/home_page.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_cubit.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_initial_params.dart';
 import 'package:cuddle_care/UI/OnBoarding/on_boarding_navigator.dart';
@@ -303,7 +304,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashPage(cubit: getIt(param1: SplashInitialParams()))
+      home: SplashPage(cubit: getIt(param1: SplashInitialParams())),
+      routes: {
+        '/home': (context) => HomePage(cubit: getIt(param1: HomeInitialParams())),
+      },
     );
   }
 }

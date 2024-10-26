@@ -126,96 +126,134 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
-          showPump(),
-          SizedBox(height: size.getResizeAbleHeight(10, 812, context),),
-          headingText('Start Session',fontSize: 24),
-          SizedBox(height: size.getResizeAbleHeight(10, 812, context),),
-          lightBlueText('Please select session duration',fontSize: 14),
-          SizedBox(height: size.getResizeAbleHeight(15, 812, context),),
-          BlocBuilder(
-            bloc: widget.cubit,
-            builder: (context , state) {
-              state as SessionOptionsState;
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
+            showPump(),
+            SizedBox(height: size.getResizeAbleHeight(10, 812, context),),
+            headingText('Start Session',fontSize: 24),
+            SizedBox(height: size.getResizeAbleHeight(10, 812, context),),
+            lightBlueText('Please select session duration',fontSize: 14),
+            SizedBox(height: size.getResizeAbleHeight(15, 812, context),),
+            BlocBuilder(
+              bloc: widget.cubit,
+              builder: (context , state) {
+                state as SessionOptionsState;
 
-              debugPrint('I am in BlocBuilder Start session');
+                debugPrint('I am in BlocBuilder Start session');
 
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DurationButton(isSelected: state.durationIndex == 0,text:'5 min',onTap: (){
-                        widget.cubit.setDuration(0);
-                      },),
-                      SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
-                      DurationButton(isSelected: state.durationIndex == 1,text:'10 min',onTap: (){
-                        widget.cubit.setDuration(1);
-                      },),
-                      SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
-                      DurationButton(isSelected: state.durationIndex == 2,text:'15 min',onTap: (){
-                        widget.cubit.setDuration(2);
-                      },),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DurationButton(isSelected: state.durationIndex == 3,text:'20 min',onTap: (){
-                        widget.cubit.setDuration(3);
-                      },),
-                      SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
-                      DurationButton(isSelected: state.durationIndex == 4,text:'Custom',onTap: (){
-                        widget.cubit.setDuration(4);
-                      },),
-                    ],
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DurationButton(isSelected: state.durationIndex == 0,text:'5 min',onTap: (){
+                          widget.cubit.setDuration(0);
+                        },),
+                        SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
+                        DurationButton(isSelected: state.durationIndex == 1,text:'10 min',onTap: (){
+                          widget.cubit.setDuration(1);
+                        },),
+                        SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
+                        DurationButton(isSelected: state.durationIndex == 2,text:'15 min',onTap: (){
+                          widget.cubit.setDuration(2);
+                        },),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DurationButton(isSelected: state.durationIndex == 3,text:'20 min',onTap: (){
+                          widget.cubit.setDuration(3);
+                        },),
+                        SizedBox(width: size.getResizeAbleWidth(12, 275, context),),
+                        DurationButton(isSelected: state.durationIndex == 4,text:'Custom',onTap: (){
+                          widget.cubit.setDuration(4);
+                        },),
+                      ],
+                    )
+                  ],
+                );
+              }
+            ),
+            SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
+            BlocBuilder(
+                bloc: widget.cubit,
+                builder: (context , state) {
+                  state as SessionOptionsState;
+                  return StyledButton(text: 'Turn On', onTap: () async {
+
+
+                    // int minutes =  minutesMAP[state.duration] ?? 0;
+                    //
+                    // // bleController.controlMaxWorkingHours(minutes);
+                    //
+                    // // widget.cubit.stopSession();
+                    //
+                    // minutes = (state.durationIndex + 1)*5;
+                    // debugPrint('Minnutes: ${minutes}');
+                    //
+                    // bleController.controlOnOff(1);
+                    bleController.controlOnOff(1);
+                    //
+                    // bleController.controlPause(0);
+                    // bleController.controlPause(0);
+
+
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(
+                    //     cubit: getIt(param1: SessionStartInitialParams() ),
+                    //     seconds: minutes*60
+                    // )
+                    // ));
+
+                  },
+                    height: size.getResizeAbleHeight(61, 812, context),
+                    textColor: Colors.white,
+                    backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),
+                  );
+                }
+            ),
+            BlocBuilder(
+              bloc: widget.cubit,
+              builder: (context , state) {
+                state as SessionOptionsState;
+                return StyledButton(text: 'Start Session', onTap: () async {
+
+
+                  int minutes =  minutesMAP[state.duration] ?? 0;
+                  //
+                  // // bleController.controlMaxWorkingHours(minutes);
+                  //
+                  // // widget.cubit.stopSession();
+                  //
+                  minutes = (state.durationIndex + 1)*5;
+                  // debugPrint('Minnutes: ${minutes}');
+                  //
+                  // bleController.controlOnOff(1);
+                  // bleController.controlOnOff(1);
+                  //
+                  // bleController.controlPause(0);
+                  bleController.controlPause(0);
+
+
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(
+                      cubit: getIt(param1: SessionStartInitialParams() ),
+                      seconds: minutes*60
                   )
-                ],
-              );
-            }
-          ),
-          SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
-          BlocBuilder(
-            bloc: widget.cubit,
-            builder: (context , state) {
-              state as SessionOptionsState;
-              return StyledButton(text: 'Start Session', onTap: () async {
+                  ));
 
-
-                int minutes =  minutesMAP[state.duration] ?? 0;
-
-                // bleController.controlMaxWorkingHours(minutes);
-
-                // widget.cubit.stopSession();
-
-                minutes = (state.durationIndex + 1)*5;
-                debugPrint('Minnutes: ${minutes}');
-
-                bleController.controlOnOff(1);
-                bleController.controlOnOff(1);
-
-                bleController.controlPause(0);
-                bleController.controlPause(0);
-
-
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(
-                    cubit: getIt(param1: SessionStartInitialParams() ),
-                    seconds: minutes*60
-                )
-                ));
-
-                },
-                height: size.getResizeAbleHeight(61, 812, context),
-                textColor: Colors.white,
-                backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),
-              );
-            }
-          ),
-        ],
+                  },
+                  height: size.getResizeAbleHeight(61, 812, context),
+                  textColor: Colors.white,
+                  backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),
+                );
+              }
+            ),
+          ],
+        ),
       ),
     );
   }

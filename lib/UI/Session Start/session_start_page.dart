@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:googleapis/admob/v1.dart';
 
 class SessionStartPage extends StatefulWidget {
   final SessionStartCubit cubit;
@@ -325,69 +326,92 @@ class _SessionStartPageState extends State<SessionStartPage> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder:(BuildContext context, child) => SafeArea(
-        child: Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                top(),
-                SizedBox(height: size.getResizeAbleHeight(14, 375, context),),
-                Container(
-                  width: size.getResizeAbleWidth(335, 375, context),
-                  height: size.getResizeAbleHeight(242, 812, context),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment(0.00, -1.00),
-                      end: Alignment(0, 1),
-                      colors: [Colors.white.withOpacity(0.6100000143051147), ColorsConstants.appPrimary2],
+        child: PopScope(
+          onPopInvoked: (onPopInvoked){
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+
+          },
+          child:
+          Scaffold(
+            // appBar: AppBar(
+            //   automaticallyImplyLeading: false,
+            // ),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  top(),
+                  SizedBox(height: size.getResizeAbleHeight(14, 375, context),),
+                  Container(
+                    width: size.getResizeAbleWidth(335, 375, context),
+                    height: size.getResizeAbleHeight(242, 812, context),
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(0.00, -1.00),
+                        end: Alignment(0, 1),
+                        colors: [Colors.white.withOpacity(0.6100000143051147), ColorsConstants.appPrimary2],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.white),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(20),
+                    child: Center(
+                      child: BlocBuilder(
+                        bloc: cubit,
+                        builder: (context , state) {
+                          state as SessionStartState;
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              PLayPauseOption(
+                                time: '${state.minutesPassed}:${state.secondsPassed}', image: ImageConstants.playButton, align: 'Pause',onTap: (){
+                                // timerController.pauseTimer();
+                                pauseTimer();
+                                bleController.controlPause(1);  },),
+                              PLayPauseOption(
+                                time: '${state.minutesLeft}:${state.secondsLeft}',
+                                image: ImageConstants.pauseButton,
+                                align: 'Play',
+                                onTap: (){
+                                // timerController.resumeTimer();
+                                stopTimer();
+                                resumeTimer(widget.seconds);
+                                bleController.controlPause(0);
+
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                      ),
                     ),
                   ),
-                  child: Center(
-                    child: BlocBuilder(
-                      bloc: cubit,
-                      builder: (context , state) {
-                        state as SessionStartState;
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            PLayPauseOption(
-                              time: '${state.minutesPassed}:${state.secondsPassed}', image: ImageConstants.playButton, align: 'Pause',onTap: (){
-                              // timerController.pauseTimer();
-                              pauseTimer();
-                              bleController.controlPause(1);  },),
-                            PLayPauseOption(time: '${state.minutesLeft}:${state.secondsLeft}', image: ImageConstants.pauseButton, align: 'Play',onTap: (){
-                              // timerController.resumeTimer();
-                              resumeTimer(widget.seconds);
-                              bleController.controlPause(0);
-                              } ,),
-                          ],
-                        );
-                      }
-                    ),
+                  SizedBox(height: size.getResizeAbleHeight(16, 375, context),),
+                  //
+                  bodyText('Total Time'),
+                  BlocBuilder(
+                    bloc: cubit,
+                    builder: (context , state) {
+                       state as SessionStartState;
+                      return headingText(
+                          '${state.minutesTotal}:${state.secondsTotal}:00',
+                          fontSize: 40
+                      );
+                    }
                   ),
-                ),
-                SizedBox(height: size.getResizeAbleHeight(16, 375, context),),
-                //
-                bodyText('Total Time'),
-                BlocBuilder(
-                  bloc: cubit,
-                  builder: (context , state) {
-                     state as SessionStartState;
-                    return headingText(
-                        '${state.minutesTotal}:${state.secondsTotal}:00',
-                        fontSize: 40
-                    );
-                  }
-                ),
-                SizedBox(height: size.getResizeAbleHeight(24, 812, context),),
-                bottomContainer(),
-                StyledButton(text: 'Stop Session', onTap: (){cubit.moveToUserGuide1();}, textColor: Colors.white,backgroundColor: ColorsConstants.stopSessionColor,height: size.getResizeAbleHeight(61, 812, context),)
-              ],
+                  SizedBox(height: size.getResizeAbleHeight(24, 812, context),),
+                  bottomContainer(),
+                  StyledButton(text: 'Stop Session', onTap: (){
+                    stopTimer();
+                    bleController.controlOnOff(0);
+                    // cubit.moveToUserGuide1();
+                    Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+
+                  }, textColor: Colors.white,backgroundColor: ColorsConstants.stopSessionColor,height: size.getResizeAbleHeight(61, 812, context),)
+                ],
+              ),
             ),
           ),
         ),
