@@ -91,7 +91,9 @@ class _DeviceConnectedSuccessfullyPageState extends State<DeviceConnectedSuccess
 
                             // cubit.moveToNextScreen();
 
+
                             // await bleController.disconnectDevice();
+
 
                             Navigator.of(context).push(
                                 MaterialPageRoute(builder: (context) => HomePage(

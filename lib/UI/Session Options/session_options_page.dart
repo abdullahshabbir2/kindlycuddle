@@ -245,6 +245,7 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
                   )
                   ));
 
+// <<<<<<< HEAD
                   },
                   height: size.getResizeAbleHeight(61, 812, context),
                   textColor: Colors.white,
@@ -254,6 +255,39 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
             ),
           ],
         ),
+// =======
+
+          //       int minutes =  minutesMAP[state.duration] ?? 0;
+          //
+          //       // bleController.controlMaxWorkingHours(minutes);
+          //
+          //       // widget.cubit.stopSession();
+          //
+          //       minutes = (state.durationIndex + 1)*5;
+          //       debugPrint('Minnutes: ${minutes}');
+          //
+          //       //bleController.controlOnOff(1);
+          //       //bleController.controlOnOff(1);
+          //
+          //        bleController.controlPause(0);
+          //       // bleController.controlPause(0);
+          //
+          //
+          //       Navigator.push(context, MaterialPageRoute(builder: (context) => SessionStartPage(
+          //           cubit: getIt(param1: SessionStartInitialParams() ),
+          //           seconds: minutes*60
+          //       )
+          //       ));
+          //
+          //       },
+          //       height: size.getResizeAbleHeight(61, 812, context),
+          //       textColor: Colors.white,
+          //       backgroundColor: ColorsConstants.styledButtonBackgroundColor.withOpacity(0.5),
+          //     );
+          //   }
+          // ),
+        // ],
+// >>>>>>> 062295be0d57304fbe161f95087e6862f47d82ea
       ),
     );
   }
