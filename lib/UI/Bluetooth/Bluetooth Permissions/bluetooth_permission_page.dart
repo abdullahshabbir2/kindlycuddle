@@ -7,7 +7,6 @@ import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bluetooth_permission_cubit.dart';
 
@@ -72,7 +71,7 @@ class _BluetoothPermissionPageState extends State<BluetoothPermissionPage> {
                             // cubit.moveToNextScreen();
 
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) =>  Home() )
+                                MaterialPageRoute(builder: (context) =>  const Home() )
                             );
 
                           })

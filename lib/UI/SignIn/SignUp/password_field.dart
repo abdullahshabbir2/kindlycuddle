@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PasswordStrengthField extends StatefulWidget {
+  const PasswordStrengthField({super.key});
+
   @override
   _PasswordStrengthFieldState createState() => _PasswordStrengthFieldState();
 }
@@ -29,7 +31,7 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
       children: List.generate(4, (index) {
         return Expanded(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 2),
             height: 10,
             decoration: BoxDecoration(
               color: index < level ? Colors.green : Colors.grey[300],
@@ -49,7 +51,7 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
         TextFormField(
           controller: _passwordController,
           obscureText: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Password',
             border: OutlineInputBorder(),
           ),
@@ -57,8 +59,8 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
             _checkPasswordStrength(password);
           },
         ),
-        SizedBox(height: 10),
-        Text("Password Strength"),
+        const SizedBox(height: 10),
+        const Text("Password Strength"),
         _buildStrengthBar(_strengthLevel),
       ],
     );

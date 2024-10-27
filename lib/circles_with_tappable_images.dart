@@ -194,13 +194,10 @@ import 'package:flutter/services.dart';
 
 
 
-import 'dart:async';
-import 'dart:math';
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CirclesWithTappableImages extends StatefulWidget {
+  const CirclesWithTappableImages({super.key});
+
   @override
   _CirclesWithTappableImagesState createState() => _CirclesWithTappableImagesState();
 }

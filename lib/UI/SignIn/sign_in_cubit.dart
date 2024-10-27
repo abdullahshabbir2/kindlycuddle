@@ -3,7 +3,6 @@ import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/sign_in_usecase.dart';
-import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:cuddle_care/UI/Home/home_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/toast_message.dart';
@@ -12,7 +11,6 @@ import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_state.dart';
 import 'package:cuddle_care/main.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +36,7 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
 
   emit(state.copyWith(email: value as String));
 
- if (value == null || value.isEmpty) {
+ if (value.isEmpty) {
   // debugPrint('is Empty');
    emit(state.copyWith(emailValidator:'Please enter your email'));
    emit(state.copyWith(emailValidated:false));
@@ -63,7 +61,7 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
 
     emit(state.copyWith(password: value));
 
-     if (value == null || value.isEmpty) {
+     if (value.isEmpty) {
        emit(state.copyWith(passwordValidator: 'Please enter your password',passwordValidated:false ));
        // return 'Please enter your password';
        return false;

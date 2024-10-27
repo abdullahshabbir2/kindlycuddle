@@ -18,7 +18,7 @@ class SearchingDevicesState {
       SearchingDevicesState(
         devices: [],
         isLoading: false,
-        bluetoothDevices: Stream.empty(),
+        bluetoothDevices: const Stream.empty(),
         scanResults: []
   );
 

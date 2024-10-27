@@ -1,13 +1,9 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
-import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
-import 'package:cuddle_care/UI/Profile/profile_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
-import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 
 class UserGuide extends StatefulWidget {
@@ -72,7 +68,7 @@ class _UserGuideState extends State<UserGuide> {
 
           SizedBox(height: size.getResizeAbleHeight(20, 812, context),),
 
-          Container(
+          SizedBox(
             width: size.getResizeAbleWidth(331, 375, context),
             height: size.getResizeAbleHeight(358, 812, context),
             // decoration: ShapeDecoration(
@@ -109,7 +105,7 @@ class _UserGuideState extends State<UserGuide> {
                   width: size.getResizeAbleWidth(24, 375, context),
                   height:size.getResizeAbleHeight(6, 812, context),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFB2CBF2),
+                    color: const Color(0xFFB2CBF2),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
                 ),
@@ -117,7 +113,7 @@ class _UserGuideState extends State<UserGuide> {
                   width: size.getResizeAbleWidth(6, 375, context),
                   height: size.getResizeAbleHeight(6, 812, context),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFB2CBF2).withOpacity(0.5),
+                    color: const Color(0xFFB2CBF2).withOpacity(0.5),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
                 ),
@@ -125,7 +121,7 @@ class _UserGuideState extends State<UserGuide> {
                   width: size.getResizeAbleWidth(6, 375, context),
                   height: size.getResizeAbleHeight(6, 812, context),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFB2CBF2).withOpacity(0.5),
+                    color: const Color(0xFFB2CBF2).withOpacity(0.5),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
                 ),
@@ -133,7 +129,7 @@ class _UserGuideState extends State<UserGuide> {
                   width: size.getResizeAbleWidth(6, 375, context),
                   height: size.getResizeAbleHeight(6, 812, context),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFB2CBF2).withOpacity(0.5),
+                    color: const Color(0xFFB2CBF2).withOpacity(0.5),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
                 ),
@@ -141,7 +137,7 @@ class _UserGuideState extends State<UserGuide> {
                   width: size.getResizeAbleWidth(6, 375, context),
                   height: size.getResizeAbleHeight(6, 812, context),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFB2CBF2).withOpacity(0.5),
+                    color: const Color(0xFFB2CBF2).withOpacity(0.5),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
                 )

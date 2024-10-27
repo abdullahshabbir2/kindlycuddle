@@ -1,5 +1,4 @@
 import 'package:cuddle_care/Navigation/app_navigator.dart';
-import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';

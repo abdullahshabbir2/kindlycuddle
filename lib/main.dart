@@ -36,7 +36,6 @@ import 'package:cuddle_care/UI/Profile/profile_navigator.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_cubit.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_navigator.dart';
-import 'package:cuddle_care/UI/Session%20Options/session_options_state.dart';
 import 'package:cuddle_care/UI/Session%20Start/session_start_cubit.dart';
 import 'package:cuddle_care/UI/Session%20Start/session_start_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Start/session_start_navigator.dart';
@@ -50,7 +49,6 @@ import 'package:cuddle_care/UI/Splash/Splash_initial_params.dart';
 import 'package:cuddle_care/UI/Splash/splash_cubit.dart';
 import 'package:cuddle_care/UI/Splash/splash_navigator.dart';
 import 'package:cuddle_care/UI/Splash/splash_page.dart';
-import 'package:cuddle_care/UI/Splash/splash_screen.dart';
 import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
@@ -63,15 +61,6 @@ import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_navigat
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%203/user_guide3_navigator.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%204/user_guide4_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_navigator.dart';
-import 'package:cuddle_care/UI/home.dart';
-import 'package:cuddle_care/UI/my_line_chart.dart';
-import 'package:cuddle_care/barc_chart.dart';
-import 'package:cuddle_care/circles_screen.dart';
-import 'package:cuddle_care/circles_with_tappable_images.dart';
-import 'package:cuddle_care/cirlces_screen_new.dart';
-import 'package:cuddle_care/cirlces_with_images.dart';
-import 'package:cuddle_care/google_signIn_page.dart';
-import 'package:cuddle_care/my_pie_chart.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -84,6 +73,7 @@ import 'UI/User Guide/User Guide 5/user_guide5_cubit.dart';
 import 'UI/User Guide/User Guide 5/user_guide5_initial_params.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 
 var getIt = GetIt.instance;
@@ -253,15 +243,33 @@ void main() async {
           (params, _) => ProfileCubit(params, getIt())
   );
 
-
-
-
-
+  // Request necessary permissions
+  await requestPermissions();
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
+
+Future<void> requestPermissions() async {
+  // Request Bluetooth and Location permissions
+  if (await Permission.bluetooth.isDenied) {
+    await Permission.bluetooth.request();
+  }
+
+  if (await Permission.bluetoothConnect.isDenied) {
+    await Permission.bluetoothConnect.request();
+  }
+
+  if (await Permission.bluetoothScan.isDenied) {
+    await Permission.bluetoothScan.request();
+  }
+
+  if (await Permission.location.isDenied) {
+    await Permission.location.request();
+  }
+}
+
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -281,8 +289,8 @@ class MyApp extends StatelessWidget {
         final mediaQueryData = MediaQuery.of(context);
         final scale = mediaQueryData.textScaler.clamp(minScaleFactor: 1.0,maxScaleFactor: 1.3);
         return MediaQuery(
-          child: child!,
           data: MediaQuery.of(context).copyWith(textScaler: scale),
+          child: child!,
         );
       },
       theme: ThemeData(

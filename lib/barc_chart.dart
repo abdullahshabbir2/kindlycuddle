@@ -280,10 +280,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: BarChartExample()));
+  runApp(const MaterialApp(home: BarChartExample()));
 }
 
 class BarChartExample extends StatefulWidget {
+  const BarChartExample({super.key});
+
   @override
   _BarChartExampleState createState() => _BarChartExampleState();
 }
@@ -294,7 +296,7 @@ class _BarChartExampleState extends State<BarChartExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Bar Chart Example')),
+      appBar: AppBar(title: const Text('Bar Chart Example')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -302,10 +304,10 @@ class _BarChartExampleState extends State<BarChartExample> {
             Container(
               height: MediaQuery.of(context).size.height*(308/812),
               // width: MediaQuery.of(context).size.width*(308/375),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
 
               decoration: ShapeDecoration(
-                  color:  Color(0xFFB2CBF2).withOpacity(0.1),
+                  color:  const Color(0xFFB2CBF2).withOpacity(0.1),
                   shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)
               )),
@@ -350,7 +352,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                             }
                             return BarTooltipItem(
                               '$weekDay\nValue: ${rod.toY.round()}',
-                              TextStyle(color: Colors.white),
+                              const TextStyle(color: Colors.white),
                             );
                           },
                         ),
@@ -375,10 +377,10 @@ class _BarChartExampleState extends State<BarChartExample> {
                             },
                           ),
                         ),
-                        rightTitles: AxisTitles(
+                        rightTitles: const AxisTitles(
                           sideTitles: SideTitles(showTitles: false), // Disable right Y-axis
                         ),
-                        topTitles: AxisTitles(
+                        topTitles: const AxisTitles(
                           sideTitles: SideTitles(showTitles: false), // Disable top X-axis
                         ),
                         bottomTitles: AxisTitles(
@@ -395,7 +397,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                       ),
                       borderData: FlBorderData(
                         show: false,
-                        border: Border(
+                        border: const Border(
                           left: BorderSide(color: Colors.black, width: 1),
                           bottom: BorderSide(color: Colors.black, width: 1),
                         ),
@@ -422,7 +424,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Selected day: ${['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][touchedIndex!]}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
           ],
@@ -448,7 +450,7 @@ class _BarChartExampleState extends State<BarChartExample> {
 
             width: 22,
             // borderRadius: BorderRadius.circular(6),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15), // Custom rounded top
               topRight: Radius.circular(15),
               bottomRight: Radius.circular(5),

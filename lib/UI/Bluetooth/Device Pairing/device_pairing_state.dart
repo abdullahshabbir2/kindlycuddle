@@ -11,7 +11,7 @@ class DevicePairingState {
 
   factory DevicePairingState.initial({required DevicePairingInitialParams initialParams}) =>
       DevicePairingState(
-        deviceInfo: BluetoothDeviceInfo.empty()
+        deviceInfo: const BluetoothDeviceInfo.empty()
   );
 
   DevicePairingState copyWith({

@@ -10,7 +10,7 @@ class DeviceConnectedSuccessfullyState {
 
   factory DeviceConnectedSuccessfullyState.initial({required DeviceConnectedSuccessfullyInitialParams initialParams}) =>
       DeviceConnectedSuccessfullyState(
-        device: BluetoothDeviceInfo.empty()
+        device: const BluetoothDeviceInfo.empty()
   );
 
   DeviceConnectedSuccessfullyState copyWith({

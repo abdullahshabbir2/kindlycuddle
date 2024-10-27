@@ -1,6 +1,5 @@
 
 import 'package:cuddle_care/Domain/Store/device_info_store.dart';
-import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'device_connected_successfully_initial_params.dart';

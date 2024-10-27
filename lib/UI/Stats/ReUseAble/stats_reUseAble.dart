@@ -1,4 +1,3 @@
-import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
@@ -27,7 +26,7 @@ class StatsReUseAble extends StatelessWidget {
             bodyText(optionalText ?? '',bodyFontSize: 9,bodyTextColor: textColor)
           ],
         ),
-        trailing: headingText((data).toString() + ' oz' ,
+        trailing: headingText('$data oz' ,
             fontSize: 15,color: textColor),
       ),
     );

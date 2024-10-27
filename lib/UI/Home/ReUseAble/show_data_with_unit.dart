@@ -8,7 +8,7 @@ Widget showDataWithUnit(double data,String unit , {double? headingFontSize, doub
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
-      headingText(data.toString(),fontSize: headingFontSize ?? 28,color: Color(0xFF222222)),
+      headingText(data.toString(),fontSize: headingFontSize ?? 28,color: const Color(0xFF222222)),
       bodyText(unit,bodyFontSize:bodyFontSize ?? 14,bodyTextFontWeight: bodyFontWeight ?? FontWeight.w400,bodyTextHeight: 1),
     ],
   );

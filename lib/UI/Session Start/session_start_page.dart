@@ -20,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:googleapis/admob/v1.dart';
 
 class SessionStartPage extends StatefulWidget {
   final SessionStartCubit cubit;
@@ -41,13 +40,13 @@ class _SessionStartPageState extends State<SessionStartPage> {
   ReSizeAbleSize size = ReSizeAbleSize();
   List<FlSpot> _buildLineSpots() {
     return [
-      FlSpot(0, 5), // Monday
-      FlSpot(1, 20), // Tuesday
-      FlSpot(2, 15), // Wednesday
-      FlSpot(3, 30), // Thursday
-      FlSpot(4, 0), // Friday
-      FlSpot(5, 0), // Saturday
-      FlSpot(6, 0), // Sunday
+      const FlSpot(0, 5), // Monday
+      const FlSpot(1, 20), // Tuesday
+      const FlSpot(2, 15), // Wednesday
+      const FlSpot(3, 30), // Thursday
+      const FlSpot(4, 0), // Friday
+      const FlSpot(5, 0), // Saturday
+      const FlSpot(6, 0), // Sunday
     ];
   }
 
@@ -80,7 +79,7 @@ class _SessionStartPageState extends State<SessionStartPage> {
     decoration: ShapeDecoration(
       color: ColorsConstants.appPrimary2.withOpacity(0.5),
       shape: RoundedRectangleBorder(
-        side: BorderSide(width: 1, color: Colors.white),
+        side: const BorderSide(width: 1, color: Colors.white),
         borderRadius: BorderRadius.circular(20),
       ),
     ),
@@ -92,11 +91,11 @@ class _SessionStartPageState extends State<SessionStartPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // SizedBox(width: size.getResizeAbleWidth(12, 375, context),),
-            VolumeData(orientation: 'Left', data: 25.40,isColorWhite: true,),
+            const VolumeData(orientation: 'Left', data: 25.40,isColorWhite: true,),
             SizedBox(width: size.getResizeAbleWidth(9, 375, context),),
-            VolumeData(orientation: 'Right', data: 30.02,isColorWhite: true,),
+            const VolumeData(orientation: 'Right', data: 30.02,isColorWhite: true,),
             SizedBox(width: size.getResizeAbleWidth(9, 375, context),),
-            VolumeData(orientation: 'Total', data: 55.42,isColorWhite: false,),
+            const VolumeData(orientation: 'Total', data: 55.42,isColorWhite: false,),
             //
             // SizedBox(width: size.getResizeAbleWidth(12, 375, context),),
 
@@ -116,7 +115,7 @@ class _SessionStartPageState extends State<SessionStartPage> {
           decoration: ShapeDecoration(
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 1, color: Colors.white),
+              side: const BorderSide(width: 1, color: Colors.white),
               borderRadius: BorderRadius.circular(9),
             ),
           ),
@@ -144,15 +143,15 @@ class _SessionStartPageState extends State<SessionStartPage> {
                     showTitles: true,
                     interval: 10, // Show labels with an interval on Y-axis
                     getTitlesWidget: (value, meta) {
-                      return bodyText(value.toInt().toString() + 'oz' , bodyFontSize: 8);
+                      return bodyText('${value.toInt()}oz' , bodyFontSize: 8);
                       // Text(value.toInt().toString() + 'oz', style: TextStyle(color: Colors.black,fontSize: 8));
                     },
                   ),
                 ),
-                rightTitles: AxisTitles(
+                rightTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false), // Disable right Y-axis
                 ),
-                topTitles: AxisTitles(
+                topTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false), // Disable top X-axis
                 ),
                 bottomTitles: AxisTitles(
@@ -227,7 +226,7 @@ class _SessionStartPageState extends State<SessionStartPage> {
                       }
                       return LineTooltipItem(
                         '$weekDay\nValue: ${spot.y.toStringAsFixed(1)}',
-                        TextStyle(color: Colors.white),
+                        const TextStyle(color: Colors.white),
                       );
                     }).toList();
                   },
@@ -266,18 +265,18 @@ class _SessionStartPageState extends State<SessionStartPage> {
     _timer = null; // Set to null so it can be resumed later
   }
 
-  void resumeTimer(int _maxTicks) {
-    if (_timer == null && _elapsedTicks < _maxTicks) {
-      startTimer(_maxTicks); // Restart the timer if it’s not running and time remains
+  void resumeTimer(int maxTicks) {
+    if (_timer == null && _elapsedTicks < maxTicks) {
+      startTimer(maxTicks); // Restart the timer if it’s not running and time remains
     }
   }
 
-  void startTimer(int _maxTicks) {
-    _timer ??= Timer.periodic(Duration(seconds: 1), (timer) {
+  void startTimer(int maxTicks) {
+    _timer ??= Timer.periodic(const Duration(seconds: 1), (timer) {
       _elapsedTicks++;
       performFunctionality(_elapsedTicks);
 
-      if (_elapsedTicks >= _maxTicks) {
+      if (_elapsedTicks >= maxTicks) {
         stopTimer(); // Stop the timer after 1 minute
       }
     });
@@ -348,12 +347,12 @@ class _SessionStartPageState extends State<SessionStartPage> {
                     clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment(0.00, -1.00),
-                        end: Alignment(0, 1),
+                        begin: const Alignment(0.00, -1.00),
+                        end: const Alignment(0, 1),
                         colors: [Colors.white.withOpacity(0.6100000143051147), ColorsConstants.appPrimary2],
                       ),
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Colors.white),
+                        side: const BorderSide(width: 1, color: Colors.white),
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),

@@ -13,7 +13,7 @@ class ThisWeekData extends StatelessWidget {
     return Container(
       width: width,
       height: MediaQuery.of(context).size.height*(178/812),
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

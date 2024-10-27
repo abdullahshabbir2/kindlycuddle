@@ -3,7 +3,6 @@ import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_initial_params.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserGuide2Page extends StatefulWidget {

@@ -1,14 +1,9 @@
 import 'package:cuddle_care/Constants/image_constants.dart';
-import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
-import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_initial_params.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserGuide1Page extends StatefulWidget {

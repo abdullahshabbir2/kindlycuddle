@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 void main() {
-  runApp(PichChartPainterScreen());
+  runApp(const PichChartPainterScreen());
 }
 
 class PichChartPainterScreen extends StatelessWidget {
+  const PichChartPainterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Custom Pie Chart 25 -75'),
+          title: const Text('Custom Pie Chart 25 -75'),
         ),
         body: Center(
           child: CustomPaint(
-            size: Size(80, 80), // Size of the canvas
+            size: const Size(80, 80), // Size of the canvas
             painter: PieChartPainter(green: 45,lightGreen: 55),
           )
         ),
@@ -48,12 +50,12 @@ class PieChartPainter extends CustomPainter {
 
     // Paint for the light green section (25%)
     final lightGreenPaint = Paint()
-      ..color = Color(0xFFABE6ED).withOpacity(0.5)
+      ..color = const Color(0xFFABE6ED).withOpacity(0.5)
       ..style = PaintingStyle.fill;
 
     // Paint for the dark green section (75%, with a slightly larger radius)
     final darkGreenPaint = Paint()
-      ..color = Color(0xFFABE6ED)
+      ..color = const Color(0xFFABE6ED)
       ..style = PaintingStyle.fill;
 
     // Drawing the light green section (25% of the pie)

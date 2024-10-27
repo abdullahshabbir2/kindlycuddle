@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     
     return ScreenUtilInit(
-      builder:(BuildContext context, child) => SafeArea(
+      builder:(BuildContext context, child) => const SafeArea(
         child: Scaffold(
           body: Column(
             children: [
@@ -193,7 +193,7 @@ class _ProfileColumnState extends State<ProfileColumn> {
                     state as ProfileState;
                     return ListView(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
 
 

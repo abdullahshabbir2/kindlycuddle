@@ -651,9 +651,9 @@ class _CirclesState extends State<Circles> {
   // Build GestureDetector widgets overlayed at image positions
   List<Widget> _buildGestureDetectors() {
     List<Offset> positions = [
-      Offset(240, 160), // Example position for image 1 (Adjust as needed)
-      Offset(200, 200), // Example position for image 2 (Adjust as needed)
-      Offset(160, 240), // Example position for image 3 (Adjust as needed)
+      const Offset(240, 160), // Example position for image 1 (Adjust as needed)
+      const Offset(200, 200), // Example position for image 2 (Adjust as needed)
+      const Offset(160, 240), // Example position for image 3 (Adjust as needed)
     ];
 
     return List.generate(positions.length, (index) {

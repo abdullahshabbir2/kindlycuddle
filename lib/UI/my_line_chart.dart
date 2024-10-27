@@ -18,15 +18,15 @@ class MyLineChart extends StatelessWidget {
 
     ReSizeAbleSize size = ReSizeAbleSize();
 
-    List<FlSpot> _buildLineSpots() {
+    List<FlSpot> buildLineSpots() {
       return [
-        FlSpot(0, 5), // Monday
-        FlSpot(1, 20), // Tuesday
-        FlSpot(2, 15), // Wednesday
-        FlSpot(3, 30), // Thursday
-        FlSpot(4, 0), // Friday
-        FlSpot(5, 0), // Saturday
-        FlSpot(6, 0), // Sunday
+        const FlSpot(0, 5), // Monday
+        const FlSpot(1, 20), // Tuesday
+        const FlSpot(2, 15), // Wednesday
+        const FlSpot(3, 30), // Thursday
+        const FlSpot(4, 0), // Friday
+        const FlSpot(5, 0), // Saturday
+        const FlSpot(6, 0), // Sunday
       ];
     }
 
@@ -60,14 +60,14 @@ class MyLineChart extends StatelessWidget {
                     showTitles: true,
                     interval: 10, // Show labels with an interval on Y-axis
                     getTitlesWidget: (value, meta) {
-                      return Text(value.toInt().toString() + 'oz', style: TextStyle(color: Colors.black,fontSize: 8));
+                      return Text('${value.toInt()}oz', style: const TextStyle(color: Colors.black,fontSize: 8));
                     },
                   ),
                 ),
-                rightTitles: AxisTitles(
+                rightTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false), // Disable right Y-axis
                 ),
-                topTitles: AxisTitles(
+                topTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false), // Disable top X-axis
                 ),
                 bottomTitles: AxisTitles(
@@ -75,7 +75,7 @@ class MyLineChart extends StatelessWidget {
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
                       const daysOfWeek = ['0m', '5m', '10m', '15m', '20m', '25m', '30m'];
-                      return Text(daysOfWeek[value.toInt()], style: TextStyle(fontSize: 8),);
+                      return Text(daysOfWeek[value.toInt()], style: const TextStyle(fontSize: 8),);
                     },
                   ),
                 ),
@@ -85,7 +85,7 @@ class MyLineChart extends StatelessWidget {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: _buildLineSpots(), // Points for the line chart
+                  spots: buildLineSpots(), // Points for the line chart
                   isCurved: true, // Smooth curve
                   color: ColorsConstants.appPrimary2, // Color of the line
                   barWidth: 2, // Line width
@@ -141,7 +141,7 @@ class MyLineChart extends StatelessWidget {
                       }
                       return LineTooltipItem(
                         '$weekDay\nValue: ${spot.y.toStringAsFixed(1)}',
-                        TextStyle(color: Colors.white),
+                        const TextStyle(color: Colors.white),
                       );
                     }).toList();
                   },

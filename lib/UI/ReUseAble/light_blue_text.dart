@@ -5,7 +5,7 @@ Widget lightBlueText(String text,{double? fontSize,FontWeight? fontWeight,double
     text,
     textAlign: TextAlign.right,
     style: TextStyle(
-      color: Color(0xFFB2CBF2),
+      color: const Color(0xFFB2CBF2),
       fontSize: fontSize ?? 22,
       fontFamily: 'Arial Rounded MT Bold',
       fontWeight: fontWeight ?? FontWeight.w400,

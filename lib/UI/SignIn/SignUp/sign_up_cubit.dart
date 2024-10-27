@@ -11,9 +11,7 @@ import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_navigator.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_initial_params.dart';
 import 'package:cuddle_care/main.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -38,7 +36,7 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
 
    emit(state.copyWith(email: value as String));
 
-   if (value == null || value.isEmpty) {
+   if (value.isEmpty) {
      // debugPrint('is Empty');
      emit(state.copyWith(emailValidator:'Please enter your email'));
      emit(state.copyWith(emailValidated:false));
@@ -58,7 +56,7 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
 
  passwordValidator(value) {
    emit(state.copyWith(password: value as String));
-   if (value == null || value.isEmpty) {
+   if (value.isEmpty) {
      emit(state.copyWith(passwordValidator: 'Please enter your password',passwordValidated:false ));
      return 'Please enter your password';
      // return 'Please enter your password';

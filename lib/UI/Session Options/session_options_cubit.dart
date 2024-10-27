@@ -1,8 +1,6 @@
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_navigator.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_state.dart';
-import 'package:cuddle_care/UI/Session%20Start/session_start_initial_params.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SessionOptionsCubit extends Cubit<SessionOptionsState> {

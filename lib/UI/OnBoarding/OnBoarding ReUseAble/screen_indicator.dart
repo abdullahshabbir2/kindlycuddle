@@ -11,7 +11,7 @@ Widget ScreenIndicator(int selected){
           width: selected == 1 ? 24.w : 6.w,
           height: 6.h,
           decoration: ShapeDecoration(
-            color: Color(0xFFB2CBF2),
+            color: const Color(0xFFB2CBF2),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
         ),
@@ -23,7 +23,7 @@ Widget ScreenIndicator(int selected){
           width: selected == 2 ? 24.w : 6.w,
           height: 6,
           decoration: ShapeDecoration(
-            color: Color(0xFFB2CBF2),
+            color: const Color(0xFFB2CBF2),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
         ),
@@ -35,7 +35,7 @@ Widget ScreenIndicator(int selected){
           width: selected == 3 ? 24.w : 6.w,
           height: 6,
           decoration: ShapeDecoration(
-            color: Color(0xFFB2CBF2),
+            color: const Color(0xFFB2CBF2),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
         ),

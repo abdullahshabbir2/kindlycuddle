@@ -25,7 +25,7 @@ class DurationButton extends StatelessWidget {
         decoration: ShapeDecoration(
           color: isSelected ?  ColorsConstants.blueTextColor : Colors.white,
           shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Colors.white),
+            side: const BorderSide(width: 1, color: Colors.white),
             borderRadius: BorderRadius.circular(100),
           ),
         ),

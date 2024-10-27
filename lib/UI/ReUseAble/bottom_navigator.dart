@@ -35,7 +35,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
             Container(
               height: MediaQuery.of(context).size.height*(90/812),
               width: MediaQuery.of(context).size.width*(343/375),
-              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
               // margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
               // decoration: BoxDecoration(
               //     border: Border.all(

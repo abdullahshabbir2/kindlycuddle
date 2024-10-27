@@ -289,25 +289,14 @@ class BleController extends GetxController {
 
   // Scan for nearby BLE devices
   Future<void> scanDevices() async {
-    //
-    // try{
-    //
-    // }catch(e){
-    //
-    // }
-
-    FlutterBluePlus.startScan(timeout: const Duration(seconds: 15));
-    await Future.delayed(const Duration(seconds: 15));
-    FlutterBluePlus.stopScan();
-
-    // if (await Permission.bluetoothScan.request().isGranted &&
-    //     await Permission.bluetoothConnect.request().isGranted) {
-    //   FlutterBluePlus.startScan(timeout: const Duration(seconds: 15));
-    //   await Future.delayed(const Duration(seconds: 15));
-    //   FlutterBluePlus.stopScan();
-    // } else {
-    //   print("Permissions not granted for scanning.");
-    // }
+    if (await Permission.bluetoothScan.request().isGranted &&
+        await Permission.bluetoothConnect.request().isGranted) {
+      FlutterBluePlus.startScan(timeout: const Duration(seconds: 15));
+      await Future.delayed(const Duration(seconds: 15));
+      FlutterBluePlus.stopScan();
+    } else {
+      print("Permissions not granted for scanning.");
+    }
   }
 
   // Connect to a BLE device

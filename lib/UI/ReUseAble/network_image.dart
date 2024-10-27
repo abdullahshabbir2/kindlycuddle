@@ -9,7 +9,7 @@ Widget reUseAbleOnlineImage(String url, {double? height, double? width}) {
         image: NetworkImage(url),
         // fit: BoxFit.cover,
       ),
-      shape: OvalBorder(),
+      shape: const OvalBorder(),
     ),
 
   );

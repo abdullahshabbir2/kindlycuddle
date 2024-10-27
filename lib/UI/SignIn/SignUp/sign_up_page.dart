@@ -3,13 +3,11 @@ import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/account_sign.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
-import 'package:cuddle_care/UI/SignIn/SignUp/password_field.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_cubit.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_initial_params.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_state.dart';
@@ -245,7 +243,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Row(
       children: List.generate(4, (index) {
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 2),
+          margin: const EdgeInsets.symmetric(horizontal: 2),
           height: 2,
           width: 11,
           decoration: BoxDecoration(

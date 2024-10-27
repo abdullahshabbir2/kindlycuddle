@@ -10,13 +10,10 @@ import 'package:cuddle_care/UI/Home/home_state.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
 import 'package:cuddle_care/UI/Profile/profile_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
-import 'package:cuddle_care/UI/ReUseAble/avatar.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/bottom_navigator.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/network_image.dart';
-import 'package:cuddle_care/UI/ReUseAble/pie_chart_data.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/rounded_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
@@ -25,7 +22,6 @@ import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_page.dart';
 import 'package:cuddle_care/main.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -160,7 +156,7 @@ class _HomeColumnState extends State<HomeColumn> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
-                  headingText('Olivia Brown',color: Color(0xFF222222),fontSize: 19),
+                  headingText('Olivia Brown',color: const Color(0xFF222222),fontSize: 19),
                 ],
               ),
               ReUseAbleSvg(path: ImageConstants.optionButton)
@@ -172,7 +168,7 @@ class _HomeColumnState extends State<HomeColumn> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
 
-              ThisWeekData(percentage: 55.42),
+              const ThisWeekData(percentage: 55.42),
 
               // Container(
               //   // width: ,
@@ -191,7 +187,7 @@ class _HomeColumnState extends State<HomeColumn> {
               //   ),
               // ),
 
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width*(157/375),
                 child: Column(
                   children: [
@@ -217,7 +213,7 @@ class _HomeColumnState extends State<HomeColumn> {
                             MaterialPageRoute(builder: (context) => SearchingDevicesPage(cubit: getIt(param1: SearchingDevicesInitialParams())))
                         );
                       },
-                      backgroundColor: Color(0xFFB2CBF2),
+                      backgroundColor: const Color(0xFFB2CBF2),
                       textColor: Colors.white,
                       height: MediaQuery.of(context).size.height*(33/812),
                       width: MediaQuery.of(context).size.width*(137/375),
@@ -231,7 +227,7 @@ class _HomeColumnState extends State<HomeColumn> {
           // SizedBox(height: MediaQuery.of(context).size.height*(20/812),),
           Container(
             height: MediaQuery.of(context).size.height*(98/812),
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Row(
               children: [
                 Column(
@@ -301,7 +297,7 @@ class _HomeColumnState extends State<HomeColumn> {
                         bodyText('35 min')
                       ],
                     ),
-                    trailing: lightBlueText((33).toString() + ' oz'),
+                    trailing: lightBlueText('${33} oz'),
                   );
                 }),
           ),

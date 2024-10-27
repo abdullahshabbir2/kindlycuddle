@@ -45,7 +45,7 @@ class _SessionOptionsPageState extends State<SessionOptionsPage> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(BuildContext context, child) => SafeArea(
+      builder:(BuildContext context, child) => const SafeArea(
         child: Scaffold(
           body: Column(
             children: [
@@ -97,9 +97,9 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
       height: size.getResizeAbleHeight(140, 812, context),
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
-        color: Color(0xFFD0E2F6),
+        color: const Color(0xFFD0E2F6),
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.white),
+          side: const BorderSide(width: 1, color: Colors.white),
           borderRadius: BorderRadius.circular(20),
         ),
 

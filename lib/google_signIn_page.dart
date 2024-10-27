@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInScreen extends StatefulWidget {
+  const GoogleSignInScreen({super.key});
+
 
   @override
   State<GoogleSignInScreen> createState() => _GoogleSignInScreenState();
@@ -71,7 +73,7 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
 
 
     return Scaffold(
-      appBar: AppBar(title: Text('Google Sign In')),
+      appBar: AppBar(title: const Text('Google Sign In')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,7 +88,7 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                   print('Google Sign-In failed');
                 }
               },
-              child: Text('Sign in with Google'),
+              child: const Text('Sign in with Google'),
             ),
           ),
           Center(
@@ -95,7 +97,7 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
                 service.sendFCMNotification(KeysConstants.firebaseBearerToken, token);
                 // service.sendNotifications(token);
               },
-              child: Text('Send Notification'),
+              child: const Text('Send Notification'),
             ),
           ),
         ],

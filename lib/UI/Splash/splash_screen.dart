@@ -18,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     // FlutterNativeSplash.remove();
 
 
-    Future.delayed(Duration(seconds: 5), (){
+    Future.delayed(const Duration(seconds: 5), (){
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen() )
+        MaterialPageRoute(builder: (context) => const HomeScreen() )
       );
     }
     );
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Column(
         children: [
             Center(

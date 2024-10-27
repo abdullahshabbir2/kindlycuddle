@@ -1,6 +1,5 @@
 import 'package:cuddle_care/Navigation/app_navigator.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
-import 'package:cuddle_care/UI/Session%20Start/session_start_navigator.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 

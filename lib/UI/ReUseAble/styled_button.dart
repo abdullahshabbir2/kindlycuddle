@@ -28,7 +28,7 @@ class _StyledButtonState extends State<StyledButton> {
             color: widget.backgroundColor ?? ColorsConstants.styledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
-              side: BorderSide(width: 1, color: Color(0xFFABE6ED)),
+              side: const BorderSide(width: 1, color: Color(0xFFABE6ED)),
             ),
 
           ),

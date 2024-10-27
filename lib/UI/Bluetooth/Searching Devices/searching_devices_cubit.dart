@@ -5,7 +5,6 @@ import 'package:cuddle_care/Domain/Store/bluetooth_device_store.dart';
 import 'package:cuddle_care/Domain/Store/device_info_store.dart';
 import 'package:cuddle_care/Domain/UseCase/search_for_devices_usecase.dart';
 import 'package:cuddle_care/Service/ble/ble_controller.dart';
-import 'package:cuddle_care/UI/Bluetooth/Device%20Pairing/device_pairing_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_navigator.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_state.dart';

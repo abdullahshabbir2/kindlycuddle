@@ -7,15 +7,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:convert'; // for jsonEncode
 import 'package:http/http.dart' as http;
 import 'package:googleapis_auth/auth_io.dart' as auth;
-import 'package:googleapis/servicecontrol/v1.dart' as serviceControl;
 
 class FirebaseNotificationService{
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   void initLocalNotifications(BuildContext context , RemoteMessage message) async {
-    var androidInitializeSetting = AndroidInitializationSettings('@mipmap/ic_launcher');
-    var iosInitializeSetting = DarwinInitializationSettings();
+    var androidInitializeSetting = const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iosInitializeSetting = const DarwinInitializationSettings();
 
     var initializationSetting = InitializationSettings(
         android: androidInitializeSetting,
@@ -61,7 +60,7 @@ class FirebaseNotificationService{
         ticker: 'ticker'
     );
 
-    DarwinNotificationDetails darwinNotificationDetails = DarwinNotificationDetails(
+    DarwinNotificationDetails darwinNotificationDetails = const DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -213,7 +212,7 @@ class FirebaseNotificationService{
      };
 
      http.Response response =  await http.post(
-         Uri.parse('https://fcm.googleapis.com/v1/projects/' + KeysConstants.projectId + '/messages:send'),
+         Uri.parse('https://fcm.googleapis.com/v1/projects/${KeysConstants.projectId}/messages:send'),
         headers: <String,String>{
            'Content-Type':'application/json',
            'Authorization':'Bearer $serverAccessKey'
@@ -263,7 +262,7 @@ class FirebaseNotificationService{
   }
 
   sendNotifications(String deviceToken,) async {
-    final url = Uri.parse('https://fcm.googleapis.com/v1/projects/' + KeysConstants.projectId + '/messages:send');
+    final url = Uri.parse('https://fcm.googleapis.com/v1/projects/${KeysConstants.projectId}/messages:send');
 
     String serverKey = KeysConstants.firebaseBearerToken;
 
@@ -288,7 +287,7 @@ class FirebaseNotificationService{
       // );
 
       http.Response response =  await http.post(
-          Uri.parse('https://fcm.googleapis.com/v1/projects/' + KeysConstants.projectId + '/messages:send'),
+          Uri.parse('https://fcm.googleapis.com/v1/projects/${KeysConstants.projectId}/messages:send'),
           headers: <String,String>{
             'Content-Type':'application/json',
             'Authorization':'Bearer $serverKey'

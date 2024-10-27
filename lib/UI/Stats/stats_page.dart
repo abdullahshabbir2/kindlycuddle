@@ -3,13 +3,10 @@ import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
-import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/Stats/ReUseAble/stats_reUseAble.dart';
 import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Constants/colors_constants.dart';
@@ -42,7 +39,7 @@ class _StatsPageState extends State<StatsPage> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(BuildContext context, child) => SafeArea(
+      builder:(BuildContext context, child) => const SafeArea(
         child: Scaffold(
           body: Column(
 
@@ -75,7 +72,7 @@ class _StatsColumnState extends State<StatsColumn> {
         children: [
           headingText('Stats',fontSize: 24),
           SizedBox(height: MediaQuery.of(context).size.height*(15/812),),
-          lightBlueText( '7-July'+' to '+'13-July',fontSize: 14,height: 1),
+          lightBlueText( '7-July to 13-July',fontSize: 14,height: 1),
 
         ],
       ),
@@ -83,7 +80,7 @@ class _StatsColumnState extends State<StatsColumn> {
       Container(
           width: MediaQuery.of(context).size.width*(140/375),
           height: MediaQuery.of(context).size.height*(40/812),
-          padding: EdgeInsets.fromLTRB(14, 8, 12, 8),
+          padding: const EdgeInsets.fromLTRB(14, 8, 12, 8),
           decoration: ShapeDecoration(
             color:  ColorsConstants.styledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
@@ -98,7 +95,7 @@ class _StatsColumnState extends State<StatsColumn> {
                   onTap: (){
 
                   },
-                  child: Icon(Icons.keyboard_arrow_down,size: 24,))
+                  child: const Icon(Icons.keyboard_arrow_down,size: 24,))
             ],
           )
       ),
@@ -118,7 +115,7 @@ class _StatsColumnState extends State<StatsColumn> {
     ),
 
     decoration: ShapeDecoration(
-        color:  Color(0xFFB2CBF2).withOpacity(0.1),
+        color:  const Color(0xFFB2CBF2).withOpacity(0.1),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
         )),
@@ -162,7 +159,7 @@ class _StatsColumnState extends State<StatsColumn> {
                 }
                 return BarTooltipItem(
                   '$weekDay\nValue: ${rod.toY.round()}',
-                  TextStyle(color: Colors.white),
+                  const TextStyle(color: Colors.white),
                 );
               },
             ),
@@ -187,10 +184,10 @@ class _StatsColumnState extends State<StatsColumn> {
                 },
               ),
             ),
-            rightTitles: AxisTitles(
+            rightTitles: const AxisTitles(
               sideTitles: SideTitles(showTitles: false), // Disable right Y-axis
             ),
-            topTitles: AxisTitles(
+            topTitles: const AxisTitles(
               sideTitles: SideTitles(showTitles: false), // Disable top X-axis
             ),
             bottomTitles: AxisTitles(
@@ -207,7 +204,7 @@ class _StatsColumnState extends State<StatsColumn> {
           ),
           borderData: FlBorderData(
             show: false,
-            border: Border(
+            border: const Border(
               left: BorderSide(color: Colors.black, width: 1),
               bottom: BorderSide(color: Colors.black, width: 1),
             ),
@@ -257,7 +254,7 @@ class _StatsColumnState extends State<StatsColumn> {
                 StatsReUseAble(path: ImageConstants.dropBackgorund,mainText: 'Today', data: 33.19,),
                 StatsReUseAble(path: ImageConstants.dropBackgorund,mainText: 'Daily Average', data: 40.12,),
                 StatsReUseAble(path: ImageConstants.dropBackgorund,mainText: 'Best Day', data: 40.12,fontSize: 11,optionalText: '10-july 2024',),
-                StatsReUseAble(path: ImageConstants.dropWhite,mainText: 'Total', data: 280.55,color: Color(0xFFB2CBF2),textColor: Colors.white,)
+                StatsReUseAble(path: ImageConstants.dropWhite,mainText: 'Total', data: 280.55,color: const Color(0xFFB2CBF2),textColor: Colors.white,)
               ],
             ),
           ),
@@ -282,7 +279,7 @@ class _StatsColumnState extends State<StatsColumn> {
 
             width: 22,
             // borderRadius: BorderRadius.circular(6),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15), // Custom rounded top
                 topRight: Radius.circular(15),
                 bottomRight: Radius.circular(5),

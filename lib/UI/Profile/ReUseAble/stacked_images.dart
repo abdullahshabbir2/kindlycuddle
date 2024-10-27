@@ -23,7 +23,7 @@ class ShowStackedImages extends StatelessWidget {
             height: size.getResizeAbleHeight(height ?? 180, 812, context),
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: profileAvailable ?  NetworkImage(imageUrl) : AssetImage('assets/noProfile.png') as ImageProvider,
+                image: profileAvailable ?  NetworkImage(imageUrl) : const AssetImage('assets/noProfile.png') as ImageProvider,
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(

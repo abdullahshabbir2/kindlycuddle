@@ -22,7 +22,7 @@ class VolumeData extends StatelessWidget {
       decoration: ShapeDecoration(
         color: isColorWhite ? Colors.white :  ColorsConstants.appPrimary2,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.white),
+          side: const BorderSide(width: 1, color: Colors.white),
           borderRadius: BorderRadius.circular(9),
         ),
       ),

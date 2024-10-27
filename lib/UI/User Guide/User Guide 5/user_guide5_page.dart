@@ -6,7 +6,6 @@ import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_cubit.d
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%205/user_guide5_initial_params.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserGuide5Page extends StatefulWidget {

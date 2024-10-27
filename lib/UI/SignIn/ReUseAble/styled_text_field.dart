@@ -184,6 +184,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
             validator: (value) {
               debugPrint(widget.validator(value));
               widget.validator(value);
+              return null;
             },
             onChanged: (value){
               widget.onChanged!(value);
@@ -216,7 +217,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
       children:[
         ...List.generate(3, (index) {
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 2),
+          margin: const EdgeInsets.symmetric(horizontal: 2),
           height: 2,
           width: 11,
           decoration: BoxDecoration(
@@ -233,7 +234,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
   Widget strengthText(String text){
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
         color: ColorsConstants.strengthTextColor,
         fontSize: 10.45,
         fontFamily: 'Poppins',
