@@ -1,16 +1,23 @@
 import 'package:cuddle_care/Data/Repository/firebase_user_repository.dart';
 import 'package:cuddle_care/Data/Repository/mock_blutooth_repository.dart';
+import 'package:cuddle_care/Data/Repository/shared_prerence_ble_data_repository.dart';
+import 'package:cuddle_care/Domain/Repository/ble_data_repository.dart';
 import 'package:cuddle_care/Domain/Repository/bluetooth_repository.dart';
 import 'package:cuddle_care/Domain/Repository/user_repository.dart';
 import 'package:cuddle_care/Domain/Store/bluetooth_device_store.dart';
 import 'package:cuddle_care/Domain/Store/device_info_store.dart';
 import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/get_pulse_weight_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/search_for_devices_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/set_pulse_weight_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/sign_in_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/upload_image_usecase.dart';
 import 'package:cuddle_care/Navigation/app_navigator.dart';
+import 'package:cuddle_care/Service/Firebase/firebase_data_service.dart';
 import 'package:cuddle_care/Service/Firebase/firebase_service.dart';
+import 'package:cuddle_care/Service/Shared%20Preference%20Service/shared_preference_service.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_cubit.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Bluetooth%20Permissions/bluetooth_permission_navigator.dart';
@@ -94,21 +101,28 @@ void main() async {
 
   // Service
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
+  getIt.registerSingleton<FirebaseDataService>(FirebaseDataService());
+
+  getIt.registerSingleton<SharedPreferenceService>( SharedPreferenceService() );
 
   // Store
   getIt.registerSingleton<DeviceStore>(DeviceStore());
   getIt.registerSingleton<BluetoothDeviceStore>(BluetoothDeviceStore());
 
   // Repository
-  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt()));
+  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt() , getIt()));
   getIt.registerSingleton<BluetoothRepository>( MockBluetoothRepository() );
+  getIt.registerSingleton<BleDataRepository>( SharedPreferenceBleDataRepository( getIt() ) );
 
-  // User Repository
+  // UseCase
   getIt.registerSingleton<CreateUserUseCase>(CreateUserUseCase( getIt() ));
   getIt.registerSingleton<GoogleSignUpUseCase>(GoogleSignUpUseCase( getIt() ));
   getIt.registerSingleton<SignInUseCase>(SignInUseCase( getIt() ));
   getIt.registerSingleton<ResetPasswordUseCase>( ResetPasswordUseCase( getIt() ) );
   getIt.registerSingleton<SearchForDevicesUseCase>( SearchForDevicesUseCase( getIt() ) );
+  getIt.registerSingleton<GetPulseWeightUseCase>( GetPulseWeightUseCase( getIt() ) );
+  getIt.registerSingleton<SetPulseWeightUseCase>( SetPulseWeightUseCase( getIt() ) );
+  getIt.registerSingleton<UploadImageUseCase>( UploadImageUseCase( getIt() ));
 
   getIt.registerSingleton<SplashNavigator>(SplashNavigator( getIt() ));
   getIt.registerSingleton<OnBoardingNavigator>( OnBoardingNavigator( getIt() ) );
@@ -200,6 +214,8 @@ void main() async {
   getIt.registerFactoryParam<HomeCubit , HomeInitialParams , dynamic>(
           (params, _) => HomeCubit(
               params,
+              getIt(),
+              getIt(),
               getIt()
           )
   );
@@ -240,7 +256,7 @@ void main() async {
   );
 
   getIt.registerFactoryParam< ProfileCubit , ProfileInitialParams , dynamic>(
-          (params, _) => ProfileCubit(params, getIt())
+          (params, _) => ProfileCubit(params, getIt(), getIt())
   );
 
   // Request necessary permissions

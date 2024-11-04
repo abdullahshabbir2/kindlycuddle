@@ -1,9 +1,12 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
+import 'package:cuddle_care/UI/Home/home_page.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 
 class UserGuide extends StatefulWidget {
@@ -151,8 +154,11 @@ class _UserGuideState extends State<UserGuide> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               StyledButton(text: 'Skip', onTap: (){
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileColumn(cubit: getIt(param1: ProfileInitialParams())) ));
-              },height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,),
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomePage(cubit: getIt(param1: HomeInitialParams() )) ) );
+              },
+                height: size.getResizeAbleHeight(48, 812, context) ,
+                width:size.getResizeAbleWidth(118, 375, context) ,
+              ),
 
               StyledButton(text: widget.next ??  'Next', onTap: widget.onTap,height: size.getResizeAbleHeight(48, 812, context) ,width:size.getResizeAbleWidth(118, 375, context) ,backgroundColor: Colors.white,textColor: ColorsConstants.styledButtonBackgroundColor,),
 

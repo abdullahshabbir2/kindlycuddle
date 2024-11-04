@@ -24,7 +24,7 @@ class ImageConstants{
   static String get book2 => 'assets/book2.svg';
   static String get setting2 => 'assets/setting2.svg';
   static String get optionButton => 'assets/btn.svg';
-  static String get connectPump => 'assets/connectpump1.png';
+  static String get connectPump => 'assets/pumpsmallPng.png';
   static String get drop => 'assets/drop.svg';
   static String get pulseWeightBar => 'assets/pulseWeightBar.svg';
   static String get editPulse => 'assets/editPulse.png';
@@ -47,10 +47,10 @@ class ImageConstants{
   static String get privacyPolicy => 'assets/privacy.svg';
   static String get pumpIconSmall => 'assets/pump_small_icon.png';
 
-  static String get UserGuide1 => 'assets/user_guide_1_png.png';
-  static String get UserGuide2 => 'assets/user_guide_2_png.png';
-  static String get UserGuide3 => 'assets/user_guide_3_png.png';
-  static String get UserGuide4 => 'assets/user_guide_4_png.png';
-  static String get UserGuide5 => 'assets/user_guide_5_png.png';
+  static String get UserGuide1 => 'assets/pic1.png';
+  static String get UserGuide2 => 'assets/pic1.png';
+  static String get UserGuide3 => 'assets/pic2.png';
+  static String get UserGuide4 => 'assets/pic3.png';
+  static String get UserGuide5 => 'assets/pic4.png';
 }
 

@@ -56,9 +56,13 @@ dependencies:
   flutter_blue: ^0.8.0
   get: ^4.6.6
   permission_handler: ^10.2.0
+  cloud_firestore:
+  image_picker:
 
   bloc: any
   http: any
+  shared_preferences: ^2.2.3
+  firebase_storage: ^11.6.9
 dev_dependencies:
   flutter_test:
     sdk: flutter

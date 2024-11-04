@@ -9,7 +9,8 @@ class ShowStackedImages extends StatelessWidget {
   final int? height;
   final int? width;
   final bool profileAvailable;
-  const ShowStackedImages({super.key,required this.imageUrl, required this.sideImage, this.alignment, this.height, this.width, required this.profileAvailable});
+  final VoidCallback onTap;
+  const ShowStackedImages({super.key,required this.imageUrl, required this.sideImage, this.alignment, this.height, this.width, required this.profileAvailable, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,22 +19,25 @@ class ShowStackedImages extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
-            width: size.getResizeAbleWidth(width??180, 375, context),
-            height: size.getResizeAbleHeight(height ?? 180, 812, context),
-            decoration: ShapeDecoration(
-              image: DecorationImage(
-                image: profileAvailable ?  NetworkImage(imageUrl) : const AssetImage('assets/noProfile.png') as ImageProvider,
-                fit: BoxFit.cover,
+        InkWell(
+          onTap: onTap,
+          child: Container(
+              width: size.getResizeAbleWidth(width??180, 375, context),
+              height: size.getResizeAbleHeight(height ?? 180, 812, context),
+              decoration: ShapeDecoration(
+                image: DecorationImage(
+                  image: profileAvailable ?  NetworkImage(imageUrl) : const AssetImage('assets/noProfile.png') as ImageProvider,
+                  fit: BoxFit.cover,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            child: Align(
-              alignment: alignment ??  Alignment.bottomCenter,
-              child: ReUseAbleSvg(path: sideImage,height: size.getResizeAbleHeight(22, 812, context),width: size.getResizeAbleWidth(22, 375, context),),
-            )
+              child: Align(
+                alignment: alignment ??  Alignment.bottomCenter,
+                child: ReUseAbleSvg(path: sideImage,height: size.getResizeAbleHeight(22, 812, context),width: size.getResizeAbleWidth(22, 375, context),),
+              )
+          ),
         ),
       ],
     );

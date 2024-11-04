@@ -145,12 +145,35 @@ class _ProfileColumnState extends State<ProfileColumn> {
 
   ProfileCubit get cubit => widget.cubit;
   ReSizeAbleSize size = ReSizeAbleSize();
-  Widget showProfile() => Column(
-    children: [
-      ShowStackedImages( width: 116,height: 116,imageUrl: '', sideImage: ImageConstants.editIcon, profileAvailable: false,alignment: Alignment.bottomRight,),
-      lightBlueText('Olivia Brown',height: 1),
-      headingText('youremail@domain.com | +01 234 567 89',fontSize: 14)
-    ],
+  Widget showProfile() => BlocBuilder(
+    bloc: cubit,
+    builder: (context , state) {
+      state as ProfileState;
+      return Column(
+        children: [
+          // BlocBuilder(
+          //   bloc: cubit,
+          //   builder: (context , state) {
+          //     state as ProfileState;
+          //     return
+                ShowStackedImages(
+                  width: 116,
+                  height: 116,
+                  imageUrl: state.image,
+                  sideImage: ImageConstants.editIcon,
+                  profileAvailable: state.image.isNotEmpty,
+                  alignment: Alignment.bottomRight,
+                  onTap: (){
+                    cubit.pickImageFromGallery();
+                  },
+                ),
+          //   }
+          // ),
+          lightBlueText(state.profileDomain.name ?? '',height: 1),
+          headingText('${state.profileDomain.email ?? ''} | +01 234 567 89',fontSize: 14)
+        ],
+      );
+    }
   );
 
   @override
