@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     cubit.onInit(HomeInitialParams());
    cubit.navigator.context =  context;
 
-
+   cubit.getProfileData();
 
   }
 
@@ -73,7 +73,9 @@ class _HomePageState extends State<HomePage> {
     else if(index == 3){
       cubit.setBottomNavbartoFalse();
       return UserGuide(
-        heading: 'Modes and Intensities',body: 'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',onTap: (){
+        heading: 'Modes and Intensities',
+        body: 'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',
+        onTap: (){
         cubit.moveToUserGuide();
       },
         img: ImageConstants.UserGuide1,
@@ -170,14 +172,21 @@ class _HomeColumnState extends State<HomeColumn> {
               //   title: bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
               //   trailing: bodyText(''),
               // ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Image(image: reUseAbleOnlineImage('https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k')),
 
 
-                  roundedImage(
-                      'https://fastly.picsum.photos/id/387/48/48.jpg?hmac=YWsF-uptepsYcyZbDy81__aoanj2NihNRvnNNJ-PSmM'
+                  BlocBuilder(
+                    bloc: widget.cubit,
+                    builder: (context,state) {
+                      state as HomeState;
+                      return roundedImage(
+                          state.profile.image??''
+                      );
+                    }
                   ),
 
 
@@ -185,7 +194,13 @@ class _HomeColumnState extends State<HomeColumn> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
-                      headingText('Olivia Brown',color: Color(0xFF222222),fontSize: 19),
+                      BlocBuilder(
+                        bloc: widget.cubit,
+                        builder: (context,state) {
+                          state as HomeState;
+                          return headingText( state.profile.name??'',color: Color(0xFF222222),fontSize: 19);
+                        }
+                      ),
                     ],
                   ),
                   ReUseAbleSvg(path: ImageConstants.optionButton)

@@ -1,4 +1,5 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/Store/user_id_store.dart';
 import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
@@ -20,19 +21,21 @@ class SignUpCubit extends Cubit<SignUpState> {
  final CreateUserUseCase createUserUseCase;
  final GoogleSignUpUseCase googleSignUpUseCase;
  final ResetPasswordUseCase resetPasswordUseCase;
+ final UserIdStore store;
  SignUpCubit(
      this.initialParams,
      this.navigator,
      this.createUserUseCase,
      this.googleSignUpUseCase,
-     this.resetPasswordUseCase
+     this.resetPasswordUseCase,
+     this.store
      ) : super(SignUpState.initial(initialParams: initialParams));
 
 void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
 
  emailValidator(value) {
 
-   debugPrint('email:'+value);
+   // debugPrint('email:'+value);
 
    emit(state.copyWith(email: value as String));
 
@@ -88,15 +91,18 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
      if (password.contains(RegExp(r'[0-9]'))) strength++;
      if (password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) strength++;
 
-     emit(state.copyWith(strengthLevel: strength,password: password));
+     emit(state.copyWith( strengthLevel: strength,password: password ));
 
    }
 
  }
 
-  void signUp() {
+  void signUp(BuildContext context) {
    //  emailValidator(state.email);
    // passwordValidator(state.password);
+
+    debugPrint(state.userName);
+    debugPrint(state.password);
 
    createUserUseCase.execute(state.email, state.password, state.userName).then(
            (value) => value.fold(
@@ -104,11 +110,16 @@ void onInit(SignUpInitialParams initialParams) => emit(state.copyWith());
                      debugPrint(l.error);
                      ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
                    },
-                   (signedUp) {
+                   (id) {
 
-                     if(signedUp){
+                     if(id.isNotEmpty){
                        ToastMessage().showMessage('Sign Up Successful Check Verification Email', ColorsConstants.successToastColor);
-                       navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+                       store.setUserId(id);
+
+                       // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
+
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(cubit: getIt(param1: HomeInitialParams())) ));
+
                      }else{
                        ToastMessage().showMessage('Cannot Sign Up', ColorsConstants.failureToastColor);
                      }

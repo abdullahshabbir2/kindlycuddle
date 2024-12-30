@@ -76,7 +76,7 @@ class StyledTextField extends StatefulWidget {
   final TextInputType? inputType;
   final bool? obscureText;
   final bool? showVisibilityIcons;
-  final Function validator;
+  final Function? validator;
   final VoidCallback? onTap;
   final String? error;
   final Function? onChanged;
@@ -90,7 +90,7 @@ class StyledTextField extends StatefulWidget {
     this.inputType,
     this.obscureText,
     this.showVisibilityIcons,
-    required this.validator,
+    this.validator,
     this.onTap,
     this.error,
     this.onChanged,
@@ -182,8 +182,8 @@ class _StyledTextFieldState extends State<StyledTextField> {
               ),
             ),
             validator: (value) {
-              debugPrint(widget.validator(value));
-              widget.validator(value);
+              debugPrint(widget.validator!(value));
+              widget.validator!(value);
               return null;
             },
             onChanged: (value){
@@ -244,3 +244,4 @@ class _StyledTextFieldState extends State<StyledTextField> {
     );
   }
 }
+

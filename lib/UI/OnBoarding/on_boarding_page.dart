@@ -52,7 +52,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               SizedBox(height: 24.h,),
               ScreenIndicator(1),
               SizedBox(height: 14.h,),
-              StyledButton(text: 'Get Started',onTap: cubit.moveToNextScreen,)
+              StyledButton(text: 'Get Started',onTap: cubit.moveToNextScreen,height: 35,)
             ],
           ),
         ),

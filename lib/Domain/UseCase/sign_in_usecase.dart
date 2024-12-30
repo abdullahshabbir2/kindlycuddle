@@ -6,8 +6,9 @@ class SignInUseCase{
   final UserRepository repository;
   SignInUseCase(this.repository);
 
-  Future<Either< SignInFailure , bool >> execute(String email , String password){
+  Future<Either< SignInFailure , String >> execute(String email , String password){
     return repository.signIn(email , password);
   }
 
 }
+

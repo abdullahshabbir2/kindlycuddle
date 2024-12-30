@@ -1,12 +1,16 @@
 import 'package:cuddle_care/Data/Repository/firebase_user_repository.dart';
 import 'package:cuddle_care/Data/Repository/mock_blutooth_repository.dart';
+import 'package:cuddle_care/Data/Repository/mock_user_repository.dart';
 import 'package:cuddle_care/Data/Repository/shared_prerence_ble_data_repository.dart';
 import 'package:cuddle_care/Domain/Repository/ble_data_repository.dart';
 import 'package:cuddle_care/Domain/Repository/bluetooth_repository.dart';
 import 'package:cuddle_care/Domain/Repository/user_repository.dart';
 import 'package:cuddle_care/Domain/Store/bluetooth_device_store.dart';
 import 'package:cuddle_care/Domain/Store/device_info_store.dart';
+import 'package:cuddle_care/Domain/Store/user_id_store.dart';
+import 'package:cuddle_care/Domain/UseCase/check_if_logged_in.dart';
 import 'package:cuddle_care/Domain/UseCase/create_user_usecase.dart';
+import 'package:cuddle_care/Domain/UseCase/get_profile_data_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/get_pulse_weight_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
@@ -108,9 +112,11 @@ void main() async {
   // Store
   getIt.registerSingleton<DeviceStore>(DeviceStore());
   getIt.registerSingleton<BluetoothDeviceStore>(BluetoothDeviceStore());
+  getIt.registerSingleton<UserIdStore>(UserIdStore());
 
   // Repository
-  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt() , getIt()));
+  // getIt.registerSingleton<UserRepository>(MockUserRepository());
+  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt() , getIt() , getIt()));
   getIt.registerSingleton<BluetoothRepository>( MockBluetoothRepository() );
   getIt.registerSingleton<BleDataRepository>( SharedPreferenceBleDataRepository( getIt() ) );
 
@@ -123,6 +129,8 @@ void main() async {
   getIt.registerSingleton<GetPulseWeightUseCase>( GetPulseWeightUseCase( getIt() ) );
   getIt.registerSingleton<SetPulseWeightUseCase>( SetPulseWeightUseCase( getIt() ) );
   getIt.registerSingleton<UploadImageUseCase>( UploadImageUseCase( getIt() ));
+  getIt.registerSingleton<GetProfileDataUseCase>( GetProfileDataUseCase( getIt() ) );
+  getIt.registerSingleton<CheckIfLoggedIn>( CheckIfLoggedIn( getIt() ) );
 
   getIt.registerSingleton<SplashNavigator>(SplashNavigator( getIt() ));
   getIt.registerSingleton<OnBoardingNavigator>( OnBoardingNavigator( getIt() ) );
@@ -147,20 +155,23 @@ void main() async {
   getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
           (params, _) => SplashCubit(
               params,
-              getIt()
+              getIt(),
           )
   );
 
   getIt.registerFactoryParam<OnBoardingCubit , OnBoardingInitialParams , dynamic>(
           (params, _) => OnBoardingCubit(
               params,
-              getIt()
+              getIt(),
+              getIt(),
+
           )
   );
 
   getIt.registerFactoryParam<SignInCubit , SignInInitialParams , dynamic>(
           (params, _) => SignInCubit(
               params,
+              getIt(),
               getIt(),
               getIt(),
               getIt(),
@@ -171,6 +182,7 @@ void main() async {
   getIt.registerFactoryParam<SignUpCubit , SignUpInitialParams , dynamic>(
           (params, _) => SignUpCubit(
               params,
+              getIt(),
               getIt(),
               getIt(),
               getIt(),
@@ -216,6 +228,8 @@ void main() async {
               params,
               getIt(),
               getIt(),
+              getIt(),
+              getIt(),
               getIt()
           )
   );
@@ -256,7 +270,7 @@ void main() async {
   );
 
   getIt.registerFactoryParam< ProfileCubit , ProfileInitialParams , dynamic>(
-          (params, _) => ProfileCubit(params, getIt(), getIt())
+          (params, _) => ProfileCubit(params, getIt(), getIt() , getIt() , getIt())
   );
 
   // Request necessary permissions

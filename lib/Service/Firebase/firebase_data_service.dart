@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cuddle_care/Data/Model/user_model.dart';
+import 'package:cuddle_care/Domain/Failure/get_profile_data_failure.dart';
 import 'package:cuddle_care/Domain/Failure/sign_up_user_failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseDataService{
-  Future<Either<SignUpUserFailure, bool>> insertUser(String email, String id) async {
+  Future<Either<SignUpUserFailure, String>> insertUser(String email, String id , String name) async {
 
     CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
 
@@ -12,14 +15,18 @@ class FirebaseDataService{
 
       // String id = DateTime.now().microsecondsSinceEpoch.toString();
 
+
+      debugPrint(name);
+
       await usersCollection.doc(id).set({
         'email': email,
         'id': id,
         'image': '',
+        'name':name
       });
       print('User data inserted successfully');
 
-      return right(true);
+      return right(id);
 
     } catch (e) {
       print('Error inserting data: $e');
@@ -52,5 +59,22 @@ class FirebaseDataService{
     }
   }
 
+  Future< Either< GetProfileDataFailure ,  UserModel? > > getUserModelById(String id) async {
+    try {
+      DocumentSnapshot document = await FirebaseFirestore.instance.collection('users').doc(id).get();
+
+      if (document.exists) {
+        return right( UserModel.fromMap(document.data() as Map<String, dynamic>) ) ;
+      } else {
+        print("User not found.");
+        return right( null );
+      }
+    } catch (e) {
+      print("Error fetching user: $e");
+      return left( GetProfileDataFailure( e.toString()) );
+    }
+  }
+
 
 }
+

@@ -1,10 +1,13 @@
 
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/Store/user_id_store.dart';
+import 'package:cuddle_care/Domain/UseCase/get_profile_data_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/get_pulse_weight_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/set_pulse_weight_usecase.dart';
 import 'package:cuddle_care/UI/ReUseAble/toast_message.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_initial_params.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Home_initial_params.dart';
@@ -16,11 +19,16 @@ class HomeCubit extends Cubit<HomeState> {
  final HomeNavigator navigator;
  final GetPulseWeightUseCase getPulseWeightUseCase;
  final SetPulseWeightUseCase setPulseWeightUseCase;
+
+ final GetProfileDataUseCase profileDataUseCase;
+ final UserIdStore store;
  HomeCubit(
      this.initialParams,
      this.navigator,
      this.getPulseWeightUseCase,
-     this.setPulseWeightUseCase
+     this.setPulseWeightUseCase,
+     this.store,
+     this.profileDataUseCase
      ) : super(HomeState.initial(initialParams: initialParams));
 
 void onInit(HomeInitialParams initialParams) => emit(state.copyWith());
@@ -71,5 +79,20 @@ void onInit(HomeInitialParams initialParams) => emit(state.copyWith());
   void setBottomNavbartoFalse() {
     emit(state.copyWith(showBottomNavbar: false));
   }
+
+ getProfileData(){
+   String id = store.state;
+   debugPrint(id);
+   profileDataUseCase.getProfileData(id).then(
+           (value) => value.fold(
+               (l) {
+             ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+           },
+               (r) {
+             emit(state.copyWith( profile:  r) );
+           }
+       )
+   );
+ }
 
 }

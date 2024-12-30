@@ -104,12 +104,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                   return StyledTextField(
                                     label: 'Username',
                                     iconPath: ImageConstants.userIcon,
-                                    validator:   (value){
+                                    // validator:   (value){
+                                    //   cubit.setUserName(value);
+                                    //   // return cubit.emailValidator(value) ;
+                                    // },
+                                    onChanged: (value){
                                       cubit.setUserName(value);
-                                      // return cubit.emailValidator(value) ;
                                     },
                                     inputType: TextInputType.emailAddress,
-                                    error: state.emailValidator,
+                                    // error: state.,
                                   );
                                 }
                             ),
@@ -167,7 +170,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       // you would often call a server or save the information in a database.
 
                                       // if(state.emailValidated && state.passwordValidated){
-                                        cubit.signUp();
+                                        cubit.signUp(context);
                                       // }
 
 

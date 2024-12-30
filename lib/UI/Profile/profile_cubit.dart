@@ -1,4 +1,6 @@
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/Store/user_id_store.dart';
+import 'package:cuddle_care/Domain/UseCase/get_profile_data_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/upload_image_usecase.dart';
 import 'package:cuddle_care/UI/Profile/profile_navigator.dart';
 import 'package:cuddle_care/UI/Profile/profile_state.dart';
@@ -14,10 +16,14 @@ class ProfileCubit extends Cubit<ProfileState> {
  final ProfileInitialParams initialParams;
  final ProfileNavigator navigator;
  final UploadImageUseCase useCase;
+ final GetProfileDataUseCase profileDataUseCase;
+ final UserIdStore store;
  ProfileCubit(
      this.initialParams,
      this.navigator,
-     this.useCase
+     this.useCase,
+     this.profileDataUseCase,
+     this.store
      ) : super(ProfileState.initial(initialParams: initialParams));
 
 
@@ -54,5 +60,19 @@ void onInit(ProfileInitialParams initialParams) => emit(state.copyWith());
    }
  }
 
+
+ getProfileData(){
+    String id = store.state;
+    profileDataUseCase.getProfileData(id).then(
+            (value) => value.fold(
+                    (l) {
+                      ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+                    },
+                    (r) {
+                      emit(state.copyWith(image: r.image , profileDomain: r));
+                    }
+            )
+    );
+ }
 
 }

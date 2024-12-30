@@ -1,5 +1,6 @@
 
 import 'package:cuddle_care/Constants/colors_constants.dart';
+import 'package:cuddle_care/Domain/Store/user_id_store.dart';
 import 'package:cuddle_care/Domain/UseCase/google_signUp_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/reset_password_usecase.dart';
 import 'package:cuddle_care/Domain/UseCase/sign_in_usecase.dart';
@@ -20,12 +21,14 @@ class SignInCubit extends Cubit<SignInState> {
  final SignInUseCase signInUseCase;
  final ResetPasswordUseCase resetPasswordUseCase;
  final GoogleSignUpUseCase googleSignUpUseCase;
+ final UserIdStore store;
  SignInCubit(
      this.initialParams,
      this.navigator,
      this.signInUseCase,
      this.resetPasswordUseCase,
      this.googleSignUpUseCase,
+     this.store
      ) : super(SignInState.initial(initialParams: initialParams));
 
 void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
@@ -94,6 +97,9 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
                         ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
                       },
                       (r) {
+
+                        store.setUserId(r);
+
                         ToastMessage().showMessage('Sign In Success', ColorsConstants.successToastColor);
                         // navigator.openSignUpPage(SignUpInitialParams());
                         // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
@@ -144,6 +150,9 @@ void onInit(SignInInitialParams initialParams) => emit(state.copyWith());
              ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
            },
                (r) {
+
+                 store.setUserId(r);
+
              ToastMessage().showMessage('Sign Up Suceesful', ColorsConstants.successToastColor);
              // navigator.openBluetoothPermissionPage(BluetoothPermissionInitialParams());
 

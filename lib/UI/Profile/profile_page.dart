@@ -35,6 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
     cubit.onInit(ProfileInitialParams());
    cubit.navigator.context =  context;
 
+
   }
 
   @override
@@ -142,6 +143,18 @@ class ProfileColumn extends StatefulWidget {
 }
 
 class _ProfileColumnState extends State<ProfileColumn> {
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO : Fix it Later
+    cubit.onInit(ProfileInitialParams());
+    cubit.navigator.context =  context;
+
+    cubit.getProfileData();
+
+  }
+
 
   ProfileCubit get cubit => widget.cubit;
   ReSizeAbleSize size = ReSizeAbleSize();

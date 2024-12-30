@@ -58,10 +58,10 @@ dependencies:
   permission_handler: ^10.2.0
   cloud_firestore:
   image_picker:
-
   bloc: any
   http: any
   firebase_storage: ^11.6.9
+  shared_preferences:
 dev_dependencies:
   flutter_test:
     sdk: flutter

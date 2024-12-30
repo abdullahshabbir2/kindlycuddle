@@ -17,14 +17,14 @@ class FirebaseAuthService{
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Future<User?>
-  Future<Either< GoogleSignUpFailure , bool >> signInWithGoogle() async {
+  Future<Either< GoogleSignUpFailure , UserCredential? >> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       if (googleUser == null) {
         // The user canceled the sign-in
-        return right(false);
+        return right(null);
       }
 
       // Obtain the auth details from the request
@@ -38,8 +38,14 @@ class FirebaseAuthService{
 
       // Sign in to Firebase with the Google user credentials
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+      debugPrint(userCredential.user?.email);
+      debugPrint(userCredential.user?.displayName);
+      debugPrint(userCredential.user?.phoneNumber ?? '');
+      debugPrint(userCredential.user?.photoURL);
+
       // return userCredential.user;
-      return right(true);
+      return right(userCredential);
     } on FirebaseAuthException catch (e) {
       print('Error during Google Sign-In: ${e.message}');
       return left(GoogleSignUpFailure(e.toString()));
@@ -69,13 +75,13 @@ class FirebaseAuthService{
     }
   }
 
-  Future<Either<SignInFailure, bool>> signIn(String email, String password) async {
+  Future<Either<SignInFailure, String>> signIn(String email, String password) async {
     try{
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
 
+      debugPrint(userCredential.user?.uid);
 
-
-      return right(true);
+      return right(userCredential.user?.uid ?? '');
     }catch(e){
       return left(SignInFailure(e.toString()));
     }

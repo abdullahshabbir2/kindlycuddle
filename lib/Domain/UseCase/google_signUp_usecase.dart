@@ -6,7 +6,7 @@ class GoogleSignUpUseCase{
   final UserRepository repository;
   GoogleSignUpUseCase(this.repository);
 
-  Future<Either< GoogleSignUpFailure , bool >> execute(){
+  Future<Either< GoogleSignUpFailure , String >> execute(){
     return repository.googleSignUp();
   }
 

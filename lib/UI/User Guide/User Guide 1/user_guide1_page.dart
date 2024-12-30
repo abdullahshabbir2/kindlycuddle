@@ -37,7 +37,9 @@ class _UserGuide1PageState extends State<UserGuide1Page> {
       builder:(BuildContext context, child) => SafeArea(
         child: Scaffold(
           body: UserGuide(
-            heading: 'Modes and Intensities',body: 'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',onTap: (){
+            heading: 'Modes and Intensities',
+            body: 'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',
+            onTap: (){
             cubit.moveToUserGuide2();
           },
             img: ImageConstants.UserGuide1,
