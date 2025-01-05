@@ -141,7 +141,10 @@ class _SignInPageState extends State<SignInPage> {
                               bloc: cubit,
                               builder: (context , state) {
                                 state as SignInState;
-                                return StyledButton(text: 'Sign In', onTap: (){
+                                return StyledButton(
+                                    height: 60.h,
+                                    text: 'Sign In',
+                                    onTap: (){
 
                                   // if (_formKey.currentState!.validate()) {
                                     // If the form is valid, display a snackbar. In a real app,

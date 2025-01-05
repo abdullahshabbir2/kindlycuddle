@@ -183,8 +183,11 @@ class _HomeColumnState extends State<HomeColumn> {
                     bloc: widget.cubit,
                     builder: (context,state) {
                       state as HomeState;
+
+                      debugPrint(state.profile.image);
+
                       return roundedImage(
-                          state.profile.image??''
+                          'https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k' ?? ''
                       );
                     }
                   ),

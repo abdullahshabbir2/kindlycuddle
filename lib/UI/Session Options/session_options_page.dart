@@ -179,7 +179,7 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
                 );
               }
             ),
-            SizedBox(height: size.getResizeAbleHeight(200, 812, context),),
+            SizedBox(height: size.getResizeAbleHeight(130, 812, context),),
             BlocBuilder(
                 bloc: widget.cubit,
                 builder: (context , state) {
@@ -216,6 +216,8 @@ class _ScreenOptionsColumnState extends State<ScreenOptionsColumn> {
                   );
                 }
             ),
+            SizedBox(height: size.getResizeAbleHeight(10, 812, context),),
+
             BlocBuilder(
               bloc: widget.cubit,
               builder: (context , state) {

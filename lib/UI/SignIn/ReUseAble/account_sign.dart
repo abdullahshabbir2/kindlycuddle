@@ -17,7 +17,7 @@ class AccountSign extends StatelessWidget {
         bodyText(bodyString,bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
         InkWell(
             onTap: onTap,
-            child: lightBlueText(actionText,fontSize: 12,fontWeight: FontWeight.w100,height: 1)
+            child: lightBlueText(actionText,fontSize:  15 ,fontWeight: FontWeight.w100,height: 1)
         )
       ],
     );

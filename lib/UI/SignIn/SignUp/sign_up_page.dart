@@ -163,7 +163,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 bloc: cubit,
                                 builder: (context , state) {
                                   state as SignUpState;
-                                  return StyledButton(text: 'Sign Up', onTap: (){
+                                  return StyledButton(
+                                      height: 60.h,
+                                      text: 'Sign Up', onTap: (){
 
                                     // if (_formKey.currentState!.validate()) {
                                       // If the form is valid, display a snackbar. In a real app,
@@ -182,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   });
                                 }
                             ),
-                            SizedBox(height: 30.h,),
+                            SizedBox(height: 10.h,),
 
 
 
