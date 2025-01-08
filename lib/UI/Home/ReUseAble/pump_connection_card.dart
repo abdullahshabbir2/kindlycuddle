@@ -39,7 +39,7 @@ class PumpConnectionCard extends StatelessWidget {
               device == null ? 'Not Connect' : 'Connected',
               bodyFontSize: 16,
               bodyTextFontWeight: FontWeight.w400,
-              bodyTextHeight: 1,
+              bodyTextHeight: 2,
             ),
             StyledButton(
               text: device == null ? 'Connect Pump' : 'Disconnect',
