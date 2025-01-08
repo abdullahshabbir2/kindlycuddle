@@ -20,109 +20,111 @@ class SignInPage extends StatefulWidget {
   // final UserDeInitialParams initialParams;
   const SignInPage({Key? key, required this.cubit}) : super(key: key);
 
-
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-
   SignInCubit get cubit => widget.cubit;
 
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
     // TODO : Fix it Later
     cubit.onInit(SignInInitialParams());
-   cubit.navigator.context =  context;
-
+    cubit.navigator.context = context;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(BuildContext context, child) => SafeArea(
+      builder: (BuildContext context, child) => SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 43.5.h,),
+              SizedBox(
+                height: 43.5.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AssetsImages(path: ImageConstants.kindlyCuddle,height: 50),
-
+                  AssetsImages(path: ImageConstants.kindlyCuddle, height: 50),
                 ],
               ),
-              SizedBox(height: 30.h,),
-
+              SizedBox(
+                height: 30.h,
+              ),
               Stack(
                 children: [
-                  ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
-
+                  ReUseAbleSvg(
+                    path: ImageConstants.backgroundShape,
+                    height: MediaQuery.of(context).size.height *
+                        ((812 - 164) / 812),
+                    width: MediaQuery.of(context).size.width,
+                  ),
                   Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 47.h,),
-                      headingText('Welcome Back!',customHeadingHeight: 1.5),
-                      bodyText('welcome back we missed you',bodyTextHeight: 1),
-                      SizedBox(height: 29.h,),
-
+                      SizedBox(
+                        height: 47.h,
+                      ),
+                      headingText('Welcome Back!', customHeadingHeight: 1.5),
+                      bodyText('welcome back we missed you', bodyTextHeight: 1),
+                      SizedBox(
+                        height: 29.h,
+                      ),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: <Widget>[
-
                             BlocBuilder(
-                              bloc:cubit,
-                              builder: (context , state) {
-                                state as SignInState;
-                                return StyledTextField(
-                                  label: 'Username',
-                                  iconPath: ImageConstants.userIcon,
-                                  validator:   (value){
-                                    return cubit.emailValidator(value) ;
+                                bloc: cubit,
+                                builder: (context, state) {
+                                  state as SignInState;
+                                  return StyledTextField(
+                                    label: 'Username',
+                                    iconPath: ImageConstants.userIcon,
+                                    validator: (value) {
+                                      return cubit.emailValidator(value);
                                     },
                                     inputType: TextInputType.emailAddress,
                                     error: state.emailValidator,
-                                    onChanged: (value){
-                                    cubit.setEmail(value as String);
+                                    onChanged: (value) {
+                                      cubit.setEmail(value as String);
                                     },
-                                );
-                              }
+                                  );
+                                }),
+                            SizedBox(
+                              height: 12.h,
                             ),
-                            SizedBox(height: 12.h,),
                             BlocBuilder(
-                              bloc: cubit,
-                              builder: (context,state) {
-                                state as SignInState;
-                                return StyledTextField(
+                                bloc: cubit,
+                                builder: (context, state) {
+                                  state as SignInState;
+                                  return StyledTextField(
                                     label: 'Password',
                                     iconPath: ImageConstants.passwordIcon,
-                                    validator:     (value){
-                                      return cubit.passwordValidator(value) ;
+                                    validator: (value) {
+                                      return cubit.passwordValidator(value);
                                     },
                                     inputType: TextInputType.text,
                                     error: state.passwordValidator,
                                     showVisibilityIcons: true,
                                     obscureText: !(state.showPassword),
-                                    onTap: (){
+                                    onTap: () {
                                       cubit.reverseObsecurity();
                                     },
-                                    onChanged: (password){
+                                    onChanged: (password) {
                                       cubit.setPassword(password);
                                     },
-                                );
-                              }
-                            ),
+                                  );
+                                }),
 
                             SizedBox(height: 10.h),
 
@@ -130,38 +132,44 @@ class _SignInPageState extends State<SignInPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 InkWell(
-                                    onTap: (){
+                                    onTap: () {
                                       cubit.resetPassword();
                                     },
-                                    child: bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0)), SizedBox(width: 32.w,),
+                                    child: bodyText('Forgot Password?',
+                                        bodyTextColor:
+                                            ColorsConstants.textFieldTextColor,
+                                        bodyFontSize: 11,
+                                        bodyTextFontWeight: FontWeight.w400,
+                                        bodyTextHeight: 0,
+                                        bodyTextLetterSpacing: 0)),
+                                SizedBox(
+                                  width: 32.w,
+                                ),
                               ],
                             ),
-                            SizedBox(height: 18.h,),
-                            BlocBuilder(
-                              bloc: cubit,
-                              builder: (context , state) {
-                                state as SignInState;
-                                return StyledButton(
-                                    height: 60.h,
-                                    text: 'Sign In',
-                                    onTap: (){
-
-                                  // if (_formKey.currentState!.validate()) {
-                                    // If the form is valid, display a snackbar. In a real app,
-                                    // you would often call a server or save the information in a database.
-
-                                    cubit.SignIn(context);
-
-                                  // }
-
-
-
-                                });
-                              }
+                            SizedBox(
+                              height: 18.h,
                             ),
-                            SizedBox(height: 30.h,),
+                            BlocBuilder(
+                                bloc: cubit,
+                                builder: (context, state) {
+                                  state as SignInState;
+                                  return StyledButton(
+                                      height: 60.h,
+                                      text: 'Sign In',
+                                      onTap: () {
+                                        // if (_formKey.currentState!.validate()) {
+                                        // If the form is valid, display a snackbar. In a real app,
+                                        // you would often call a server or save the information in a database.
 
+                                        cubit.SignIn(context);
 
+                                        // }
+                                      });
+                                }),
+                            SizedBox(
+                              height: 30.h,
+                            ),
 
                             // ElevatedButton(
                             //   onPressed: () {
@@ -179,39 +187,44 @@ class _SignInPageState extends State<SignInPage> {
                           ],
                         ),
                       ),
-
-                      bodyText('Or continue with',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
-                      SizedBox(height: 25.h,),
+                      bodyText('Or continue with',
+                          bodyTextColor: ColorsConstants.textFieldTextColor,
+                          bodyFontSize: 11,
+                          bodyTextFontWeight: FontWeight.w400,
+                          bodyTextHeight: 0,
+                          bodyTextLetterSpacing: 0),
+                      SizedBox(
+                        height: 25.h,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           loginOption(ImageConstants.google, () {
                             cubit.googleSignUp(context);
                           }),
-                          SizedBox(width: 23.w,),
-                          loginOption(ImageConstants.apple, () { }),
-                          SizedBox(width: 23.w,),
-                          loginOption(ImageConstants.facebook, () { })
+                          SizedBox(
+                            width: 23.w,
+                          ),
+                          loginOption(ImageConstants.apple, () {}),
+                          SizedBox(
+                            width: 23.w,
+                          ),
+                          loginOption(ImageConstants.facebook, () {})
                         ],
                       ),
-                      SizedBox(height: 10.h,),
-
-                      AccountSign(actionText: 'Sign Up', bodyString: 'Don\'t have an account?', onTap: (){
-                        cubit.moveToSignUp();
-                      }),
-
-
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      AccountSign(
+                          actionText: 'Sign Up',
+                          bodyString: 'Don\'t have an account?',
+                          onTap: () {
+                            cubit.moveToSignUp();
+                          }),
                     ],
                   ),
                 ],
               ),
-
-
-
-
-
-
-
             ],
           ),
         ),

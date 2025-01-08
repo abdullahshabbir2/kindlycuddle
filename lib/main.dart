@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Constants/font_family_constants.dart';
 import 'package:cuddle_care/Data/Repository/firebase_user_repository.dart';
 import 'package:cuddle_care/Data/Repository/mock_blutooth_repository.dart';
 import 'package:cuddle_care/Data/Repository/mock_user_repository.dart';
@@ -86,12 +87,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 var getIt = GetIt.instance;
 
-
 void main() async {
-
 // ...
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -107,7 +105,7 @@ void main() async {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<FirebaseDataService>(FirebaseDataService());
 
-  getIt.registerSingleton<SharedPreferenceService>( SharedPreferenceService() );
+  getIt.registerSingleton<SharedPreferenceService>(SharedPreferenceService());
 
   // Store
   getIt.registerSingleton<DeviceStore>(DeviceStore());
@@ -116,162 +114,122 @@ void main() async {
 
   // Repository
   // getIt.registerSingleton<UserRepository>(MockUserRepository());
-  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(getIt() , getIt() , getIt()));
-  getIt.registerSingleton<BluetoothRepository>( MockBluetoothRepository() );
-  getIt.registerSingleton<BleDataRepository>( SharedPreferenceBleDataRepository( getIt() ) );
+  getIt.registerSingleton<UserRepository>(
+      FirebaseUserRepository(getIt(), getIt(), getIt()));
+  getIt.registerSingleton<BluetoothRepository>(MockBluetoothRepository());
+  getIt.registerSingleton<BleDataRepository>(
+      SharedPreferenceBleDataRepository(getIt()));
 
   // UseCase
-  getIt.registerSingleton<CreateUserUseCase>(CreateUserUseCase( getIt() ));
-  getIt.registerSingleton<GoogleSignUpUseCase>(GoogleSignUpUseCase( getIt() ));
-  getIt.registerSingleton<SignInUseCase>(SignInUseCase( getIt() ));
-  getIt.registerSingleton<ResetPasswordUseCase>( ResetPasswordUseCase( getIt() ) );
-  getIt.registerSingleton<SearchForDevicesUseCase>( SearchForDevicesUseCase( getIt() ) );
-  getIt.registerSingleton<GetPulseWeightUseCase>( GetPulseWeightUseCase( getIt() ) );
-  getIt.registerSingleton<SetPulseWeightUseCase>( SetPulseWeightUseCase( getIt() ) );
-  getIt.registerSingleton<UploadImageUseCase>( UploadImageUseCase( getIt() ));
-  getIt.registerSingleton<GetProfileDataUseCase>( GetProfileDataUseCase( getIt() ) );
-  getIt.registerSingleton<CheckIfLoggedIn>( CheckIfLoggedIn( getIt() ) );
+  getIt.registerSingleton<CreateUserUseCase>(CreateUserUseCase(getIt()));
+  getIt.registerSingleton<GoogleSignUpUseCase>(GoogleSignUpUseCase(getIt()));
+  getIt.registerSingleton<SignInUseCase>(SignInUseCase(getIt()));
+  getIt.registerSingleton<ResetPasswordUseCase>(ResetPasswordUseCase(getIt()));
+  getIt.registerSingleton<SearchForDevicesUseCase>(
+      SearchForDevicesUseCase(getIt()));
+  getIt
+      .registerSingleton<GetPulseWeightUseCase>(GetPulseWeightUseCase(getIt()));
+  getIt
+      .registerSingleton<SetPulseWeightUseCase>(SetPulseWeightUseCase(getIt()));
+  getIt.registerSingleton<UploadImageUseCase>(UploadImageUseCase(getIt()));
+  getIt
+      .registerSingleton<GetProfileDataUseCase>(GetProfileDataUseCase(getIt()));
+  getIt.registerSingleton<CheckIfLoggedIn>(CheckIfLoggedIn(getIt()));
 
-  getIt.registerSingleton<SplashNavigator>(SplashNavigator( getIt() ));
-  getIt.registerSingleton<OnBoardingNavigator>( OnBoardingNavigator( getIt() ) );
-  getIt.registerSingleton<SignInNavigator>( SignInNavigator( getIt() ) );
-  getIt.registerSingleton<SignUpNavigator>( SignUpNavigator( getIt() ) );
-  getIt.registerSingleton<BluetoothPermissionNavigator>( BluetoothPermissionNavigator( getIt() ) );
-  getIt.registerSingleton<SearchingDevicesNavigator>( SearchingDevicesNavigator( getIt() ) );
-  getIt.registerSingleton<DevicePairingNavigator>( DevicePairingNavigator( getIt() ) );
-  getIt.registerSingleton<DeviceConnectedSuccessfullyNavigator>( DeviceConnectedSuccessfullyNavigator( getIt() ) );
-  getIt.registerSingleton<HomeNavigator>(HomeNavigator( getIt() ));
+  getIt.registerSingleton<SplashNavigator>(SplashNavigator(getIt()));
+  getIt.registerSingleton<OnBoardingNavigator>(OnBoardingNavigator(getIt()));
+  getIt.registerSingleton<SignInNavigator>(SignInNavigator(getIt()));
+  getIt.registerSingleton<SignUpNavigator>(SignUpNavigator(getIt()));
+  getIt.registerSingleton<BluetoothPermissionNavigator>(
+      BluetoothPermissionNavigator(getIt()));
+  getIt.registerSingleton<SearchingDevicesNavigator>(
+      SearchingDevicesNavigator(getIt()));
+  getIt.registerSingleton<DevicePairingNavigator>(
+      DevicePairingNavigator(getIt()));
+  getIt.registerSingleton<DeviceConnectedSuccessfullyNavigator>(
+      DeviceConnectedSuccessfullyNavigator(getIt()));
+  getIt.registerSingleton<HomeNavigator>(HomeNavigator(getIt()));
   getIt.registerSingleton<StatsNavigator>(StatsNavigator(getIt()));
-  getIt.registerSingleton<SessionOptionsNavigator>(SessionOptionsNavigator( getIt() ));
-  getIt.registerSingleton<SessionStartNavigator>(SessionStartNavigator( getIt() ));
-  getIt.registerSingleton<UserGuide1Navigator>(UserGuide1Navigator( getIt() ));
-  getIt.registerSingleton<UserGuide2Navigator>(UserGuide2Navigator( getIt() ));
-  getIt.registerSingleton<UserGuide3Navigator>(UserGuide3Navigator( getIt() ));
-  getIt.registerSingleton<UserGuide4Navigator>(UserGuide4Navigator( getIt() ));
-  getIt.registerSingleton<UserGuide5Navigator>(UserGuide5Navigator( getIt() ));
-  getIt.registerSingleton<ProfileNavigator>(ProfileNavigator( getIt() ));
+  getIt.registerSingleton<SessionOptionsNavigator>(
+      SessionOptionsNavigator(getIt()));
+  getIt
+      .registerSingleton<SessionStartNavigator>(SessionStartNavigator(getIt()));
+  getIt.registerSingleton<UserGuide1Navigator>(UserGuide1Navigator(getIt()));
+  getIt.registerSingleton<UserGuide2Navigator>(UserGuide2Navigator(getIt()));
+  getIt.registerSingleton<UserGuide3Navigator>(UserGuide3Navigator(getIt()));
+  getIt.registerSingleton<UserGuide4Navigator>(UserGuide4Navigator(getIt()));
+  getIt.registerSingleton<UserGuide5Navigator>(UserGuide5Navigator(getIt()));
+  getIt.registerSingleton<ProfileNavigator>(ProfileNavigator(getIt()));
 
+  getIt.registerFactoryParam<SplashCubit, SplashInitialParams, dynamic>(
+      (params, _) => SplashCubit(
+            params,
+            getIt(),
+          ));
 
-  getIt.registerFactoryParam<SplashCubit , SplashInitialParams , dynamic>(
-          (params, _) => SplashCubit(
-              params,
-              getIt(),
-          )
-  );
+  getIt.registerFactoryParam<OnBoardingCubit, OnBoardingInitialParams, dynamic>(
+      (params, _) => OnBoardingCubit(
+            params,
+            getIt(),
+            getIt(),
+          ));
 
-  getIt.registerFactoryParam<OnBoardingCubit , OnBoardingInitialParams , dynamic>(
-          (params, _) => OnBoardingCubit(
-              params,
-              getIt(),
-              getIt(),
+  getIt.registerFactoryParam<SignInCubit, SignInInitialParams, dynamic>(
+      (params, _) =>
+          SignInCubit(params, getIt(), getIt(), getIt(), getIt(), getIt()));
 
-          )
-  );
+  getIt.registerFactoryParam<SignUpCubit, SignUpInitialParams, dynamic>(
+      (params, _) =>
+          SignUpCubit(params, getIt(), getIt(), getIt(), getIt(), getIt()));
 
-  getIt.registerFactoryParam<SignInCubit , SignInInitialParams , dynamic>(
-          (params, _) => SignInCubit(
-              params,
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<
+      BluetoothPermissionCubit,
+      BluetoothPermissionInitialParams,
+      dynamic>((params, _) => BluetoothPermissionCubit(params, getIt()));
 
-  getIt.registerFactoryParam<SignUpCubit , SignUpInitialParams , dynamic>(
-          (params, _) => SignUpCubit(
-              params,
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<SearchingDevicesCubit,
+          SearchingDevicesInitialParams, dynamic>(
+      (params, _) =>
+          SearchingDevicesCubit(params, getIt(), getIt(), getIt(), getIt()));
 
-  getIt.registerFactoryParam<BluetoothPermissionCubit , BluetoothPermissionInitialParams , dynamic>(
-          (params, _) => BluetoothPermissionCubit(
-              params,
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<DevicePairingCubit, DevicePairingInitialParams,
+      dynamic>((params, _) => DevicePairingCubit(params, getIt(), getIt()));
 
-  getIt.registerFactoryParam< SearchingDevicesCubit, SearchingDevicesInitialParams , dynamic>(
-          (params, _) => SearchingDevicesCubit(
-              params,
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<DeviceConnectedSuccessfullyCubit,
+          DeviceConnectedSuccessfullyInitialParams, dynamic>(
+      (params, _) =>
+          DeviceConnectedSuccessfullyCubit(params, getIt(), getIt()));
 
-  getIt.registerFactoryParam<DevicePairingCubit , DevicePairingInitialParams , dynamic>(
-          (params, _) => DevicePairingCubit(
-              params,
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<HomeCubit, HomeInitialParams, dynamic>(
+      (params, _) =>
+          HomeCubit(params, getIt(), getIt(), getIt(), getIt(), getIt()));
 
-  getIt.registerFactoryParam<DeviceConnectedSuccessfullyCubit , DeviceConnectedSuccessfullyInitialParams , dynamic>(
-          (params, _) => DeviceConnectedSuccessfullyCubit(
-              params,
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<StatsCubit, StatsInitialParams, dynamic>(
+      (params, _) => StatsCubit(params, getIt()));
 
-  getIt.registerFactoryParam<HomeCubit , HomeInitialParams , dynamic>(
-          (params, _) => HomeCubit(
-              params,
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt(),
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<SessionOptionsCubit, SessionOptionsInitialParams,
+      dynamic>((params, _) => SessionOptionsCubit(params, getIt()));
 
-  getIt.registerFactoryParam<StatsCubit , StatsInitialParams , dynamic>(
-          (params, _) => StatsCubit(params, getIt())
-  );
+  getIt.registerFactoryParam<SessionStartCubit, SessionStartInitialParams,
+      dynamic>((params, _) => SessionStartCubit(params, getIt()));
 
-  getIt.registerFactoryParam<SessionOptionsCubit , SessionOptionsInitialParams , dynamic >(
-          (params, _) => SessionOptionsCubit(
-              params,
-              getIt()
-          )
-  );
+  getIt.registerFactoryParam<UserGuide1Cubit, UserGuide1InitialParams, dynamic>(
+      (params, _) => UserGuide1Cubit(params, getIt()));
 
-  getIt.registerFactoryParam<SessionStartCubit , SessionStartInitialParams, dynamic>(
-          (params, _) => SessionStartCubit(params, getIt() )
-  );
+  getIt.registerFactoryParam<UserGuide2Cubit, UserGuide2InitialParams, dynamic>(
+      (params, _) => UserGuide2Cubit(params, getIt()));
 
-  getIt.registerFactoryParam<UserGuide1Cubit , UserGuide1InitialParams ,dynamic>(
-          (params, _) => UserGuide1Cubit(params, getIt())
-  );
+  getIt.registerFactoryParam<UserGuide3Cubit, UserGuide3InitialParams, dynamic>(
+      (params, _) => UserGuide3Cubit(params, getIt()));
 
-  getIt.registerFactoryParam<UserGuide2Cubit , UserGuide2InitialParams , dynamic>
-    ((params, _) => UserGuide2Cubit(params, getIt())
-  );
+  getIt.registerFactoryParam<UserGuide4Cubit, UserGuide4InitialParams, dynamic>(
+      (params, _) => UserGuide4Cubit(params, getIt()));
 
-  getIt.registerFactoryParam<UserGuide3Cubit , UserGuide3InitialParams , dynamic>
-    ((params, _) => UserGuide3Cubit(params, getIt())
-  );
+  getIt.registerFactoryParam<UserGuide5Cubit, UserGuide5InitialParams, dynamic>(
+      (params, _) => UserGuide5Cubit(params, getIt()));
 
-  getIt.registerFactoryParam<UserGuide4Cubit , UserGuide4InitialParams , dynamic>
-    ((params, _) => UserGuide4Cubit(params, getIt())
-  );
-
-  getIt.registerFactoryParam<UserGuide5Cubit , UserGuide5InitialParams , dynamic>
-    ((params, _) => UserGuide5Cubit(params, getIt())
-  );
-
-  getIt.registerFactoryParam< ProfileCubit , ProfileInitialParams , dynamic>(
-          (params, _) => ProfileCubit(params, getIt(), getIt() , getIt() , getIt())
-  );
+  getIt.registerFactoryParam<ProfileCubit, ProfileInitialParams, dynamic>(
+      (params, _) => ProfileCubit(params, getIt(), getIt(), getIt(), getIt()));
 
   // Request necessary permissions
   await requestPermissions();
@@ -306,7 +264,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint(message.notification!.title.toString());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -317,7 +274,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);
-        final scale = mediaQueryData.textScaler.clamp(minScaleFactor: 1.0,maxScaleFactor: 1.3);
+        final scale = mediaQueryData.textScaler
+            .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3);
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaler: scale),
           child: child!,
@@ -339,12 +297,14 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
+        fontFamily: FontFamilyConstants.fontFamilyConstant,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: SplashPage(cubit: getIt(param1: SplashInitialParams())),
       routes: {
-        '/home': (context) => HomePage(cubit: getIt(param1: HomeInitialParams())),
+        '/home': (context) =>
+            HomePage(cubit: getIt(param1: HomeInitialParams())),
       },
     );
   }

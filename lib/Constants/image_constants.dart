@@ -1,4 +1,4 @@
-class ImageConstants{
+class ImageConstants {
   static String get backgroundImage => 'assets/backgroundStartNew.svg';
   static String get iconImage => 'assets/icon.svg';
   static String get kindlyCuddle => 'assets/kindly_cuddle.png';
@@ -24,10 +24,12 @@ class ImageConstants{
   static String get book2 => 'assets/book2.svg';
   static String get setting2 => 'assets/setting2.svg';
   static String get optionButton => 'assets/btn.svg';
-  static String get connectPump => 'assets/pumpsmallPng.png';
+  static String get connectPump => 'assets/connectpump.png';
   static String get drop => 'assets/drop.svg';
   static String get pulseWeightBar => 'assets/pulseWeightBar.svg';
+  static String get pulseWeightBarUpdated => 'assets/pulseWeightBarUpdated.png';
   static String get editPulse => 'assets/editPulse.png';
+  static String get editPulseSvg => 'assets/editPulse.svg';
   static String get pulseIcon => 'assets/pulseIcon.png';
   static String get weight => 'assets/weight.png';
   static String get dropBackgorund => 'assets/dropBackground.svg';
@@ -53,4 +55,3 @@ class ImageConstants{
   static String get UserGuide4 => 'assets/pic3.png';
   static String get UserGuide5 => 'assets/pic4.png';
 }
-

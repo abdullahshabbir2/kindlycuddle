@@ -103,7 +103,7 @@ flutter:
   fonts:
      - family: Arial Rounded MT Bold
        fonts:
-         - asset: font/arial-mt/ARIALBOLDMT.OTF
+         - asset: font/arial-mt/arialroundedmtbold.TTF
 #         - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

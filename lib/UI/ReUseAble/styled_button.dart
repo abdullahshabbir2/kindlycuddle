@@ -10,7 +10,14 @@ class StyledButton extends StatefulWidget {
   final Color? textColor;
   final double? height;
   final double? width;
-  const StyledButton({super.key , required this.text , required this.onTap , this.backgroundColor, this.textColor , this.height , this.width});
+  const StyledButton(
+      {super.key,
+      required this.text,
+      required this.onTap,
+      this.backgroundColor,
+      this.textColor,
+      this.height,
+      this.width});
 
   @override
   State<StyledButton> createState() => _StyledButtonState();
@@ -23,17 +30,19 @@ class _StyledButtonState extends State<StyledButton> {
       onTap: widget.onTap,
       child: Container(
           width: widget.width ?? 335.w,
-          height: widget.height ?? 48.h,
+          height: widget.height ?? 52.h,
           decoration: ShapeDecoration(
-            color: widget.backgroundColor ?? ColorsConstants.styledButtonBackgroundColor,
+            color: widget.backgroundColor ??
+                ColorsConstants.styledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
-              side: const BorderSide(width: 1, color: Color(0xFFABE6ED)),
             ),
-
           ),
-          child: Center(child: headingText(widget.text,fontSize: 16.sp,customHeadingHeight: 0.09,color: widget.textColor))
-      ),
+          child: Center(
+              child: headingText(widget.text,
+                  fontSize: 12.sp,
+                  customHeadingHeight: 0.09,
+                  color: widget.textColor))),
     );
   }
 }

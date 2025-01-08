@@ -11,19 +11,29 @@ class ThisWeekData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: MediaQuery.of(context).size.height*(178/812),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          PieChartData(lightColor: percentage, mainColor: 100-percentage),
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height*(12/812),
-          // ),
-          showDataWithUnit(percentage, 'oz'),
-          bodyText('This Week',bodyFontSize: 16)
-        ],
+      width: MediaQuery.of(context).size.width * 0.42,
+      height: MediaQuery.of(context).size.height * 0.20,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(255, 255, 255, 0.6),
+        border: Border.all(
+          color: Colors.black, // Border color
+          width: 2.0, // Border width
+        ),
+        borderRadius: BorderRadius.circular(20.0), // Optional: Rounded corners
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            PieChartData(lightColor: percentage, mainColor: 100 - percentage),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height*(12/812),
+            // ),
+            showDataWithUnit(percentage, 'oz'),
+            bodyText('This Week', bodyFontSize: 16)
+          ],
+        ),
       ),
     );
   }
