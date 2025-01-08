@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/Service/Firebase/firebase_notification_service.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
@@ -253,40 +255,80 @@ class _HomeColumnState extends State<HomeColumn> {
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (98 / 812),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.black, // Border color
-                          width: 2.0, // Border width
-                        ),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              bodyText('Best Day of the week',
-                                  bodyFontSize: 16,
-                                  bodyTextFontWeight: FontWeight.w400),
-                              showDataWithUnit(33.19, 'oz')
+                  child: ClipRRect(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromRGBO(240, 235, 255,
+                                  0.5), // rgba(240, 235, 255, 0.5)
+                              Color.fromRGBO(255, 255, 255,
+                                  0.31) // rgba(255, 255, 255, 0.31)
                             ],
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Stack(children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              ReUseAbleSvg(path: ImageConstants.drop),
-                              bodyText('Thursday, 25 July',
-                                  bodyFontSize: 14,
-                                  bodyTextFontWeight: FontWeight.w400)
+                              Container(
+                                width: 100.0, // Set width of the circle
+                                height: 100.0, // Set height of the circle
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(
+                                      178, 203, 242, 1), // Background color
+                                  shape: BoxShape
+                                      .circle, // Makes the container a circle
+                                ),
+                              ),
+                              Container(
+                                width: 100.0, // Set width of the circle
+                                height: 100.0, // Set height of the circle
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(
+                                      178, 203, 242, 1), // Background color
+                                  shape: BoxShape
+                                      .circle, // Makes the container a circle
+                                ),
+                              ),
                             ],
                           ),
-                        ],
+                          BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    bodyText('Best Day of the week',
+                                        bodyFontSize: 16,
+                                        bodyTextFontWeight: FontWeight.w400),
+                                    showDataWithUnit(33.19, 'oz')
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ReUseAbleSvg(path: ImageConstants.drop),
+                                    bodyText('Thursday, 25 July',
+                                        bodyFontSize: 14,
+                                        bodyTextFontWeight: FontWeight.w400)
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]),
                       ),
                     ),
                   ),
@@ -373,28 +415,46 @@ class _HomeColumnState extends State<HomeColumn> {
                   ],
                 ),
 
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+
                 bodyText('This Week',
                     bodyFontSize: 14, bodyTextFontWeight: FontWeight.w400),
 
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+
                 Expanded(
                   child: ListView.builder(
-                      // physics: ScrollPhysics(),
-                      // shrinkWrap: true,
-                      itemCount: 18,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading:
-                              ReUseAbleSvg(path: ImageConstants.dropBackgorund),
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              bodyText('Thursday at 8:00 AM', bodyFontSize: 14),
-                              bodyText('35 min')
-                            ],
+                    itemCount: 18,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(255, 255, 255, 0.8),
+                            borderRadius: BorderRadius.circular(
+                                12), // Optional: Rounded corners
                           ),
-                          trailing: lightBlueText('${33} oz'),
-                        );
-                      }),
+                          child: ListTile(
+                            leading: ReUseAbleSvg(
+                                path: ImageConstants.dropBackgorund),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                bodyText('Thursday at 8:00 AM',
+                                    bodyFontSize: 14),
+                                bodyText('35 min'),
+                              ],
+                            ),
+                            trailing: lightBlueText('${33} oz'),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
