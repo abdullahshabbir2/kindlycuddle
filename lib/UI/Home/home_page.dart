@@ -338,13 +338,8 @@ class _HomeColumnState extends State<HomeColumn> {
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
 
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.15,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    width: 2,
-                    color: Colors.black,
-                  )),
                   child: Stack(
                     children: [
                       Container(

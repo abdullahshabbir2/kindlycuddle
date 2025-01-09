@@ -51,7 +51,6 @@ import 'package:permission_handler/permission_handler.dart';
 //   }
 // }
 
-
 class SplashPage extends StatefulWidget {
   final SplashCubit cubit;
   // final UserDeInitialParams initialParams;
@@ -73,10 +72,9 @@ class _SplashPageState extends State<SplashPage> {
 
     _requestBluetoothPermission();
 
-    Future.delayed(const Duration(seconds: 4), (){
+    Future.delayed(const Duration(seconds: 4), () {
       cubit.moveToNextScreen();
     });
-
   }
 
   Future<void> _requestBluetoothPermission() async {
@@ -89,7 +87,8 @@ class _SplashPageState extends State<SplashPage> {
       Map<Permission, PermissionStatus> statuses = await [
         Permission.bluetoothConnect,
         Permission.bluetoothScan,
-        Permission.locationWhenInUse, // Needed for Bluetooth scanning in many cases
+        Permission
+            .locationWhenInUse, // Needed for Bluetooth scanning in many cases
       ].request();
 
       if (statuses[Permission.bluetoothConnect]!.isGranted &&
@@ -108,12 +107,13 @@ class _SplashPageState extends State<SplashPage> {
       builder: (BuildContext context, child) => SafeArea(
         child: Scaffold(
           body: Stack(
-            fit: StackFit.expand, // Makes the Stack's children take the full available space
+            fit: StackFit
+                .expand, // Makes the Stack's children take the full available space
             children: [
               ReUseAbleSvg(path: ImageConstants.backgroundImage),
               // You can add more widgets on top of the background here
               Center(
-                child: ReUseAbleSvg(path: ImageConstants.iconImage),
+                child: ReUseAbleSvg(path: ImageConstants.icon),
               ),
             ],
           ),

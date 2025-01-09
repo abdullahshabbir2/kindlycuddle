@@ -1,6 +1,6 @@
 class ImageConstants {
   static String get backgroundImage => 'assets/backgroundStartNew.svg';
-  static String get iconImage => 'assets/icon.svg';
+  static String get icon => 'assets/icon.svg';
   static String get kindlyCuddle => 'assets/kindly_cuddle.png';
   static String get cuddleCareScreenImage => 'assets/cuddle_care.svg';
   static String get pngCuddleCareScreenImage => 'assets/png_cuddle_care.png';
@@ -19,10 +19,13 @@ class ImageConstants {
   static String get bluetoothGreen => 'assets/bluetoothBlue.svg';
   static String get bottomRectangle => 'assets/bottomRectangle.svg';
   static String get home2 => 'assets/home2.svg';
+  static String get home_2 => 'assets/home-2.svg';
   static String get pieChart2 => 'assets/pieChart02.svg';
+  static String get pieChart_1 => 'assets/pieChart-2.svg';
   static String get pumpIcon => 'assets/pumpIcon.svg';
   static String get book2 => 'assets/book2.svg';
-  static String get setting2 => 'assets/setting2.svg';
+  static String get setting => 'assets/setting2.svg';
+  static String get setting_1 => 'assets/setting-2.svg';
   static String get optionButton => 'assets/btn.svg';
   static String get connectPump => 'assets/connectpump.png';
   static String get drop => 'assets/drop.svg';

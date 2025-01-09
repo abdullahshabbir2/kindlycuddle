@@ -17,14 +17,11 @@ class PumpConnectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: const BoxConstraints(minHeight: 180),
       width: MediaQuery.of(context).size.width * 0.42,
       height: MediaQuery.of(context).size.height * 0.20,
       decoration: BoxDecoration(
         color: const Color.fromRGBO(255, 255, 255, 0.6),
-        border: Border.all(
-          color: Colors.black, // Border color
-          width: 2.0, // Border width
-        ),
         borderRadius: BorderRadius.circular(20.0), // Optional: Rounded corners
       ),
       child: Padding(
