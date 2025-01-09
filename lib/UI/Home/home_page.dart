@@ -167,17 +167,9 @@ class _HomeColumnState extends State<HomeColumn> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ListTile(
-                //   leading: reUseAbleOnlineImage('',height: MediaQuery.of(context).size.height*(48/812) , width: MediaQuery.of(context).size.width*(48/343) ),
-                //   title: bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
-                //   trailing: bodyText(''),
-                // ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Image(image: reUseAbleOnlineImage('https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k')),
-
                     BlocBuilder(
                         bloc: widget.cubit,
                         builder: (context, state) {
@@ -189,7 +181,6 @@ class _HomeColumnState extends State<HomeColumn> {
                               'https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k' ??
                                   '');
                         }),
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -208,7 +199,6 @@ class _HomeColumnState extends State<HomeColumn> {
                     ReUseAbleSvg(path: ImageConstants.optionButton)
                   ],
                 ),
-
                 const SizedBox(
                   height: 10.0,
                 ),
@@ -248,11 +238,9 @@ class _HomeColumnState extends State<HomeColumn> {
                     )
                   ],
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (98 / 812),
                   child: ClipRRect(
@@ -333,11 +321,9 @@ class _HomeColumnState extends State<HomeColumn> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.15,
                   child: Stack(
@@ -401,7 +387,6 @@ class _HomeColumnState extends State<HomeColumn> {
                     ],
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -409,18 +394,14 @@ class _HomeColumnState extends State<HomeColumn> {
                     bodyText('Show all', bodyFontSize: 14)
                   ],
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-
                 bodyText('This Week',
                     bodyFontSize: 14, bodyTextFontWeight: FontWeight.w400),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-
                 Expanded(
                   child: ListView.builder(
                     itemCount: 18,

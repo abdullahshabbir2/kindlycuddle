@@ -11,23 +11,49 @@ class StatsReUseAble extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final String path;
-  const StatsReUseAble({super.key, required this.path ,required this.mainText  , this.optionalText, required this.data, this.fontSize, this.color, this.textColor});
+  const StatsReUseAble(
+      {super.key,
+      required this.path,
+      required this.mainText,
+      this.optionalText,
+      required this.data,
+      this.fontSize,
+      this.color,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color ?? Colors.transparent,
-      child: ListTile(
-        leading: ReUseAbleSvg(path: path,width: 27,height: 27,),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            bodyText(mainText,bodyFontSize: fontSize ?? 15, bodyTextColor: textColor),
-            bodyText(optionalText ?? '',bodyFontSize: 9,bodyTextColor: textColor)
-          ],
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(colors: [
+          Color.fromRGBO(255, 255, 255, 0.38),
+          Color.fromRGBO(255, 255, 255, 0)
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: color ?? const Color.fromRGBO(208, 226, 246, 1),
+          borderRadius: BorderRadius.circular(8.0),
         ),
-        trailing: headingText('$data oz' ,
-            fontSize: 15,color: textColor),
+        margin: const EdgeInsets.all(1),
+        child: ListTile(
+          leading: ReUseAbleSvg(
+            path: path,
+            width: 27,
+            height: 27,
+          ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              bodyText(mainText,
+                  bodyFontSize: fontSize ?? 15, bodyTextColor: textColor),
+              bodyText(optionalText ?? '',
+                  bodyFontSize: 9, bodyTextColor: textColor)
+            ],
+          ),
+          trailing: headingText('$data oz', fontSize: 15, color: textColor),
+        ),
       ),
     );
   }
