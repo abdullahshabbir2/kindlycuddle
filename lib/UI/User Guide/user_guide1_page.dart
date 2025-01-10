@@ -110,21 +110,31 @@ class _UserGuide1PageState extends State<UserGuide1Page> {
                 ),
               ),
               _buildPageIndicator(),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
-                )),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: Checkbox.width, vertical: Checkbox.width * 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      StyledButton(
-                        text: 'Skip',
-                        onTap: () {
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: Checkbox.width, vertical: Checkbox.width * 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    StyledButton(
+                      text: 'Skip',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              cubit: getIt(param1: HomeInitialParams()),
+                            ),
+                          ),
+                        );
+                      },
+                      height: 50,
+                      width: 150,
+                    ),
+                    StyledButton(
+                      text: index == 4 ? "Continue" : "Next",
+                      onTap: () {
+                        if (index == 4) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -133,36 +143,19 @@ class _UserGuide1PageState extends State<UserGuide1Page> {
                               ),
                             ),
                           );
-                        },
-                        height: 50,
-                        width: 150,
-                      ),
-                      StyledButton(
-                        text: index == 4 ? "Continue" : "Next",
-                        onTap: () {
-                          if (index == 4) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePage(
-                                  cubit: getIt(param1: HomeInitialParams()),
-                                ),
-                              ),
-                            );
-                          } else {
-                            _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                            );
-                          }
-                        },
-                        height: 50,
-                        width: 150,
-                        backgroundColor: Colors.white,
-                        textColor: ColorsConstants.styledButtonBackgroundColor,
-                      ),
-                    ],
-                  ),
+                        } else {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      },
+                      height: 50,
+                      width: 150,
+                      backgroundColor: Colors.white,
+                      textColor: ColorsConstants.styledButtonBackgroundColor,
+                    ),
+                  ],
                 ),
               ),
             ],
