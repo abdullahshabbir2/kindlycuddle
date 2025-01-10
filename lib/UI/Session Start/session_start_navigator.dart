@@ -1,5 +1,5 @@
 import 'package:cuddle_care/Navigation/app_navigator.dart';
-import 'package:cuddle_care/UI/User%20Guide/User%20Guide%201/user_guide1_navigator.dart';
+import 'package:cuddle_care/UI/User%20Guide/user_guide1_navigator.dart';
 import 'package:flutter/material.dart';
 
 

@@ -53,9 +53,9 @@ class ImageConstants {
   static String get pumpIconSmall => 'assets/pump_small_icon.png';
   static String get finalPump => 'assets/finalPump.png';
 
-  static String get UserGuide1 => 'assets/pic1.png';
-  static String get UserGuide2 => 'assets/pic1.png';
-  static String get UserGuide3 => 'assets/pic2.png';
-  static String get UserGuide4 => 'assets/pic3.png';
-  static String get UserGuide5 => 'assets/pic4.png';
+  static String get UserGuide1 => 'assets/user_guide_1_png.png';
+  static String get UserGuide2 => 'assets/user_guide_2_png.png';
+  static String get UserGuide3 => 'assets/user_guide_3_png.png';
+  static String get UserGuide4 => 'assets/user_guide_4_png.png';
+  static String get UserGuide5 => 'assets/user_guide_5_png.png';
 }

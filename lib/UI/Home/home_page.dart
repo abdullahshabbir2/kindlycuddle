@@ -27,6 +27,8 @@ import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_page.dart';
 import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
+import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
+import 'package:cuddle_care/UI/User%20Guide/user_guide1_page.dart';
 import 'package:cuddle_care/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,15 +77,7 @@ class _HomePageState extends State<HomePage> {
           cubit: getIt(param1: SessionOptionsInitialParams()));
     } else if (index == 3) {
       cubit.setBottomNavbartoFalse();
-      return UserGuide(
-        heading: 'Modes and Intensities',
-        body:
-            'Customize the intensity of Baby, Stimulation, and Massage modes to suit your comfort. Save these preferences for consistent, personalized sessions.',
-        onTap: () {
-          cubit.moveToUserGuide();
-        },
-        img: ImageConstants.UserGuide1,
-      );
+      return UserGuide1Page(cubit: getIt(param1: UserGuide1InitialParams()));
     } else if (index == 4) {
       return ProfileColumn(cubit: getIt(param1: ProfileInitialParams()));
     } else {
@@ -110,11 +104,8 @@ class _HomePageState extends State<HomePage> {
               bloc: cubit,
               builder: (context, state) {
                 state as HomeState;
-                bool visiblity = true;
                 debugPrint(state.index.toString());
-                if (page == 2) {
-                  visiblity = false;
-                }
+
                 return Visibility(
                   visible: state.showBottomNavbar,
                   child: MyBottomNavigator(

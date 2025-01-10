@@ -3,7 +3,6 @@ import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PumpConnectionCard extends StatelessWidget {
   final dynamic device; // Replace with the actual type of device if known
