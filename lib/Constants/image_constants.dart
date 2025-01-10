@@ -51,6 +51,7 @@ class ImageConstants {
   static String get appMode => 'assets/appMode.svg';
   static String get privacyPolicy => 'assets/privacy.svg';
   static String get pumpIconSmall => 'assets/pump_small_icon.png';
+  static String get finalPump => 'assets/finalPump.png';
 
   static String get UserGuide1 => 'assets/pic1.png';
   static String get UserGuide2 => 'assets/pic1.png';

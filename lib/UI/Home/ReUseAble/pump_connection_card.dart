@@ -3,6 +3,7 @@ import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PumpConnectionCard extends StatelessWidget {
   final dynamic device; // Replace with the actual type of device if known
@@ -29,14 +30,17 @@ class PumpConnectionCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            AssetsImages(
-              path: ImageConstants.connectPump,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0999,
+              child: AssetsImages(
+                path: ImageConstants.finalPump,
+              ),
             ),
             bodyText(
-              device == null ? 'Not Connect' : 'Connected',
-              bodyFontSize: 16,
+              device == null ? 'Not Connected' : 'Connected',
+              bodyFontSize: 12,
               bodyTextFontWeight: FontWeight.w400,
-              bodyTextHeight: 2,
+              bodyTextHeight: 1,
             ),
             StyledButton(
               text: device == null ? 'Connect Pump' : 'Disconnect',
