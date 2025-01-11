@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
-import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal.dart';
+import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_contact.dart';
+import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_help.dart';
+import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_privacy.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/profile_list_item.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/stacked_images.dart';
 import 'package:cuddle_care/UI/Profile/profile_cubit.dart';
@@ -267,7 +269,7 @@ class _ProfileColumnState extends State<ProfileColumn> {
                                     filter: ImageFilter.blur(
                                         sigmaX: 10, sigmaY: 10),
                                     child:
-                                        InfoModal()); // Display the InfoModal
+                                        const InfoModalHelp()); // Display the InfoModal
                               },
                             );
                           },
@@ -275,12 +277,52 @@ class _ProfileColumnState extends State<ProfileColumn> {
                         ProfileListItem(
                           imgPath: ImageConstants.contact,
                           title: 'Contact Us',
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              barrierColor: Colors.transparent,
+                              context: context,
+                              showDragHandle: true,
+                              enableDrag: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(16.0)),
+                              ),
+                              isScrollControlled:
+                                  true, // Allows full-height modal
+                              builder: (BuildContext context) {
+                                return BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 10, sigmaY: 10),
+                                    child:
+                                        const InfoModalContact()); // Display the InfoModal
+                              },
+                            );
+                          },
                         ),
                         ProfileListItem(
                           imgPath: ImageConstants.privacyPolicy,
                           title: 'Privacy Policy',
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              barrierColor: Colors.transparent,
+                              context: context,
+                              showDragHandle: true,
+                              enableDrag: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(16.0)),
+                              ),
+                              isScrollControlled:
+                                  true, // Allows full-height modal
+                              builder: (BuildContext context) {
+                                return BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 10, sigmaY: 10),
+                                    child:
+                                        const InfoModalPrivacy()); // Display the InfoModal
+                              },
+                            );
+                          },
                         ),
                       ],
                     );

@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class InfoModal extends StatelessWidget {
+class InfoModalContact extends StatelessWidget {
+  const InfoModalContact({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
