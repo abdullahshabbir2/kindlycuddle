@@ -75,4 +75,6 @@ void onInit(ProfileInitialParams initialParams) => emit(state.copyWith());
     );
  }
 
+  void setPulseWeight(pulse, weight) {}
+
 }

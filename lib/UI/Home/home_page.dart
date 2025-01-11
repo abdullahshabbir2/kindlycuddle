@@ -95,9 +95,7 @@ class _HomePageState extends State<HomePage> {
               bloc: cubit,
               builder: (context, state) {
                 state as HomeState;
-
                 debugPrint('I am in Home Page BlocBuilder');
-
                 return getWidget(state.index);
               }),
           floatingActionButton: BlocBuilder(
@@ -197,22 +195,6 @@ class _HomeColumnState extends State<HomeColumn> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const ThisWeekData(percentage: 55.42),
-                    //   // width: ,
-                    //   height: MediaQuery.of(context).size.height*(178/812),
-                    //   padding: EdgeInsets.all(16),
-                    //   child: Column(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       PieChartData(lightColor: 55, mainColor: 100-55),
-                    //       SizedBox(
-                    //         height: MediaQuery.of(context).size.height*(24/812),
-                    //       ),
-                    //       showDataWithUnit(55, 'oz'),
-                    //       bodyText('This Week',bodyFontSize: 16)
-                    //     ],
-                    //   ),
-                    // ),
-
                     PumpConnectionCard(
                       device: widget.device,
                       onTap: () {
@@ -447,179 +429,6 @@ class _HomeColumnState extends State<HomeColumn> {
                 }),
           ],
         ),
-
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     // ListTile(
-        //     //   leading: reUseAbleOnlineImage('',height: MediaQuery.of(context).size.height*(48/812) , width: MediaQuery.of(context).size.width*(48/343) ),
-        //     //   title: bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
-        //     //   trailing: bodyText(''),
-        //     // ),
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //         // Image(image: reUseAbleOnlineImage('https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k')),
-        //
-        //
-        //         roundedImage(
-        //             'https://fastly.picsum.photos/id/387/48/48.jpg?hmac=YWsF-uptepsYcyZbDy81__aoanj2NihNRvnNNJ-PSmM'
-        //         ),
-        //
-        //
-        //         Column(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: [
-        //             bodyText('Have a good day!',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400),
-        //             headingText('Olivia Brown',color: const Color(0xFF222222),fontSize: 19),
-        //           ],
-        //         ),
-        //         ReUseAbleSvg(path: ImageConstants.optionButton)
-        //
-        //       ],
-        //     ),
-        //
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //
-        //         const ThisWeekData(percentage: 55.42),
-        //
-        //         // Container(
-        //         //   // width: ,
-        //         //   height: MediaQuery.of(context).size.height*(178/812),
-        //         //   padding: EdgeInsets.all(16),
-        //         //   child: Column(
-        //         //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         //     children: [
-        //         //       PieChartData(lightColor: 55, mainColor: 100-55),
-        //         //       SizedBox(
-        //         //         height: MediaQuery.of(context).size.height*(24/812),
-        //         //       ),
-        //         //       showDataWithUnit(55, 'oz'),
-        //         //       bodyText('This Week',bodyFontSize: 16)
-        //         //     ],
-        //         //   ),
-        //         // ),
-        //
-        //         SizedBox(
-        //           width: MediaQuery.of(context).size.width*(157/375),
-        //           child: Column(
-        //             children: [
-        //               // ReUseAbleSvg(path: ImageConstants.connectPump,
-        //               //   // height: MediaQuery.of(context).size.height*(124/812),
-        //               //   // width: MediaQuery.of(context).size.width*(124/375),
-        //               // ),
-        //               AssetsImages(path: ImageConstants.connectPump,
-        //
-        //               ),
-        //               bodyText(
-        //                   widget.device == null ?
-        //                   'Not Connect' :'Connected',bodyFontSize: 16,bodyTextFontWeight: FontWeight.w400,bodyTextHeight: 1),
-        //               SizedBox(height: MediaQuery.of(context).size.height*(9/812),),
-        //               StyledButton(
-        //                 text:  widget.device == null ? 'Connect Pump' : 'Disconnect',
-        //                 onTap: (){
-        //
-        //
-        //
-        //                   Navigator.push(
-        //                       context,
-        //                       MaterialPageRoute(builder: (context) => SearchingDevicesPage(cubit: getIt(param1: SearchingDevicesInitialParams())))
-        //                   );
-        //                 },
-        //                 backgroundColor: const Color(0xFFB2CBF2),
-        //                 textColor: Colors.white,
-        //                 height: MediaQuery.of(context).size.height*(33/812),
-        //                 width: MediaQuery.of(context).size.width*(137/375),
-        //               )
-        //             ],
-        //           ),
-        //         ),
-        //
-        //       ],
-        //     ),
-        //     // SizedBox(height: MediaQuery.of(context).size.height*(20/812),),
-        //     Container(
-        //       height: MediaQuery.of(context).size.height*(98/812),
-        //       padding: const EdgeInsets.all(16),
-        //       child: Row(
-        //         children: [
-        //           Column(
-        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               bodyText('Best Day of the week',bodyFontSize: 16,bodyTextFontWeight: FontWeight.w400),
-        //               showDataWithUnit(33.19, 'oz')
-        //             ],
-        //           ),
-        //           Column(
-        //             crossAxisAlignment: CrossAxisAlignment.end,
-        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //             children: [
-        //               ReUseAbleSvg(path: ImageConstants.drop),
-        //               bodyText('Thursday, 25 July',bodyFontSize: 14,bodyTextFontWeight: FontWeight.w400)
-        //             ],
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //
-        //     SizedBox(height: MediaQuery.of(context).size.height*(20/812),),
-        //
-        //     Stack(
-        //       children: [
-        //         ReUseAbleSvg(path: ImageConstants.pulseWeightBar),
-        //         Row(
-        //           children: [
-        //             showDataWithIcons(78, 'BPM', 'Pulse', ImageConstants.pulseIcon, context),
-        //             showDataWithIcons(64, 'Kg', 'Weight', ImageConstants.weight, context),
-        //           ],
-        //         ),
-        //         Positioned(
-        //             top: 0,
-        //             right: 0,
-        //             child: AssetsImages(path: ImageConstants.editPulse,
-        //               height: MediaQuery.of(context).size.height * (48/812),
-        //               width: MediaQuery.of(context).size.width * (48/375),
-        //             )
-        //         )
-        //       ],
-        //     ),
-        //
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //         headingText('Recent Sessions',fontSize: 22),
-        //         bodyText('Show all',bodyFontSize: 14)
-        //       ],
-        //     ),
-        //
-        //     bodyText('This Week',bodyFontSize: 14, bodyTextFontWeight: FontWeight.w400),
-        //
-        //     Expanded(
-        //       child: ListView.builder(
-        //         // physics: ScrollPhysics(),
-        //         // shrinkWrap: true,
-        //           itemCount:18,
-        //           itemBuilder: (context,index){
-        //             return ListTile(
-        //               leading: ReUseAbleSvg(path: ImageConstants.dropBackgorund),
-        //               title: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.start,
-        //                 children: [
-        //                   bodyText('Thursday at 8:00 AM',bodyFontSize: 14),
-        //                   bodyText('35 min')
-        //                 ],
-        //               ),
-        //               trailing: lightBlueText('${33} oz'),
-        //             );
-        //           }),
-        //     ),
-        //
-        //
-        //   ],
-        // ),
       ),
     );
   }

@@ -7,14 +7,19 @@ class ProfileListItem extends StatefulWidget {
   final String imgPath;
   final String title;
   final Widget? trailing;
-  const ProfileListItem({super.key, required this.imgPath , required this.title , this.trailing });
+  final VoidCallback onTap;
+  const ProfileListItem(
+      {super.key,
+      required this.imgPath,
+      required this.title,
+      this.trailing,
+      required this.onTap});
 
   @override
   State<ProfileListItem> createState() => _ProfileListItemState();
 }
 
 class _ProfileListItemState extends State<ProfileListItem> {
-
   ReSizeAbleSize size = ReSizeAbleSize();
 
   @override
@@ -23,6 +28,7 @@ class _ProfileListItemState extends State<ProfileListItem> {
       height: size.getResizeAbleHeight(58, 812, context),
       width: size.getResizeAbleWidth(335, 375, context),
       child: ListTile(
+        onTap: widget.onTap,
         leading: ReUseAbleSvg(path: widget.imgPath),
         title: Row(
           children: [
