@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       cubit.setBottomNavbartoFalse();
       return UserGuide1Page(cubit: getIt(param1: UserGuide1InitialParams()));
     } else if (index == 4) {
-      return ProfileColumn(cubit: getIt(param1: ProfileInitialParams()));
+      return ProfilePage(cubit: getIt(param1: ProfileInitialParams()));
     } else {
       return HomeColumn(cubit: cubit, device: widget.device);
     }

@@ -67,6 +67,7 @@ import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_navigator.dart';
+import 'package:cuddle_care/theme_notifier.dart';
 // import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_cubit.dart';
 // import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_initial_params.dart';
 // import 'package:cuddle_care/UI/User%20Guide/User%20Guide%202/user_guide2_navigator.dart';
@@ -84,6 +85,7 @@ import 'package:get_it/get_it.dart';
 // import 'UI/User Guide/User Guide 5/user_guide5_cubit.dart';
 // import 'UI/User Guide/User Guide 5/user_guide5_initial_params.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -236,7 +238,12 @@ void main() async {
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeNotifier(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 Future<void> requestPermissions() async {
@@ -270,43 +277,45 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      builder: (context, child) {
-        final mediaQueryData = MediaQuery.of(context);
-        final scale = mediaQueryData.textScaler
-            .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3);
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaler: scale),
-          child: child!,
-        );
-      },
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        fontFamily: FontFamilyConstants.fontFamilyConstant,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: SplashPage(cubit: getIt(param1: SplashInitialParams())),
-      routes: {
-        '/home': (context) =>
-            HomePage(cubit: getIt(param1: HomeInitialParams())),
-      },
-    );
+    return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
+      return MaterialApp(
+        title: 'Flutter Demo',
+        builder: (context, child) {
+          final mediaQueryData = MediaQuery.of(context);
+          final scale = mediaQueryData.textScaler
+              .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3);
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaler: scale),
+            child: child!,
+          );
+        },
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // TRY THIS: Try running your application with "flutter run". You'll see
+          // the application has a purple toolbar. Then, without quitting the app,
+          // try changing the seedColor in the colorScheme below to Colors.green
+          // and then invoke "hot reload" (save your changes or press the "hot
+          // reload" button in a Flutter-supported IDE, or press "r" if you used
+          // the command line to start the app).
+          //
+          // Notice that the counter didn't reset back to zero; the application
+          // state is not lost during the reload. To reset the state, use hot
+          // restart instead.
+          //
+          // This works for code too, not just values: Most code changes can be
+          // tested with just a hot reload.
+          fontFamily: FontFamilyConstants.fontFamilyConstant,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: SplashPage(cubit: getIt(param1: SplashInitialParams())),
+        routes: {
+          '/home': (context) =>
+              HomePage(cubit: getIt(param1: HomeInitialParams())),
+        },
+      );
+    });
   }
 }
 //

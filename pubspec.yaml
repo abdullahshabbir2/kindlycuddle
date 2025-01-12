@@ -61,7 +61,8 @@ dependencies:
   bloc: any
   http: any
   firebase_storage: ^11.6.9
-  shared_preferences:
+  shared_preferences: ^2.0.15
+  provider: ^6.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
