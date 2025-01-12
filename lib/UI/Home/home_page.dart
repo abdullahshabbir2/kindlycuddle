@@ -148,7 +148,7 @@ class _HomeColumnState extends State<HomeColumn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(239, 250, 252, 1),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Stack(
