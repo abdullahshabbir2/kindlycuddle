@@ -144,9 +144,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   imgPath: ImageConstants.appMode,
                                   title: 'App Mode',
                                   trailing: bodyText(
-                                    themeNotifier.themeMode == ThemeMode.dark
-                                        ? 'Dark'
-                                        : 'Light',
+                                    themeNotifier.isDarkMode ? 'Dark' : 'Light',
                                   ),
                                   onTap: () {
                                     // Avoid calling setState directly here.

@@ -7,6 +7,8 @@ class ThemeNotifier extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
   bool _isDarkMode = false;
   final String _key = 'themeMode';
+  final String _darkmode = 'darkmode';
+  final String _themeDataText = 'themeData';
 
   ThemeNotifier() {
     _loadThemeFromPrefs();
@@ -23,12 +25,15 @@ class ThemeNotifier extends ChangeNotifier {
         _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(_key, _themeMode == ThemeMode.dark);
+    prefs.setBool(_darkmode, _isDarkMode);
+    prefs.setBool(_themeDataText, _themeData == lightMode ? false : true);
     notifyListeners();
   }
 
   Future<void> _loadThemeFromPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isDarkMode = prefs.getBool(_key) ?? false;
+    _isDarkMode = prefs.getBool(_darkmode) ?? false;
+    _themeData = prefs.getBool(_themeDataText) == false ? lightMode : darkMode;
     print("isDarkMode: $_isDarkMode");
     _themeMode = _isDarkMode ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();

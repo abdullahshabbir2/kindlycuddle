@@ -30,9 +30,11 @@ class ImageConstants {
   static String get connectPump => 'assets/connectpump.png';
   static String get drop => 'assets/drop.svg';
   static String get pulseWeightBar => 'assets/pulseWeightBar.svg';
+  static String get pulseWeightBarDark => 'assets/pulseWeightBarDark.svg';
   static String get pulseWeightBarUpdated => 'assets/pulseWeightBarUpdated.png';
   static String get editPulse => 'assets/editPulse.png';
   static String get editPulseSvg => 'assets/editPulse.svg';
+  static String get editPulseSvgDark => 'assets/editPulseDark.svg';
   static String get pulseIcon => 'assets/pulseIcon.png';
   static String get weight => 'assets/weight.png';
   static String get dropBackgorund => 'assets/dropBackground.svg';

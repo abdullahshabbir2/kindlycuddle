@@ -30,6 +30,7 @@ import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_page.dart';
 import 'package:cuddle_care/main.dart';
+import 'package:cuddle_care/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -137,16 +138,22 @@ class HomeColumn extends StatefulWidget {
 }
 
 class _HomeColumnState extends State<HomeColumn> {
+  final ThemeNotifier _themeNotifier = ThemeNotifier();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
     widget.cubit.getPulseWeight();
   }
 
   @override
   Widget build(BuildContext context) {
+    final String imagePath = _themeNotifier.isDarkMode
+        ? ImageConstants.pulseWeightBarDark
+        : ImageConstants.pulseWeightBar;
+    bool isDarkMode = _themeNotifier.isDarkMode;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
@@ -307,14 +314,16 @@ class _HomeColumnState extends State<HomeColumn> {
                   child: Stack(
                     children: [
                       Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Colors
                               .transparent, // Set to transparent to only show the shadow
                           boxShadow: [
                             BoxShadow(
-                              color: Color.fromRGBO(208, 226, 246,
-                                  1), // Shadow color with opacity
-                              offset: Offset(0,
+                              color: isDarkMode
+                                  ? Colors.transparent
+                                  : const Color.fromRGBO(208, 226, 246,
+                                      1), // Shadow color with opacity
+                              offset: const Offset(0,
                                   16), // Horizontal: 0, Vertical: 4 (bottom shadow)
                               blurRadius: 20, // Blur radius for the shadow
                               spreadRadius: -15, // Spread radius for the shadow
@@ -322,9 +331,7 @@ class _HomeColumnState extends State<HomeColumn> {
                           ],
                         ),
                         child: Transform.scale(
-                            scaleX: 1.1,
-                            child: ReUseAbleSvg(
-                                path: ImageConstants.pulseWeightBar)),
+                            scaleX: 1.1, child: ReUseAbleSvg(path: imagePath)),
                       ),
                       BlocBuilder(
                           bloc: widget.cubit,
@@ -353,7 +360,9 @@ class _HomeColumnState extends State<HomeColumn> {
                             child: Transform.scale(
                               scale: 0.8,
                               child: SvgPicture.asset(
-                                ImageConstants.editPulseSvg,
+                                isDarkMode
+                                    ? ImageConstants.editPulseSvgDark
+                                    : ImageConstants.editPulseSvg,
                                 height:
                                     MediaQuery.of(context).size.height * 0.04,
                                 width: MediaQuery.of(context).size.width * 0.04,
