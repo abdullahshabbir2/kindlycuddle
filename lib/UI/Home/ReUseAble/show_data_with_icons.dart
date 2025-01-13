@@ -3,7 +3,8 @@ import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:flutter/cupertino.dart';
 
-Widget showDataWithIcons(double data, String unit,String name , String icon,BuildContext context){
+Widget showDataWithIcons(
+    double data, String unit, String name, String icon, BuildContext context) {
   return Container(
     // width: MediaQuery.of(context).size.width*(70/375),
     padding: const EdgeInsets.all(20),
@@ -13,13 +14,14 @@ Widget showDataWithIcons(double data, String unit,String name , String icon,Buil
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            bodyText(name,bodyFontSize: 16),
-            SizedBox(width:MediaQuery.of(context).size.width*(8/375),),
+            bodyText(name, bodyFontSize: 16),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * (8 / 375),
+            ),
             AssetsImages(path: icon),
-
           ],
         ),
-        showDataWithUnit(data, unit),
+        showDataWithUnit(context, data, unit),
       ],
     ),
   );

@@ -194,7 +194,7 @@ class _HomeColumnState extends State<HomeColumn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const ThisWeekData(percentage: 55.42),
+                    const ThisWeekData(percentage: 60.42),
                     PumpConnectionCard(
                       device: widget.device,
                       onTap: () {
@@ -260,20 +260,25 @@ class _HomeColumnState extends State<HomeColumn> {
                             ],
                           ),
                           BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    bodyText('Best Day of the week',
-                                        bodyFontSize: 16,
-                                        bodyTextFontWeight: FontWeight.w400),
-                                    showDataWithUnit(33.19, 'oz')
-                                  ],
+                                BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                      sigmaX: 10.0, sigmaY: 10.0),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      bodyText('Best Day of the week',
+                                          bodyFontSize: 16,
+                                          bodyTextFontWeight: FontWeight.w400),
+                                      showDataWithUnit(context, 33.19, 'oz')
+                                    ],
+                                  ),
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,

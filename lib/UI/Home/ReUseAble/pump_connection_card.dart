@@ -21,7 +21,7 @@ class PumpConnectionCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.42,
       height: MediaQuery.of(context).size.height * 0.20,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 255, 255, 0.6),
+        color: Theme.of(context).colorScheme.onSurface,
         borderRadius: BorderRadius.circular(20.0), // Optional: Rounded corners
       ),
       child: Padding(
