@@ -34,6 +34,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import '../../theme/theme_notifier.dart';
 import 'home_cubit.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -134,8 +135,6 @@ class HomeColumn extends StatefulWidget {
 }
 
 class _HomeColumnState extends State<HomeColumn> {
-  final ThemeNotifier _themeNotifier = ThemeNotifier();
-
   @override
   void initState() {
     // TODO: implement initState
@@ -145,6 +144,8 @@ class _HomeColumnState extends State<HomeColumn> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
+    ThemeNotifier _themeNotifier = Provider.of<ThemeNotifier>(context);
     final String imagePath = _themeNotifier.isDarkMode
         ? ImageConstants.pulseWeightBarDark
         : ImageConstants.pulseWeightBar;
@@ -183,8 +184,10 @@ class _HomeColumnState extends State<HomeColumn> {
                             bloc: widget.cubit,
                             builder: (context, state) {
                               state as HomeState;
-                              return headingText(state.profile.name ?? '',
-                                  color: const Color(0xFF222222), fontSize: 19);
+                              return headingText(state.profile.name ?? 'Hello',
+                                  color:
+                                      const Color.fromARGB(255, 230, 230, 230),
+                                  fontSize: 19);
                             }),
                       ],
                     ),

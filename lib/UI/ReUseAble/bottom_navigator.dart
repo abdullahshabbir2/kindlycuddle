@@ -1,7 +1,9 @@
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
+import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class MyBottomNavigator extends StatefulWidget {
   final int index;
@@ -16,6 +18,10 @@ class MyBottomNavigator extends StatefulWidget {
 class _MyBottomNavigatorState extends State<MyBottomNavigator> {
   @override
   Widget build(BuildContext context) {
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
+    final String imagePath = themeNotifier.isDarkMode
+        ? ImageConstants.bottomRectangleDark
+        : ImageConstants.bottomRectangle;
     return Visibility(
       visible: widget.index != 2,
       child: Stack(
@@ -24,7 +30,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
             height: MediaQuery.of(context).size.height * (90 / 712),
             width: MediaQuery.of(context).size.width * (343 / 375),
             child: SvgPicture.asset(
-              ImageConstants.bottomRectangle,
+              imagePath,
               width: MediaQuery.of(context).size.width * (343 / 375),
               height: MediaQuery.of(context).size.height * (102 / 512),
             ),

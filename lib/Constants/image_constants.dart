@@ -18,6 +18,7 @@ class ImageConstants {
   static String get rectangleGreen => 'assets/rectangle6.svg';
   static String get bluetoothGreen => 'assets/bluetoothBlue.svg';
   static String get bottomRectangle => 'assets/bottomRectangle.svg';
+  static String get bottomRectangleDark => 'assets/bottomRectangleDark.svg';
   static String get home2 => 'assets/home2.svg';
   static String get home_2 => 'assets/home-2.svg';
   static String get pieChart2 => 'assets/pieChart02.svg';

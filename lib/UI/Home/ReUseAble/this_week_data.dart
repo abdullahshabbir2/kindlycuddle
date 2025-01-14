@@ -29,9 +29,6 @@ class ThisWeekData extends StatelessWidget {
               light: Theme.of(context).colorScheme.secondary,
               main: Theme.of(context).colorScheme.onPrimary,
             ),
-            // SizedBox(
-            //   height: MediaQuery.of(context).size.height*(12/812),
-            // ),
             showDataWithUnit(context, percentage, 'oz'),
             bodyText('This Week',
                 bodyFontSize: 16,
