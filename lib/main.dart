@@ -67,7 +67,7 @@ import 'package:cuddle_care/UI/Stats/stats_navigator.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_navigator.dart';
-import 'package:cuddle_care/theme_notifier.dart';
+import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

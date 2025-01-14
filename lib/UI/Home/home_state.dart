@@ -28,7 +28,7 @@ class HomeState {
         pulse: 0,
         weight: 0,
         showBottomNavbar: true,
-        profile: ProfileDomain.empty()
+        profile: const ProfileDomain.empty()
   );
 
 

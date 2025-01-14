@@ -30,11 +30,11 @@ import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_page.dart';
 import 'package:cuddle_care/main.dart';
-import 'package:cuddle_care/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../theme/theme_notifier.dart';
 import 'home_cubit.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
@@ -111,10 +111,6 @@ class _HomePageState extends State<HomePage> {
                     index: state.index,
                     onTap: (index) {
                       cubit.setIndex(index);
-                      // page = state.index;
-                      // setState(() {
-                      //   page = index;
-                      // });
                     },
                   ),
                 );
@@ -192,7 +188,10 @@ class _HomeColumnState extends State<HomeColumn> {
                             }),
                       ],
                     ),
-                    ReUseAbleSvg(path: ImageConstants.optionButton)
+                    ReUseAbleSvg(
+                        path: isDarkMode
+                            ? ImageConstants.optionButtonDark
+                            : ImageConstants.optionButton)
                   ],
                 ),
                 const SizedBox(
@@ -241,30 +240,40 @@ class _HomeColumnState extends State<HomeColumn> {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Stack(children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                width: 100.0, // Set width of the circle
-                                height: 100.0, // Set height of the circle
-                                decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(
-                                      178, 203, 242, 1), // Background color
-                                  shape: BoxShape
-                                      .circle, // Makes the container a circle
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                              color: Colors.transparent,
+                              width: 2,
+                            )),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 50.0, // Set width of the circle
+                                  height: 50.0, // Set height of the circle
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary, // Background color
+                                    shape: BoxShape
+                                        .circle, // Makes the container a circle
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                width: 100.0, // Set width of the circle
-                                height: 100.0, // Set height of the circle
-                                decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(
-                                      178, 203, 242, 1), // Background color
-                                  shape: BoxShape
-                                      .circle, // Makes the container a circle
+                                Container(
+                                  width: 50.0, // Set width of the circle
+                                  height: 50.0, // Set height of the circle
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary, // Background color
+                                    shape: BoxShape
+                                        .circle, // Makes the container a circle
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),

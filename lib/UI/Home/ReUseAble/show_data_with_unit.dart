@@ -18,7 +18,7 @@ Widget showDataWithUnit(
       headingText(
         data.toString(),
         fontSize: headingFontSize ?? 28,
-        color: Theme.of(context).colorScheme.primary, // Dynamic color
+        // Dynamic color
       ),
       bodyText(
         unit,

@@ -27,6 +27,7 @@ class ImageConstants {
   static String get setting => 'assets/setting2.svg';
   static String get setting_1 => 'assets/setting-2.svg';
   static String get optionButton => 'assets/btn.svg';
+  static String get optionButtonDark => 'assets/btnDark.svg';
   static String get connectPump => 'assets/connectpump.png';
   static String get drop => 'assets/drop.svg';
   static String get pulseWeightBar => 'assets/pulseWeightBar.svg';
@@ -47,11 +48,17 @@ class ImageConstants {
   static String get editIcon => 'assets/editIcon.svg';
 
   static String get volume => 'assets/volume.svg';
+  static String get volumeDark => 'assets/volumeDark.svg';
   static String get support => 'assets/support.svg';
+  static String get supportDark => 'assets/supportDark.svg';
   static String get notification => 'assets/notification.svg';
+  static String get notificationDark => 'assets/notificationDark.svg';
   static String get contact => 'assets/contact.svg';
+  static String get contactDark => 'assets/contactDark.svg';
   static String get appMode => 'assets/appMode.svg';
+  static String get appModeDark => 'assets/appModeDark.svg';
   static String get privacyPolicy => 'assets/privacy.svg';
+  static String get privacyPolicyDark => 'assets/privacyDark.svg';
   static String get pumpIconSmall => 'assets/pump_small_icon.png';
   static String get finalPump => 'assets/finalPump.png';
 

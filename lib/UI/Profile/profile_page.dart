@@ -14,7 +14,7 @@ import 'package:cuddle_care/UI/ReUseAble/get_resizeable_size.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
-import 'package:cuddle_care/theme_notifier.dart';
+import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -118,13 +118,17 @@ class _ProfilePageState extends State<ProfilePage> {
                               physics: const NeverScrollableScrollPhysics(),
                               children: [
                                 ProfileListItem(
-                                  imgPath: ImageConstants.volume,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.volumeDark
+                                      : ImageConstants.volume,
                                   title: 'Volume Unit',
                                   trailing: bodyText('Oz'),
                                   onTap: () {},
                                 ),
                                 ProfileListItem(
-                                  imgPath: ImageConstants.notification,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.notificationDark
+                                      : ImageConstants.notification,
                                   title: 'Reminder Notifications',
                                   trailing: SizedBox(
                                     height: size.getResizeAbleHeight(
@@ -141,7 +145,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   onTap: () {},
                                 ),
                                 ProfileListItem(
-                                  imgPath: ImageConstants.appMode,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.appModeDark
+                                      : ImageConstants.appMode,
                                   title: 'App Mode',
                                   trailing: bodyText(
                                     themeNotifier.isDarkMode ? 'Dark' : 'Light',
@@ -152,7 +158,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   },
                                 ),
                                 ProfileListItem(
-                                  imgPath: ImageConstants.support,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.supportDark
+                                      : ImageConstants.support,
                                   title: 'Help and Support',
                                   onTap: () {
                                     showModalBottomSheet(
@@ -177,7 +185,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   },
                                 ),
                                 ProfileListItem(
-                                  imgPath: ImageConstants.contact,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.contactDark
+                                      : ImageConstants.contact,
                                   title: 'Contact Us',
                                   onTap: () {
                                     showModalBottomSheet(
@@ -202,7 +212,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   },
                                 ),
                                 ProfileListItem(
-                                  imgPath: ImageConstants.privacyPolicy,
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.privacyPolicyDark
+                                      : ImageConstants.privacyPolicy,
                                   title: 'Privacy Policy',
                                   onTap: () {
                                     showModalBottomSheet(

@@ -34,7 +34,10 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void setIndex(int index) {
-    emit(state.copyWith(index: index));
+    print("setIndex called with index: $index");
+    if (state.index != index) {
+      emit(state.copyWith(index: index));
+    }
   }
 
   void moveToSessionOptions() {

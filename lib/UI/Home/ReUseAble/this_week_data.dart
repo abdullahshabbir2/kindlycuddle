@@ -23,7 +23,12 @@ class ThisWeekData extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            PieChartData(lightColor: 100 - percentage, mainColor: percentage),
+            PieChartData(
+              lightColor: 100 - percentage,
+              mainColor: percentage,
+              light: Theme.of(context).colorScheme.secondary,
+              main: Theme.of(context).colorScheme.onPrimary,
+            ),
             // SizedBox(
             //   height: MediaQuery.of(context).size.height*(12/812),
             // ),

@@ -44,7 +44,7 @@ class PumpConnectionCard extends StatelessWidget {
             StyledButton(
               text: device == null ? 'Connect Pump' : 'Disconnect',
               onTap: onTap,
-              backgroundColor: const Color(0xFFB2CBF2),
+              backgroundColor: Theme.of(context).colorScheme.onPrimary,
               textColor: Colors.white,
               height: MediaQuery.of(context).size.height * (33 / 712),
               width: MediaQuery.of(context).size.width * (137 / 375),
