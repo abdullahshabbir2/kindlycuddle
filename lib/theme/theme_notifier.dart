@@ -26,15 +26,15 @@ class ThemeNotifier extends ChangeNotifier {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(_key, _themeMode == ThemeMode.dark);
     prefs.setBool(_darkmode, _isDarkMode);
-    prefs.setBool(_themeDataText, _themeData == lightMode ? false : true);
+    prefs.setBool(_themeDataText, _themeData == darkMode);
     notifyListeners();
   }
 
   Future<void> _loadThemeFromPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _isDarkMode = prefs.getBool(_darkmode) ?? false;
-    _themeData = prefs.getBool(_themeDataText) == false ? lightMode : darkMode;
-    print("isDarkMode: $_isDarkMode");
+    _isDarkMode =
+        prefs.getBool(_darkmode) ?? false; // Default to false (light mode)
+    _themeData = _isDarkMode ? darkMode : lightMode; // Default to light mode
     _themeMode = _isDarkMode ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }

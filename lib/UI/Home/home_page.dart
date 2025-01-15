@@ -402,33 +402,43 @@ class _HomeColumnState extends State<HomeColumn> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: 18,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 255, 255, 0.8),
-                            borderRadius: BorderRadius.circular(
-                                12), // Optional: Rounded corners
-                          ),
-                          child: ListTile(
-                            leading: ReUseAbleSvg(
-                                path: ImageConstants.dropBackgorund),
-                            title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                bodyText('Thursday at 8:00 AM',
-                                    bodyFontSize: 14),
-                                bodyText('35 min'),
-                              ],
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft:
+                          Radius.circular(20), // Rounded bottom-left corner
+                      bottomRight:
+                          Radius.circular(20), // Rounded bottom-right corner
+                    ),
+                    child: ListView.builder(
+                      itemCount: 18,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              borderRadius: BorderRadius.circular(
+                                  12), // Optional: Rounded corners
                             ),
-                            trailing: lightBlueText('${33} oz'),
+                            child: ListTile(
+                              leading: ReUseAbleSvg(
+                                  path: isDarkMode
+                                      ? ImageConstants.dropBackgorundDark
+                                      : ImageConstants.dropBackgorund),
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  bodyText('Thursday at 8:00 AM',
+                                      bodyFontSize: 14),
+                                  bodyText('35 min'),
+                                ],
+                              ),
+                              trailing: lightBlueText('${33} oz'),
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

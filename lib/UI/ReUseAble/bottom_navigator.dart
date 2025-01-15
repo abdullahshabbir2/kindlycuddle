@@ -27,31 +27,32 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
       child: Stack(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * (90 / 712),
+            height: MediaQuery.of(context).size.height * (90 / 785),
             width: MediaQuery.of(context).size.width * (343 / 375),
             child: SvgPicture.asset(
               imagePath,
-              width: MediaQuery.of(context).size.width * (343 / 375),
-              height: MediaQuery.of(context).size.height * (102 / 512),
             ),
           ),
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * (90 / 812),
             width: MediaQuery.of(context).size.width * (343 / 375),
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MyNavBarItem(
                     path: widget.index == 0
-                        ? ImageConstants.home_2
+                        ? (themeNotifier.isDarkMode
+                            ? ImageConstants.home_2Dark
+                            : ImageConstants.home_2)
                         : ImageConstants.home2,
                     onTap: () {
                       widget.onTap(0);
                     }),
                 MyNavBarItem(
                     path: widget.index == 1
-                        ? ImageConstants.pieChart_1
+                        ? (themeNotifier.isDarkMode
+                            ? ImageConstants.pieChart_1Dark
+                            : ImageConstants.pieChart_1)
                         : ImageConstants.pieChart2,
                     onTap: () {
                       widget.onTap(1);
@@ -61,7 +62,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
                     widget.onTap(2);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 2),
                     child: Column(
                       children: [
                         SizedBox(
@@ -69,7 +70,9 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
                               MediaQuery.of(context).size.height * ((10) / 812),
                         ),
                         ReUseAbleSvg(
-                          path: ImageConstants.pumpIcon,
+                          path: (themeNotifier.isDarkMode
+                              ? ImageConstants.pumpIconDark
+                              : ImageConstants.pumpIcon),
                           height: 56,
                           width: 56,
                         ),
@@ -84,7 +87,9 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
                     }),
                 MyNavBarItem(
                     path: widget.index == 4
-                        ? ImageConstants.setting_1
+                        ? (themeNotifier.isDarkMode
+                            ? ImageConstants.setting_1Dark
+                            : ImageConstants.setting_1)
                         : ImageConstants.setting,
                     onTap: () {
                       widget.onTap(4);
@@ -123,7 +128,7 @@ class MyNavBarItem extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height *
-                ((sizedboxHeight ?? 44) / 812),
+                ((sizedboxHeight ?? 44) / 1012),
           ),
           ReUseAbleSvg(
             path: path,

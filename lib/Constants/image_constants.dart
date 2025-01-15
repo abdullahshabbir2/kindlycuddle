@@ -21,12 +21,16 @@ class ImageConstants {
   static String get bottomRectangleDark => 'assets/bottomRectangleDark.svg';
   static String get home2 => 'assets/home2.svg';
   static String get home_2 => 'assets/home-2.svg';
+  static String get home_2Dark => 'assets/home-2Dark.svg';
   static String get pieChart2 => 'assets/pieChart02.svg';
   static String get pieChart_1 => 'assets/pieChart-2.svg';
+  static String get pieChart_1Dark => 'assets/pieChart-2Dark.svg';
   static String get pumpIcon => 'assets/pumpIcon.svg';
+  static String get pumpIconDark => 'assets/pumpIconDark.svg';
   static String get book2 => 'assets/book2.svg';
   static String get setting => 'assets/setting2.svg';
   static String get setting_1 => 'assets/setting-2.svg';
+  static String get setting_1Dark => 'assets/setting-2Dark.svg';
   static String get optionButton => 'assets/btn.svg';
   static String get optionButtonDark => 'assets/btnDark.svg';
   static String get connectPump => 'assets/connectpump.png';
@@ -40,6 +44,7 @@ class ImageConstants {
   static String get pulseIcon => 'assets/pulseIcon.png';
   static String get weight => 'assets/weight.png';
   static String get dropBackgorund => 'assets/dropBackground.svg';
+  static String get dropBackgorundDark => 'assets/dropBackgroundDark.svg';
   static String get dropWhite => 'assets/dropWhite.svg';
   static String get pump => 'assets/pump.svg';
   static String get startOptions => 'assets/startOptions.svg';
