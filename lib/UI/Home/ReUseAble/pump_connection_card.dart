@@ -35,12 +35,11 @@ class PumpConnectionCard extends StatelessWidget {
                 path: ImageConstants.finalPump,
               ),
             ),
-            bodyText(
-              device == null ? 'Not Connected' : 'Connected',
-              bodyFontSize: 12,
-              bodyTextFontWeight: FontWeight.w400,
-              bodyTextHeight: 1,
-            ),
+            bodyText(device == null ? 'Not Connected' : 'Connected',
+                bodyFontSize: 12,
+                bodyTextFontWeight: FontWeight.w400,
+                bodyTextHeight: 1,
+                bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed),
             StyledButton(
               text: device == null ? 'Connect Pump' : 'Disconnect',
               onTap: onTap,

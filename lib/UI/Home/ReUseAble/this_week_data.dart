@@ -32,7 +32,7 @@ class ThisWeekData extends StatelessWidget {
             showDataWithUnit(context, percentage, 'oz'),
             bodyText('This Week',
                 bodyFontSize: 16,
-                bodyTextColor: Theme.of(context).colorScheme.onSurface)
+                bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed)
           ],
         ),
       ),

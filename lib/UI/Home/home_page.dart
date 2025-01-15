@@ -5,7 +5,9 @@ import 'package:cuddle_care/Service/Firebase/firebase_notification_service.dart'
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_page.dart';
 import 'package:cuddle_care/UI/Home/Home_initial_params.dart';
+import 'package:cuddle_care/UI/Home/ReUseAble/blurred_row.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/input_screen.dart';
+import 'package:cuddle_care/UI/Home/ReUseAble/list_data.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/pump_connection_card.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_icons.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
@@ -278,40 +280,11 @@ class _HomeColumnState extends State<HomeColumn> {
                               ],
                             ),
                           ),
-                          BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                      sigmaX: 10.0, sigmaY: 10.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      bodyText('Best Day of the week',
-                                          bodyFontSize: 16,
-                                          bodyTextFontWeight: FontWeight.w400),
-                                      showDataWithUnit(context, 33.19, 'oz')
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    ReUseAbleSvg(path: ImageConstants.drop),
-                                    bodyText('Thursday, 25 July',
-                                        bodyFontSize: 14,
-                                        bodyTextFontWeight: FontWeight.w400)
-                                  ],
-                                ),
-                              ],
-                            ),
+                          const BlurredRow(
+                            title: 'Best Day of the week',
+                            value: 33.19,
+                            unit: 'oz',
+                            date: 'Thursday, 25 July',
                           ),
                         ]),
                       ),
@@ -389,7 +362,9 @@ class _HomeColumnState extends State<HomeColumn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    headingText('Recent Sessions', fontSize: 22),
+                    headingText('Recent Sessions',
+                        fontSize: 22,
+                        color: Theme.of(context).colorScheme.primary),
                     bodyText('Show all', bodyFontSize: 14)
                   ],
                 ),
@@ -401,46 +376,10 @@ class _HomeColumnState extends State<HomeColumn> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft:
-                          Radius.circular(20), // Rounded bottom-left corner
-                      bottomRight:
-                          Radius.circular(20), // Rounded bottom-right corner
-                    ),
-                    child: ListView.builder(
-                      itemCount: 18,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              borderRadius: BorderRadius.circular(
-                                  12), // Optional: Rounded corners
-                            ),
-                            child: ListTile(
-                              leading: ReUseAbleSvg(
-                                  path: isDarkMode
-                                      ? ImageConstants.dropBackgorundDark
-                                      : ImageConstants.dropBackgorund),
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  bodyText('Thursday at 8:00 AM',
-                                      bodyFontSize: 14),
-                                  bodyText('35 min'),
-                                ],
-                              ),
-                              trailing: lightBlueText('${33} oz'),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                BlurredListView(
+                  itemCount: 18,
+                  isDarkMode: Theme.of(context).brightness == Brightness.dark,
+                )
               ],
             ),
             BlocBuilder(

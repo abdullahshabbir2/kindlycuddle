@@ -35,6 +35,7 @@ class ImageConstants {
   static String get optionButtonDark => 'assets/btnDark.svg';
   static String get connectPump => 'assets/connectpump.png';
   static String get drop => 'assets/drop.svg';
+  static String get dropDark => 'assets/dropDark.svg';
   static String get pulseWeightBar => 'assets/pulseWeightBar.svg';
   static String get pulseWeightBarDark => 'assets/pulseWeightBarDark.svg';
   static String get pulseWeightBarUpdated => 'assets/pulseWeightBarUpdated.png';

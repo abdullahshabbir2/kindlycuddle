@@ -2,6 +2,7 @@ import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 Widget showDataWithIcons(
     double data, String unit, String name, String icon, BuildContext context) {
@@ -14,7 +15,9 @@ Widget showDataWithIcons(
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            bodyText(name, bodyFontSize: 16),
+            bodyText(name,
+                bodyFontSize: 16,
+                bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed),
             SizedBox(
               width: MediaQuery.of(context).size.width * (8 / 375),
             ),

@@ -15,17 +15,16 @@ Widget showDataWithUnit(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
-      headingText(
-        data.toString(),
-        fontSize: headingFontSize ?? 28,
-        // Dynamic color
-      ),
-      bodyText(
-        unit,
-        bodyFontSize: bodyFontSize ?? 14,
-        bodyTextFontWeight: bodyFontWeight ?? FontWeight.w400,
-        bodyTextHeight: 1,
-      ),
+      headingText(data.toString(),
+          fontSize: headingFontSize ?? 28,
+          color: Theme.of(context).colorScheme.primary
+          // Dynamic color
+          ),
+      bodyText(unit,
+          bodyFontSize: bodyFontSize ?? 14,
+          bodyTextFontWeight: bodyFontWeight ?? FontWeight.w400,
+          bodyTextHeight: 1,
+          bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed),
     ],
   );
 }
