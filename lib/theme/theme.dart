@@ -13,6 +13,7 @@ ThemeData lightMode = ThemeData(
     //
     onPrimary: Color.fromRGBO(171, 230, 237, 1),
     secondary: Color.fromRGBO(171, 230, 237, 0.5),
+    onSecondary: Color.fromRGBO(208, 226, 246, 1),
   ),
 );
 
@@ -28,4 +29,5 @@ ThemeData darkMode = ThemeData(
       //
       onPrimary: Color.fromRGBO(172, 143, 255, 1),
       secondary: Color.fromRGBO(172, 143, 255, 0.49),
+      onSecondary: Color.fromRGBO(255, 255, 255, 0.3),
     ));

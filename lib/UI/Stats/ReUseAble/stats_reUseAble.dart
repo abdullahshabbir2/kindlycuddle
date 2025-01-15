@@ -33,7 +33,7 @@ class StatsReUseAble extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: color ?? const Color.fromRGBO(208, 226, 246, 1),
+          color: color ?? Theme.of(context).colorScheme.onSecondary,
           borderRadius: BorderRadius.circular(8.0),
         ),
         margin: const EdgeInsets.all(1),

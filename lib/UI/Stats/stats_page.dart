@@ -194,7 +194,9 @@ class _StatsColumnState extends State<StatsColumn> {
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
                       const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-                      return bodyText(daysOfWeek[value.toInt()]);
+                      return bodyText(daysOfWeek[value.toInt()],
+                          bodyTextColor:
+                              Theme.of(context).colorScheme.onSecondaryFixed);
                     },
                   ),
                 ),
@@ -244,7 +246,7 @@ class _StatsColumnState extends State<StatsColumn> {
           Container(
             height: MediaQuery.of(context).size.height * 0.35,
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(208, 226, 246, 1),
+              color: Theme.of(context).colorScheme.onSecondary,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Padding(
