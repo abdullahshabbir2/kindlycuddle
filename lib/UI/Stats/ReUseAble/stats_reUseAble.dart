@@ -47,12 +47,17 @@ class StatsReUseAble extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               bodyText(mainText,
-                  bodyFontSize: fontSize ?? 15, bodyTextColor: textColor),
+                  bodyFontSize: fontSize ?? 15,
+                  bodyTextColor: textColor ??
+                      Theme.of(context).colorScheme.onSecondaryFixed),
               bodyText(optionalText ?? '',
-                  bodyFontSize: 9, bodyTextColor: textColor)
+                  bodyFontSize: 9,
+                  bodyTextColor: textColor ??
+                      Theme.of(context).colorScheme.onSecondaryFixed)
             ],
           ),
-          trailing: headingText('$data oz', fontSize: 15, color: textColor),
+          trailing: headingText('$data oz',
+              fontSize: 15, color: Theme.of(context).colorScheme.primary),
         ),
       ),
     );
