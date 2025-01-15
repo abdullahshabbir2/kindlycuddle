@@ -70,6 +70,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
                               MediaQuery.of(context).size.height * ((10) / 812),
                         ),
                         ReUseAbleSvg(
+                          
                           path: (themeNotifier.isDarkMode
                               ? ImageConstants.pumpIconDark
                               : ImageConstants.pumpIcon),
