@@ -31,34 +31,41 @@ class BlurredRow extends StatelessWidget {
         children: [
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                bodyText(
-                  title,
-                  bodyFontSize: 16,
-                  bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed,
-                  bodyTextFontWeight: FontWeight.w400,
-                ),
-                showDataWithUnit(context, value, unit),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  bodyText(
+                    title,
+                    bodyFontSize: 16,
+                    bodyTextColor:
+                        Theme.of(context).colorScheme.onSecondaryFixed,
+                    bodyTextFontWeight: FontWeight.w400,
+                  ),
+                  showDataWithUnit(context, value, unit),
+                ],
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ReUseAbleSvg(
-                  path: themeNotifier.isDarkMode
-                      ? ImageConstants.dropDark
-                      : ImageConstants.drop),
-              bodyText(date,
-                  bodyFontSize: 14,
-                  bodyTextFontWeight: FontWeight.w400,
-                  bodyTextColor:
-                      Theme.of(context).colorScheme.onSecondaryFixed),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ReUseAbleSvg(
+                    path: themeNotifier.isDarkMode
+                        ? ImageConstants.dropDark
+                        : ImageConstants.drop),
+                bodyText(date,
+                    bodyFontSize: 14,
+                    bodyTextFontWeight: FontWeight.w400,
+                    bodyTextColor:
+                        Theme.of(context).colorScheme.onSecondaryFixed),
+              ],
+            ),
           ),
         ],
       ),

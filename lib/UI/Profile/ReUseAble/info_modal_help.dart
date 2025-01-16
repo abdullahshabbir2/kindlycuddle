@@ -1,19 +1,27 @@
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
+import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:googleapis/servicemanagement/v1.dart';
+import 'package:provider/provider.dart';
 
 class InfoModalHelp extends StatelessWidget {
   const InfoModalHelp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.0), // Rounded corners
       child: Container(
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(16.0),
+            border: Border.all(
+              color: themeNotifier.isDarkMode ? Colors.white : Colors.black,
+              width: 1,
+            )),
         width: MediaQuery.of(context).size.width * 0.85,
         padding: const EdgeInsets.all(16.0),
-        color: Theme.of(context).colorScheme.surface,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max, // Fit content height

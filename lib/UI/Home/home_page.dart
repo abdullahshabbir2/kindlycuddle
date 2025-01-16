@@ -242,52 +242,47 @@ class _HomeColumnState extends State<HomeColumn> {
                           ),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Stack(children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                              color: Colors.transparent,
-                              width: 2,
-                            )),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0, // Set width of the circle
-                                  height: 50.0, // Set height of the circle
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimary, // Background color
-                                    shape: BoxShape
-                                        .circle, // Makes the container a circle
-                                  ),
+                      child: Stack(children: [
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 50.0, // Set width of the circle
+                                height: 50.0, // Set height of the circle
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary, // Background color
+                                  shape: BoxShape
+                                      .circle, // Makes the container a circle
                                 ),
-                                Container(
-                                  width: 50.0, // Set width of the circle
-                                  height: 50.0, // Set height of the circle
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimary, // Background color
-                                    shape: BoxShape
-                                        .circle, // Makes the container a circle
-                                  ),
+                              ),
+                              Container(
+                                width: 50.0, // Set width of the circle
+                                height: 50.0, // Set height of the circle
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary, // Background color
+                                  shape: BoxShape
+                                      .circle, // Makes the container a circle
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          const BlurredRow(
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: const BlurredRow(
                             title: 'Best Day of the week',
                             value: 33.19,
                             unit: 'oz',
                             date: 'Thursday, 25 July',
                           ),
-                        ]),
-                      ),
+                        ),
+                      ]),
                     ),
                   ),
                 ),
