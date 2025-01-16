@@ -31,5 +31,5 @@ ThemeData darkMode = ThemeData(
       //
       onPrimary: Color.fromRGBO(172, 143, 255, 1),
       secondary: Color.fromRGBO(172, 143, 255, 0.49),
-      onSecondary: Color.fromRGBO(255, 255, 255, 0.3),
+      onSecondary: Color.fromRGBO(0, 0, 0, 0.302),
     ));

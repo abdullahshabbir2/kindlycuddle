@@ -31,6 +31,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator> {
             width: MediaQuery.of(context).size.width * (343 / 375),
             child: SvgPicture.asset(
               imagePath,
+              fit: BoxFit.contain,
             ),
           ),
           SizedBox(

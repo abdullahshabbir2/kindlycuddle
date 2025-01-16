@@ -108,7 +108,7 @@ class _StatsColumnState extends State<StatsColumn> {
         ],
       );
 
-  Widget showBarChart() => Container(
+  Widget showBarChart(bool? isDark) => Container(
         height: MediaQuery.of(context).size.height * (308 / 812),
         padding: EdgeInsets.fromLTRB(
           ReSizeAbleSize().getResizeAbleWidth(20, 375, context),
@@ -117,19 +117,32 @@ class _StatsColumnState extends State<StatsColumn> {
           ReSizeAbleSize().getResizeAbleHeight(20, 812, context),
         ),
         decoration: ShapeDecoration(
-            gradient: const LinearGradient(colors: [
-              Color.fromRGBO(255, 255, 255, 0.23),
-              Color.fromRGBO(178, 203, 242, 0.37),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20))),
+          gradient: LinearGradient(
+            colors: isDark == true
+                ? const [
+                    Color.fromRGBO(
+                        255, 255, 255, 0.23), // Violet with same opacity
+                    Color.fromRGBO(
+                        196, 133, 255, 0.231), // Grey with same opacity
+                  ]
+                : const [
+                    Color.fromRGBO(255, 255, 255, 0.23), // Original white
+                    Color.fromRGBO(178, 203, 242, 0.37), // Original blue
+                  ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
         child: AspectRatio(
           aspectRatio: 1.5,
           child: BarChart(
             BarChartData(
               maxY: 60,
               backgroundColor: Colors.white.withOpacity(0.05999999865889549),
-              barGroups: _buildBarGroups(),
+              barGroups: _buildBarGroups(isDark),
               barTouchData: BarTouchData(
                 touchTooltipData: BarTouchTooltipData(
                   getTooltipItem: (group, groupIndex, rod, rodIndex) {
@@ -184,7 +197,9 @@ class _StatsColumnState extends State<StatsColumn> {
                     showTitles: true,
                     interval: 10,
                     getTitlesWidget: (value, meta) {
-                      return bodyText(value.toInt().toString());
+                      return bodyText(value.toInt().toString(),
+                          bodyTextColor:
+                              Theme.of(context).colorScheme.onSecondaryFixed);
                     },
                   ),
                 ),
@@ -250,7 +265,7 @@ class _StatsColumnState extends State<StatsColumn> {
           SizedBox(
             height: MediaQuery.of(context).size.height * (14 / 812),
           ),
-          showBarChart(),
+          showBarChart(themeNotifier.isDarkMode),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.015,
           ),
@@ -287,7 +302,9 @@ class _StatsColumnState extends State<StatsColumn> {
                     path: ImageConstants.dropWhite,
                     mainText: 'Total',
                     data: 280.55,
-                    color: const Color.fromRGBO(178, 203, 242, 1),
+                    color: themeNotifier.isDarkMode
+                        ? const Color.fromRGBO(131, 99, 225, 1)
+                        : const Color.fromRGBO(178, 203, 242, 1),
                     textColor: Colors.white,
                   ),
                 ],
@@ -299,7 +316,7 @@ class _StatsColumnState extends State<StatsColumn> {
     );
   }
 
-  List<BarChartGroupData> _buildBarGroups() {
+  List<BarChartGroupData> _buildBarGroups(bool? isDark) {
     List<int> data = [25, 45, 42, 56, 18, 0, 0];
 
     return List.generate(7, (index) {
@@ -308,9 +325,16 @@ class _StatsColumnState extends State<StatsColumn> {
         barRods: [
           BarChartRodData(
             toY: data[index].toDouble(),
-            color: index % 2 == 0
-                ? ColorsConstants.styledButtonBackgroundColor
-                : ColorsConstants.pumpBackground,
+            color: isDark == true
+                ? (index % 2 == 0
+                    ? const Color.fromRGBO(
+                        131, 99, 225, 1) // Dark violet for even bars
+                    : const Color.fromRGBO(
+                        172, 143, 255, 1)) // Dark indigo for odd bars
+                : (index % 2 == 0
+                    ? ColorsConstants
+                        .styledButtonBackgroundColor // Light theme even color
+                    : ColorsConstants.pumpBackground), // Light theme odd color
 
             width: 22,
             // borderRadius: BorderRadius.circular(6),
