@@ -12,7 +12,7 @@ class InfoModalContact extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.85,
         padding: const EdgeInsets.all(16.0),
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max, // Fit content height
