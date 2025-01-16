@@ -5,9 +5,11 @@ import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/Stats/ReUseAble/stats_reUseAble.dart';
 import 'package:cuddle_care/UI/Stats/stats_cubit.dart';
+import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../Constants/colors_constants.dart';
 import 'stats_initial_params.dart';
@@ -63,11 +65,16 @@ class _StatsColumnState extends State<StatsColumn> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              headingText('Stats', fontSize: 24),
+              headingText('Stats',
+                  fontSize: 24,
+                  color: Theme.of(context).colorScheme.onSecondaryFixed),
               SizedBox(
                 height: MediaQuery.of(context).size.height * (15 / 812),
               ),
-              lightBlueText('7-July to 13-July', fontSize: 14, height: 1),
+              lightBlueText('7-July to 13-July',
+                  fontSize: 14,
+                  height: 1,
+                  color: Theme.of(context).colorScheme.onPrimaryFixed),
             ],
           ),
           SizedBox(
@@ -78,7 +85,7 @@ class _StatsColumnState extends State<StatsColumn> {
               height: MediaQuery.of(context).size.height * (40 / 812),
               padding: const EdgeInsets.fromLTRB(14, 8, 12, 8),
               decoration: ShapeDecoration(
-                color: ColorsConstants.styledButtonBackgroundColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -89,7 +96,7 @@ class _StatsColumnState extends State<StatsColumn> {
                   headingText('Past Week',
                       fontSize: 16.sp,
                       customHeadingHeight: 0.09,
-                      color: Colors.black),
+                      color: Theme.of(context).colorScheme.primary),
                   InkWell(
                       onTap: () {},
                       child: const Icon(
@@ -227,6 +234,10 @@ class _StatsColumnState extends State<StatsColumn> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
+    final String imagePath = themeNotifier.isDarkMode
+        ? ImageConstants.dropBackgorundDark
+        : ImageConstants.dropBackgorund;
     return Padding(
       padding: EdgeInsets.fromLTRB(
           MediaQuery.of(context).size.width * (20 / 375),
@@ -256,17 +267,17 @@ class _StatsColumnState extends State<StatsColumn> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   StatsReUseAble(
-                    path: ImageConstants.dropBackgorund,
+                    path: imagePath,
                     mainText: 'Today',
                     data: 33.19,
                   ),
                   StatsReUseAble(
-                    path: ImageConstants.dropBackgorund,
+                    path: imagePath,
                     mainText: 'Daily Average',
                     data: 40.12,
                   ),
                   StatsReUseAble(
-                    path: ImageConstants.dropBackgorund,
+                    path: imagePath,
                     mainText: 'Best Day',
                     data: 40.12,
                     fontSize: 11,

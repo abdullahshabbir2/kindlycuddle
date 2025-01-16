@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-Widget lightBlueText(String text,{double? fontSize,FontWeight? fontWeight,double? height}){
+Widget lightBlueText(String text,
+    {double? fontSize, FontWeight? fontWeight, double? height, Color? color}) {
   return Text(
     text,
     textAlign: TextAlign.right,
     style: TextStyle(
-      color: const Color(0xFFB2CBF2),
+      color: color,
       fontSize: fontSize ?? 22,
       fontFamily: 'Arial Rounded MT Bold',
       fontWeight: fontWeight ?? FontWeight.w400,

@@ -50,7 +50,8 @@ class BlurredListView extends StatelessWidget {
                               Theme.of(context).colorScheme.onSecondaryFixed),
                     ],
                   ),
-                  trailing: lightBlueText('${33} oz'),
+                  trailing: lightBlueText('${33} oz',
+                      color: Theme.of(context).colorScheme.onPrimaryFixed),
                 ),
               ),
             );

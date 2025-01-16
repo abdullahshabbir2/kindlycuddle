@@ -76,6 +76,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 var getIt = GetIt.instance;
 
@@ -221,6 +222,8 @@ void main() async {
   getIt.registerFactoryParam<ProfileCubit, ProfileInitialParams, dynamic>(
       (params, _) => ProfileCubit(params, getIt(), getIt(), getIt(), getIt()));
 
+  //initializing time zone
+  tz.initializeTimeZones();
   // Request necessary permissions
   await requestPermissions();
 
@@ -238,6 +241,10 @@ Future<void> requestPermissions() async {
   // Request Bluetooth and Location permissions
   if (await Permission.bluetooth.isDenied) {
     await Permission.bluetooth.request();
+  }
+
+  if (await Permission.notification.isDenied) {
+    await Permission.notification.request();
   }
 
   if (await Permission.bluetoothConnect.isDenied) {

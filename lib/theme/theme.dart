@@ -10,6 +10,7 @@ ThemeData lightMode = ThemeData(
     //text colors
     primary: Color(0xFF222222),
     onSecondaryFixed: Color.fromARGB(255, 92, 92, 92),
+    onPrimaryFixed: Color(0xFFB2CBF2),
     //
     onPrimary: Color.fromRGBO(171, 230, 237, 1),
     secondary: Color.fromRGBO(171, 230, 237, 0.5),
@@ -26,6 +27,7 @@ ThemeData darkMode = ThemeData(
       //text colors
       primary: Color.fromARGB(255, 230, 229, 229),
       onSecondaryFixed: Color.fromARGB(255, 223, 223, 223),
+      onPrimaryFixed: Color.fromRGBO(172, 143, 255, 1),
       //
       onPrimary: Color.fromRGBO(172, 143, 255, 1),
       secondary: Color.fromRGBO(172, 143, 255, 0.49),

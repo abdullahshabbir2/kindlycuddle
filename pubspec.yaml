@@ -47,7 +47,7 @@ dependencies:
   google_sign_in: ^6.2.1
   firebase_messaging: ^14.7.19
   app_settings: ^5.1.1
-  flutter_local_notifications: ^17.2.3
+  flutter_local_notifications: ^18.0.1
   dartz: ^0.10.1
   fluttertoast:
   googleapis_auth: ^1.6.0
@@ -63,6 +63,7 @@ dependencies:
   firebase_storage: ^11.6.9
   shared_preferences: ^2.0.15
   provider: ^6.1.2
+  flutter_datetime_picker: ^1.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
