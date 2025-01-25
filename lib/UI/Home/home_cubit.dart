@@ -86,7 +86,7 @@ void onInit(HomeInitialParams initialParams) => emit(state.copyWith());
    profileDataUseCase.getProfileData(id).then(
            (value) => value.fold(
                (l) {
-             ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
+             // ToastMessage().showMessage(l.error, ColorsConstants.failureToastColor);
            },
                (r) {
              emit(state.copyWith( profile:  r) );

@@ -59,7 +59,7 @@ dependencies:
   cloud_firestore:
   image_picker:
   bloc: any
-  http: any
+  http:
   firebase_storage: ^11.6.9
   shared_preferences:
 dev_dependencies:

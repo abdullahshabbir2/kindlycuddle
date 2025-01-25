@@ -74,7 +74,7 @@ class _SplashPageState extends State<SplashPage> {
     _requestBluetoothPermission();
 
     Future.delayed(const Duration(seconds: 4), (){
-      cubit.moveToNextScreen();
+      cubit.moveToNextScreen(context);
     });
 
   }

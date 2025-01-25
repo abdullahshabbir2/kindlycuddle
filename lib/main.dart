@@ -99,6 +99,14 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // await Supabase.initialize(
+  //   url: 'https://wabapmbkeqqhjsvxjvlt.supabase.co',
+  //   anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhYmFwbWJrZXFxaGpzdnhqdmx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjA3MDU5NzAsImV4cCI6MjAzNjI4MTk3MH0.kH9H_6_vmJT_0GHuglxTMy-9lUdjzgmLBklhoIFkgGY',
+  //   realtimeClientOptions: const RealtimeClientOptions(
+  //     eventsPerSecond: 2,
+  //   ),
+  // );
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   getIt.registerSingleton<AppNavigator>(AppNavigator());
