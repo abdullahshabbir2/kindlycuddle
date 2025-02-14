@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
+import 'package:cuddle_care/UI/Profile/ReUseAble/DatePickerTxt.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_contact.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_help.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/info_modal_privacy.dart';
@@ -127,6 +128,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                                 ProfileListItem(
                                   imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.volumeDark
+                                      : ImageConstants.volume,
+                                  title: 'Volume Unit',
+                                  trailing: bodyText('Oz'),
+                                  onTap: () {},
+                                ),
+                                ProfileListItem(
+                                  imgPath: themeNotifier.isDarkMode
                                       ? ImageConstants.notificationDark
                                       : ImageConstants.notification,
                                   title: 'Reminder Notifications',
@@ -144,6 +153,20 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   onTap: () {},
                                 ),
+                                ProfileListItem(
+                                  imgPath: themeNotifier.isDarkMode
+                                      ? ImageConstants.appModeDark
+                                      : ImageConstants.appMode,
+                                  title: 'App Mode',
+                                  trailing: bodyText(
+                                    themeNotifier.isDarkMode ? 'Dark' : 'Light',
+                                  ),
+                                  onTap: () {
+                                    // Avoid calling setState directly here.
+                                    themeNotifier.toggleTheme();
+                                  },
+                                ),
+                                const DatePickerTxt(),
                                 ProfileListItem(
                                   imgPath: themeNotifier.isDarkMode
                                       ? ImageConstants.appModeDark
