@@ -6,6 +6,7 @@ import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/account_sign.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/gradient_divider.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
 import 'package:cuddle_care/UI/SignIn/sign_in_cubit.dart';
@@ -72,12 +73,12 @@ class _SignInPageState extends State<SignInPage> {
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 47.h,
+                        height: 40.h,
                       ),
                       headingText('Welcome Back!', customHeadingHeight: 1.5),
                       bodyText('welcome back we missed you', bodyTextHeight: 1),
                       SizedBox(
-                        height: 29.h,
+                        height: 25.h,
                       ),
                       Form(
                         key: _formKey,
@@ -187,12 +188,36 @@ class _SignInPageState extends State<SignInPage> {
                           ],
                         ),
                       ),
-                      bodyText('Or continue with',
-                          bodyTextColor: ColorsConstants.textFieldTextColor,
-                          bodyFontSize: 11,
-                          bodyTextFontWeight: FontWeight.w400,
-                          bodyTextHeight: 0,
-                          bodyTextLetterSpacing: 0),
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Center everything
+                        children: [
+                          GradientDivider(
+                            width: MediaQuery.of(context).size.width *
+                                0.25, // 25% screen width
+                            color: Colors.grey,
+                            reverse: false,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8), // Spacing around text
+                            child: Text(
+                              'Or continue with',
+                              style: TextStyle(
+                                color: ColorsConstants.textFieldTextColor,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          GradientDivider(
+                            width: MediaQuery.of(context).size.width *
+                                0.25, // 25% screen width
+                            color: Colors.grey,
+                            reverse: true,
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 25.h,
                       ),
@@ -229,7 +254,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
       ),
-      designSize: const Size(376.0, 812.0),
+      designSize: const Size(376.0, 852.0),
     );
   }
 }

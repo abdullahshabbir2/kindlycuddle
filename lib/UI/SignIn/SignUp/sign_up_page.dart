@@ -6,6 +6,7 @@ import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/account_sign.dart';
+import 'package:cuddle_care/UI/SignIn/ReUseAble/gradient_divider.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/login_option.dart';
 import 'package:cuddle_care/UI/SignIn/ReUseAble/styled_text_field.dart';
 import 'package:cuddle_care/UI/SignIn/SignUp/sign_up_cubit.dart';
@@ -20,86 +21,91 @@ class SignUpPage extends StatefulWidget {
   // final UserDeInitialParams initialParams;
   const SignUpPage({Key? key, required this.cubit}) : super(key: key);
 
-
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   SignUpCubit get cubit => widget.cubit;
 
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   void initState() {
     super.initState();
     // TODO : Fix it Later
     cubit.onInit(SignUpInitialParams());
-   cubit.navigator.context =  context;
-
+    cubit.navigator.context = context;
   }
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(BuildContext context, child) => SafeArea(
+      builder: (BuildContext context, child) => SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 43.5.h,),
+              SizedBox(
+                height: 40.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AssetsImages(path: ImageConstants.kindlyCuddle,height: 50),
-
+                  AssetsImages(path: ImageConstants.kindlyCuddle, height: 50),
                 ],
               ),
-              SizedBox(height: 30.h,),
-
+              SizedBox(
+                height: 30.h,
+              ),
               Stack(
                 children: [
-                  ReUseAbleSvg(path: ImageConstants.backgroundShape,height: MediaQuery.of(context).size.height*((812-164)/812),width: MediaQuery.of(context).size.width,),
-
+                  ReUseAbleSvg(
+                    path: ImageConstants.backgroundShape,
+                    height: MediaQuery.of(context).size.height *
+                        ((812 - 164) / 812),
+                    width: MediaQuery.of(context).size.width,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 25.h,),
-                      headingText('Get Started Free!',customHeadingHeight: 1.5),
-                      bodyText('Free Forever. No Credit Cards Needed',bodyTextHeight: 1),
-                      SizedBox(height: 29.h,),
-
+                      SizedBox(
+                        height: 25.h,
+                      ),
+                      headingText('Get Started Free!',
+                          customHeadingHeight: 1.5),
+                      bodyText('Free Forever. No Credit Cards Needed',
+                          bodyTextHeight: 1),
+                      SizedBox(
+                        height: 29.h,
+                      ),
                       Form(
                         key: _formKey,
                         child: Column(
                           children: <Widget>[
-
                             BlocBuilder(
-                                bloc:cubit,
-                                builder: (context , state) {
+                                bloc: cubit,
+                                builder: (context, state) {
                                   state as SignUpState;
                                   return StyledTextField(
                                     label: 'Username',
                                     hint: 'youremail@broskeez.com',
                                     iconPath: ImageConstants.emailIcon,
-                                    validator:   (value){
+                                    validator: (value) {
                                       // return cubit.emailValidator(value) ;
                                     },
                                     inputType: TextInputType.emailAddress,
                                     error: state.emailValidator,
-                                    onChanged: (value){
+                                    onChanged: (value) {
                                       cubit.emailValidator(value);
                                     },
                                   );
-                                }
-                            ),
+                                }),
                             // SizedBox(height: 12.h,),
                             BlocBuilder(
-                                bloc:cubit,
-                                builder: (context , state) {
+                                bloc: cubit,
+                                builder: (context, state) {
                                   state as SignUpState;
                                   return StyledTextField(
                                     label: 'Username',
@@ -108,42 +114,38 @@ class _SignUpPageState extends State<SignUpPage> {
                                     //   cubit.setUserName(value);
                                     //   // return cubit.emailValidator(value) ;
                                     // },
-                                    onChanged: (value){
+                                    onChanged: (value) {
                                       cubit.setUserName(value);
                                     },
                                     inputType: TextInputType.emailAddress,
                                     // error: state.,
                                   );
-                                }
-                            ),
+                                }),
                             // SizedBox(height: 12.h,),
                             BlocBuilder(
                                 bloc: cubit,
-                                builder: (context,state) {
+                                builder: (context, state) {
                                   state as SignUpState;
                                   return StyledTextField(
-                                      label: 'Password',
-                                      iconPath: ImageConstants.passwordIcon,
-                                      validator: (value){
-                                        return cubit.passwordValidator(value) ;
-                                      },
-                                      inputType: TextInputType.text,
-                                      error: state.passwordValidator,
-                                      showVisibilityIcons: true,
-                                      obscureText: !(state.showPassword),
-                                      onTap: (){
-                                        cubit.reverseObsecurity();
-                                      },
-                                      onChanged: (password){
-                                        cubit.checkPasswordStrength(password);
-                                      },
+                                    label: 'Password',
+                                    iconPath: ImageConstants.passwordIcon,
+                                    validator: (value) {
+                                      return cubit.passwordValidator(value);
+                                    },
+                                    inputType: TextInputType.text,
+                                    error: state.passwordValidator,
+                                    showVisibilityIcons: true,
+                                    obscureText: !(state.showPassword),
+                                    onTap: () {
+                                      cubit.reverseObsecurity();
+                                    },
+                                    onChanged: (password) {
+                                      cubit.checkPasswordStrength(password);
+                                    },
                                     showStrength: state.showStrength,
                                     level: state.strengthLevel,
-
                                   );
-                                }
-                            ),
-
+                                }),
 
                             // SizedBox(height: 10.h),
 
@@ -151,42 +153,44 @@ class _SignUpPageState extends State<SignUpPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 InkWell(
-                                    onTap: (){
+                                    onTap: () {
                                       cubit.resetPassword();
                                     },
-                                    child: bodyText('Forgot Password?',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0)),
-                                SizedBox(width: 32.w,),
+                                    child: bodyText('Forgot Password?',
+                                        bodyTextColor:
+                                            ColorsConstants.textFieldTextColor,
+                                        bodyFontSize: 11,
+                                        bodyTextFontWeight: FontWeight.w400,
+                                        bodyTextHeight: 0,
+                                        bodyTextLetterSpacing: 0)),
+                                SizedBox(
+                                  width: 32.w,
+                                ),
                               ],
                             ),
                             // SizedBox(height: 18.h,),
                             BlocBuilder(
                                 bloc: cubit,
-                                builder: (context , state) {
+                                builder: (context, state) {
                                   state as SignUpState;
                                   return StyledButton(
                                       height: 60.h,
-                                      text: 'Sign Up', onTap: (){
+                                      text: 'Sign Up',
+                                      onTap: () {
+                                        // if (_formKey.currentState!.validate()) {
+                                        // If the form is valid, display a snackbar. In a real app,
+                                        // you would often call a server or save the information in a database.
 
-                                    // if (_formKey.currentState!.validate()) {
-                                      // If the form is valid, display a snackbar. In a real app,
-                                      // you would often call a server or save the information in a database.
-
-                                      // if(state.emailValidated && state.passwordValidated){
+                                        // if(state.emailValidated && state.passwordValidated){
                                         cubit.signUp(context);
-                                      // }
+                                        // }
 
-
-
-                                    // }
-
-
-
-                                  });
-                                }
+                                        // }
+                                      });
+                                }),
+                            SizedBox(
+                              height: 10.h,
                             ),
-                            SizedBox(height: 10.h,),
-
-
 
                             // ElevatedButton(
                             //   onPressed: () {
@@ -204,39 +208,73 @@ class _SignUpPageState extends State<SignUpPage> {
                           ],
                         ),
                       ),
-
-                      bodyText('Or continue with',bodyTextColor: ColorsConstants.textFieldTextColor,bodyFontSize: 11,bodyTextFontWeight: FontWeight.w400, bodyTextHeight: 0,bodyTextLetterSpacing: 0),
-                      SizedBox(height: 25.h,),
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Center everything
+                        children: [
+                          GradientDivider(
+                            width: MediaQuery.of(context).size.width *
+                                0.25, // 25% screen width
+                            color: Colors.grey,
+                            reverse: false,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8), // Spacing around text
+                            child: Text(
+                              'Or continue with',
+                              style: TextStyle(
+                                color: ColorsConstants.textFieldTextColor,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          GradientDivider(
+                            width: MediaQuery.of(context).size.width *
+                                0.25, // 25% screen width
+                            color: Colors.grey,
+                            reverse: true,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 25.h,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          loginOption(ImageConstants.google, () { cubit.googleSignUp(context); }),
-                          SizedBox(width: 23.w,),
-                          loginOption(ImageConstants.apple, () { }),
-                          SizedBox(width: 23.w,),
-                          loginOption(ImageConstants.facebook, () { })
+                          loginOption(ImageConstants.google, () {
+                            cubit.googleSignUp(context);
+                          }),
+                          SizedBox(
+                            width: 23.w,
+                          ),
+                          loginOption(ImageConstants.apple, () {}),
+                          SizedBox(
+                            width: 23.w,
+                          ),
+                          loginOption(ImageConstants.facebook, () {})
                         ],
                       ),
-                      SizedBox(height: 10.h,),
-
-
-                      AccountSign(actionText: 'Sign In', bodyString: 'Already have an account?', onTap: (){
-                        cubit.moveToSignIn();
-                      }),
-
-
-
-                      SizedBox(height: 10.h,),
-
-
-
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      AccountSign(
+                          actionText: 'Sign In',
+                          bodyString: 'Already have an account?',
+                          onTap: () {
+                            cubit.moveToSignIn();
+                          }),
+                      SizedBox(
+                        height: 10.h,
+                      ),
                     ],
                   ),
                 ],
               ),
-
             ],
-          ) ,
+          ),
         ),
       ),
       designSize: const Size(376.0, 812.0),
