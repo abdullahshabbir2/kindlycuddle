@@ -72,7 +72,6 @@ import 'package:cuddle_care/theme/theme_notifier.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -240,6 +239,7 @@ void main() async {
 
 Future<void> requestPermissions() async {
   // Request Bluetooth and Location permissions
+  //testing this push
   if (await Permission.bluetooth.isDenied) {
     await Permission.bluetooth.request();
   }

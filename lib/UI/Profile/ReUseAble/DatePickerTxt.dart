@@ -68,7 +68,7 @@ class DatePickerTxtState extends State<DatePickerTxt> {
 
   Future<void> openExactAlarmSettings() async {
     const intent = AndroidIntent(
-      action: 'android.settings.REQUEST_SCHEDULE_EXACT_ALARM',
+      action: 'android.settings',
       flags: [Flag.FLAG_ACTIVITY_NEW_TASK],
     );
     await intent.launch();
