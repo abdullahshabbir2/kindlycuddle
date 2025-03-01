@@ -93,7 +93,7 @@ class _StatsColumnState extends State<StatsColumn> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  headingText('Past Week',
+                  headingText('This Week',
                       fontSize: 16.sp,
                       customHeadingHeight: 0.09,
                       color: Theme.of(context).colorScheme.primary),

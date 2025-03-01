@@ -53,7 +53,7 @@ class ImageConstants {
   static String get pauseButton => 'assets/pauseButton.svg';
   static String get mask => 'assets/mask.svg';
   static String get editIcon => 'assets/editIcon.svg';
-
+  static String get clockLight => 'assets/clockLight.svg';
   static String get volume => 'assets/volume.svg';
   static String get volumeDark => 'assets/volumeDark.svg';
   static String get support => 'assets/support.svg';

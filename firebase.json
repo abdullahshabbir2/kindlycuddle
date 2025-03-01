@@ -1,1 +1,22 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"cuddlecare-339ea","appId":"1:566962921581:android:12f811e41e346c39cc5f64","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"cuddlecare-339ea","configurations":{"android":"1:566962921581:android:12f811e41e346c39cc5f64","ios":"1:566962921581:ios:2b37cf849e34f1c4cc5f64"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "cuddlecare-339ea",
+                    "appId": "1:566962921581:android:12f811e41e346c39cc5f64",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "cuddlecare-339ea",
+                    "configurations": {
+                        "android": "1:566962921581:android:12f811e41e346c39cc5f64",
+                        "ios": "1:566962921581:ios:2b37cf849e34f1c4cc5f64"
+                    }
+                }
+            }
+        }
+    }
+}

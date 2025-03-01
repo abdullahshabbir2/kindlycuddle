@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:cuddle_care/Constants/image_constants.dart';
-import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
+import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_time.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/theme/theme_notifier.dart';
@@ -9,15 +9,15 @@ import 'package:provider/provider.dart';
 
 class BlurredRow extends StatelessWidget {
   final String title;
-  final double value;
-  final String unit;
+  final int minutes;
+  final int second;
   final String date;
 
   const BlurredRow({
     Key? key,
     required this.title,
-    required this.value,
-    required this.unit,
+    required this.minutes,
+    required this.second,
     required this.date,
   }) : super(key: key);
 
@@ -44,7 +44,7 @@ class BlurredRow extends StatelessWidget {
                         Theme.of(context).colorScheme.onSecondaryFixed,
                     bodyTextFontWeight: FontWeight.w400,
                   ),
-                  showDataWithUnit(context, value, unit),
+                  showDataWithTime(context, 30, 40),
                 ],
               ),
             ),

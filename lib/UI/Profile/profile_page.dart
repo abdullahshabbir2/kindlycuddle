@@ -120,22 +120,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 ProfileListItem(
                                   imgPath: themeNotifier.isDarkMode
-                                      ? ImageConstants.volumeDark
-                                      : ImageConstants.volume,
-                                  title: 'Volume Unit',
-                                  trailing: bodyText('Oz'),
-                                  onTap: () {},
-                                ),
-                                ProfileListItem(
-                                  imgPath: themeNotifier.isDarkMode
-                                      ? ImageConstants.volumeDark
-                                      : ImageConstants.volume,
-                                  title: 'Volume Unit',
-                                  trailing: bodyText('Oz'),
-                                  onTap: () {},
-                                ),
-                                ProfileListItem(
-                                  imgPath: themeNotifier.isDarkMode
                                       ? ImageConstants.notificationDark
                                       : ImageConstants.notification,
                                   title: 'Reminder Notifications',
@@ -152,19 +136,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                         }),
                                   ),
                                   onTap: () {},
-                                ),
-                                ProfileListItem(
-                                  imgPath: themeNotifier.isDarkMode
-                                      ? ImageConstants.appModeDark
-                                      : ImageConstants.appMode,
-                                  title: 'App Mode',
-                                  trailing: bodyText(
-                                    themeNotifier.isDarkMode ? 'Dark' : 'Light',
-                                  ),
-                                  onTap: () {
-                                    // Avoid calling setState directly here.
-                                    themeNotifier.toggleTheme();
-                                  },
                                 ),
                                 const DatePickerTxt(),
                                 ProfileListItem(

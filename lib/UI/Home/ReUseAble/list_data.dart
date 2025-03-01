@@ -1,4 +1,5 @@
 import 'package:cuddle_care/Constants/image_constants.dart';
+import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_time.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
@@ -45,13 +46,12 @@ class BlurredListView extends StatelessWidget {
                           bodyFontSize: 14,
                           bodyTextColor:
                               Theme.of(context).colorScheme.onSecondaryFixed),
-                      bodyText('35 min',
-                          bodyTextColor:
-                              Theme.of(context).colorScheme.onSecondaryFixed),
                     ],
                   ),
-                  trailing: lightBlueText('${33} oz',
-                      color: Theme.of(context).colorScheme.onPrimaryFixed),
+                  trailing: SizedBox(
+                    width: 115,
+                    child: showDataWithTime(context, 50, 25),
+                  ),
                 ),
               ),
             );

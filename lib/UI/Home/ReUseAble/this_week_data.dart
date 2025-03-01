@@ -1,12 +1,17 @@
-import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
+import 'package:cuddle_care/Constants/image_constants.dart';
+import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_time.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/pie_chart_data.dart';
+import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:flutter/material.dart';
 
 class ThisWeekData extends StatelessWidget {
-  final double percentage;
+  final int minutes;
+  final int second;
+
   final double? width;
-  const ThisWeekData({super.key, required this.percentage, this.width});
+  const ThisWeekData(
+      {super.key, required this.minutes, required this.second, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +28,12 @@ class ThisWeekData extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            PieChartData(
-              lightColor: 100 - percentage,
-              mainColor: percentage,
-              light: Theme.of(context).colorScheme.secondary,
-              main: Theme.of(context).colorScheme.onPrimary,
+            ReUseAbleSvg(
+              path: ImageConstants.clockLight,
+              width: 100,
+              height: 100,
             ),
-            showDataWithUnit(context, percentage, 'oz'),
+            showDataWithTime(context, minutes, second),
             bodyText('This Week',
                 bodyFontSize: 16,
                 bodyTextColor: Theme.of(context).colorScheme.onSecondaryFixed)

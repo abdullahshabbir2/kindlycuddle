@@ -205,7 +205,10 @@ class _HomeColumnState extends State<HomeColumn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const ThisWeekData(percentage: 60.42),
+                    const ThisWeekData(
+                      minutes: 30,
+                      second: 55,
+                    ),
                     PumpConnectionCard(
                       device: widget.device,
                       onTap: () {
@@ -277,8 +280,8 @@ class _HomeColumnState extends State<HomeColumn> {
                           borderRadius: BorderRadius.circular(20),
                           child: const BlurredRow(
                             title: 'Best Day of the week',
-                            value: 33.19,
-                            unit: 'oz',
+                            minutes: 33,
+                            second: 44,
                             date: 'Thursday, 25 July',
                           ),
                         ),

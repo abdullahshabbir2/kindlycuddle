@@ -12,7 +12,7 @@ Widget bodyText(
   String? bodyTextFontFamily,
 }) {
   return Text(text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       style: textStyle ??
           BodyTextStyle(
               bodyTextColor: bodyTextColor,

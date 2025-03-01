@@ -1,3 +1,4 @@
+import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_time.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
@@ -56,8 +57,11 @@ class StatsReUseAble extends StatelessWidget {
                       Theme.of(context).colorScheme.onSecondaryFixed)
             ],
           ),
-          trailing: headingText('$data oz',
-              fontSize: 15, color: Theme.of(context).colorScheme.primary),
+          trailing: SizedBox(
+            width: 115,
+            child: showDataWithTime(context, 50, 25,
+                headingFontSize: 16, bodyFontSize: 12),
+          ),
         ),
       ),
     );
