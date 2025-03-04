@@ -140,32 +140,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
       designSize: const Size(376.0, 812.0),
     );
-
-    // ScreenUtilInit(
-    //   builder:(BuildContext context, child) => SafeArea(
-    //     child: Scaffold(
-    //       // backgroundColor: Colors.white,
-    //       body: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: [
-    //           SizedBox(height: 43.5.h,),
-    //           AssetsImages(path: ImageConstants.kindlyCuddle,height: 50),
-    //           SizedBox(height: 27.h,),
-    //           AssetsImages(path: ImageConstants.pngCuddleCareScreenImage),
-    //           SizedBox(height: 23.h,),
-    //           Center(child: headingText('Nurturing Moments, Simplified')),
-    //           SizedBox(height: 8.h,),
-    //           Center(child: bodyText('Effortlessly track and manage your \nbreastfeeding sessions with Kindly Cuddle.')),
-    //           SizedBox(height: 24.h,),
-    //           ScreenIndicator(1),
-    //           SizedBox(height: 14.h,),
-    //           StyledButton(text: 'Get Started',onTap: cubit.moveToNextScreen,height: 35,)
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    //   designSize: const Size(376.0, 812.0),
-    // );
   }
 }
 

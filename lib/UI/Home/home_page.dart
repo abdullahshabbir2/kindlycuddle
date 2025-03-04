@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/Service/Firebase/firebase_notification_service.dart';
 import 'package:cuddle_care/UI/Bluetooth/Searching%20Devices/searching_devices_initial_params.dart';
@@ -10,28 +8,24 @@ import 'package:cuddle_care/UI/Home/ReUseAble/input_screen.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/list_data.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/pump_connection_card.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_icons.dart';
-import 'package:cuddle_care/UI/Home/ReUseAble/show_data_with_unit.dart';
 import 'package:cuddle_care/UI/Home/ReUseAble/this_week_data.dart';
 import 'package:cuddle_care/UI/Home/home_state.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
 import 'package:cuddle_care/UI/Profile/profile_page.dart';
-import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
 import 'package:cuddle_care/UI/ReUseAble/blurred_screen.dart';
 import 'package:cuddle_care/UI/ReUseAble/body_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/bottom_navigator.dart';
 import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
-import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/UI/ReUseAble/rounded_image.dart';
-import 'package:cuddle_care/UI/ReUseAble/styled_button.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_initial_params.dart';
 import 'package:cuddle_care/UI/Session%20Options/session_options_page.dart';
 import 'package:cuddle_care/UI/Stats/stats_initial_params.dart';
 import 'package:cuddle_care/UI/Stats/stats_page.dart';
-import 'package:cuddle_care/UI/User%20Guide/ReUseAble/user_guide.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_page.dart';
 import 'package:cuddle_care/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +49,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   HomeCubit get cubit => widget.cubit;
 
-  FirebaseNotificationService service = FirebaseNotificationService();
+  //FirebaseNotificationService service = FirebaseNotificationService();
 
   int page = 0;
 
@@ -77,7 +71,7 @@ class _HomePageState extends State<HomePage> {
       );
     } else if (index == 2) {
       // cubit.moveToSessionOptions();
-      return ScreenOptionsColumn(
+      return SessionOptionsPage(
           cubit: getIt(param1: SessionOptionsInitialParams()));
     } else if (index == 3) {
       cubit.setBottomNavbartoFalse();
@@ -165,17 +159,26 @@ class _HomeColumnState extends State<HomeColumn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BlocBuilder(
-                        bloc: widget.cubit,
-                        builder: (context, state) {
-                          state as HomeState;
+                    BlocBuilder<HomeCubit, HomeState>(
+                      bloc: widget.cubit,
+                      builder: (context, state) {
+                        state;
 
-                          debugPrint(state.profile.image);
+                        // Ensure the profile image is not null or empty
+                        String? profileImage =
+                            state.profile.image?.isNotEmpty == true
+                                ? state.profile.image
+                                : FirebaseAuth.instance.currentUser?.photoURL;
 
-                          return roundedImage(
-                              'https://fastly.picsum.photos/id/392/200/300.jpg?hmac=tcnub3WKREnSOdoCn7rQtfZkHXNWn5fXwNpHrv0o-5k' ??
-                                  '');
-                        }),
+                        // If no image from state or Firebase, use a default placeholder
+                        profileImage ??=
+                            'https://www.gravatar.com/avatar/placeholder?s=200&d=mp';
+
+                        debugPrint("Profile Image URL: $profileImage");
+
+                        return roundedImage(profileImage);
+                      },
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -186,9 +189,9 @@ class _HomeColumnState extends State<HomeColumn> {
                             bloc: widget.cubit,
                             builder: (context, state) {
                               state as HomeState;
-                              return headingText(state.profile.name ?? 'Hello',
-                                  color:
-                                      const Color.fromARGB(255, 230, 230, 230),
+                              return headingText(
+                                  state.profile.name ?? 'Where is it',
+                                  color: const Color.fromARGB(255, 0, 0, 0),
                                   fontSize: 19);
                             }),
                       ],

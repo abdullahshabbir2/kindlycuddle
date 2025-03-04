@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/Profile/Profile_initial_params.dart';
 import 'package:cuddle_care/UI/Profile/ReUseAble/DatePickerTxt.dart';
@@ -16,6 +15,7 @@ import 'package:cuddle_care/UI/ReUseAble/heading_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/light_blue_text.dart';
 import 'package:cuddle_care/UI/ReUseAble/re_use_able_svg.dart';
 import 'package:cuddle_care/theme/theme_notifier.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,6 +43,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
   ReSizeAbleSize size = ReSizeAbleSize();
 
+  String _getHighQualityProfileImage(String? url) {
+    if (url != null && url.contains("googleusercontent")) {
+      return url.replaceAll(
+          "=s96-c", "=s400-c"); // Higher quality for Google profile pictures
+    }
+    return url ??
+        'https://www.gravatar.com/avatar/placeholder?s=200&d=mp'; // Default placeholder
+  }
+
   Widget showProfile() => BlocBuilder(
         bloc: cubit,
         builder: (context, state) {
@@ -52,17 +61,26 @@ class _ProfilePageState extends State<ProfilePage> {
               ShowStackedImages(
                 width: 116,
                 height: 116,
-                imageUrl: state.image,
+                imageUrl: _getHighQualityProfileImage(
+                    FirebaseAuth.instance.currentUser?.photoURL),
                 sideImage: ImageConstants.editIcon,
-                profileAvailable: state.image.isNotEmpty,
                 alignment: Alignment.bottomRight,
                 onTap: () {
                   cubit.pickImageFromGallery();
                 },
               ),
-              lightBlueText(state.profileDomain.name ?? '', height: 1),
-              headingText('${state.profileDomain.email ?? ''} | +01 234 567 89',
-                  fontSize: 14)
+              bodyText(
+                  FirebaseAuth.instance.currentUser?.displayName ??
+                      'Hello, Guest!',
+                  bodyFontSize: 16,
+                  bodyTextColor:
+                      Theme.of(context).colorScheme.onSecondaryFixed),
+              bodyText(
+                  FirebaseAuth.instance.currentUser?.email ??
+                      'Hope you are doing well!',
+                  bodyFontSize: 16,
+                  bodyTextColor:
+                      Theme.of(context).colorScheme.onSecondaryFixed),
             ],
           );
         },

@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Auth/auth_cubit.dart';
 import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
@@ -245,7 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           loginOption(ImageConstants.google, () {
-                            cubit.googleSignUp(context);
+                            context.read<AuthCubit>().googleSignUp(context);
                           }),
                           SizedBox(
                             width: 23.w,

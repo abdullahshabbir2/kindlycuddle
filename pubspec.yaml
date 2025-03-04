@@ -42,10 +42,9 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   fl_chart: ^0.69.0
   charts_flutter: ^0.12.0
-  firebase_core: ^2.27.0
-  firebase_auth: ^4.17.8
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
   google_sign_in: ^6.2.1
-  firebase_messaging: ^14.7.19
   app_settings: ^5.1.1
   flutter_local_notifications: ^18.0.1
   dartz: ^0.10.1
@@ -61,7 +60,7 @@ dependencies:
   image_picker:
   bloc: any
   http: any
-  firebase_storage: ^11.6.9
+  firebase_storage: ^12.4.4
   shared_preferences: ^2.0.15
   provider: ^6.1.2
   flutter_datetime_picker_plus: ^2.1.0

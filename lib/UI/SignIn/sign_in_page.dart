@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Auth/auth_cubit.dart';
 import 'package:cuddle_care/Constants/colors_constants.dart';
 import 'package:cuddle_care/Constants/image_constants.dart';
 import 'package:cuddle_care/UI/ReUseAble/assets_image.dart';
@@ -126,9 +127,7 @@ class _SignInPageState extends State<SignInPage> {
                                     },
                                   );
                                 }),
-
                             SizedBox(height: 10.h),
-
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -171,20 +170,6 @@ class _SignInPageState extends State<SignInPage> {
                             SizedBox(
                               height: 30.h,
                             ),
-
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     // Validate returns true if the form is valid, or false otherwise.
-                            //     if (_formKey.currentState!.validate()) {
-                            //       // If the form is valid, display a snackbar. In a real app,
-                            //       // you would often call a server or save the information in a database.
-                            //       ScaffoldMessenger.of(context).showSnackBar(
-                            //         SnackBar(content: Text('Processing Data')),
-                            //       );
-                            //     }
-                            //   },
-                            //   child: Text('Submit'),
-                            // ),
                           ],
                         ),
                       ),
@@ -225,7 +210,7 @@ class _SignInPageState extends State<SignInPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           loginOption(ImageConstants.google, () {
-                            cubit.googleSignUp(context);
+                            context.read<AuthCubit>().googleSignUp(context);
                           }),
                           SizedBox(
                             width: 23.w,

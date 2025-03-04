@@ -9,21 +9,21 @@ class SessionOptionsNavigator {
   SessionOptionsNavigator(this.navigator);
   @override
   // TODO: implement context
-  late BuildContext  context;
+  late BuildContext context;
 
   @override
   // TODO: implement navigator
   AppNavigator navigator;
-
 }
 
-mixin SessionOptionsRoute{
-  openSessionOptionsPage(SessionOptionsInitialParams initialParams)
-  {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => SessionOptionsPage(cubit: getIt(param1: initialParams),))
-    );
+mixin SessionOptionsRoute {
+  openSessionOptionsPage(SessionOptionsInitialParams initialParams) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => SessionOptionsPage(
+              cubit: getIt(param1: initialParams),
+            )));
   }
+
   BuildContext get context;
   AppNavigator get navigator;
 }

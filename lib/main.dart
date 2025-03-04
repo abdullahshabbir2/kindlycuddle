@@ -1,3 +1,4 @@
+import 'package:cuddle_care/Auth/auth_cubit.dart';
 import 'package:cuddle_care/Constants/font_family_constants.dart';
 import 'package:cuddle_care/Data/Repository/firebase_user_repository.dart';
 import 'package:cuddle_care/Data/Repository/mock_blutooth_repository.dart';
@@ -69,8 +70,9 @@ import 'package:cuddle_care/UI/User%20Guide/user_guide1_cubit.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_initial_params.dart';
 import 'package:cuddle_care/UI/User%20Guide/user_guide1_navigator.dart';
 import 'package:cuddle_care/theme/theme_notifier.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+//import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -84,11 +86,9 @@ void main() async {
 // ...
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   getIt.registerSingleton<AppNavigator>(AppNavigator());
 
@@ -230,8 +230,16 @@ void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeNotifier(),
+    MultiBlocProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ThemeNotifier(),
+          child: const MyApp(),
+        ),
+        BlocProvider<AuthCubit>(
+          create: (context) => AuthCubit(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -261,11 +269,11 @@ Future<void> requestPermissions() async {
   }
 }
 
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  debugPrint(message.notification!.title.toString());
-}
+// @pragma('vm:entry-point')
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp();
+//   debugPrint(message.notification!.title.toString());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
